@@ -1,0 +1,54 @@
+.about-section {
+  margin-bottom: 100px;
+}
+.about {
+  display: flex;
+  color: $grey;
+  font-family: "Open Sans";
+}
+.left-col {
+  align-items: flex-start;
+  flex: 1;
+  margin-right: 130px;
+}
+.right-col {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.about__disclamer {
+  font-size: 16px;
+  color: inherit;
+  font-weight: 600;
+}
+.about__title {
+  font-size: 36px;
+  color: inherit;
+  font-weight: 700;
+}
+.about__desc {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+.about__ps {
+  margin-top: auto;
+  font-size: 16px;
+  color: inherit;
+  font-weight: 400;
+  font-style: italic;
+  position: relative;
+  &:before {
+    content: "*";
+    position: absolute;
+    left: -6%;
+    top: -15%;
+    font-size: 48px;
+    color: #db0200;
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.2;
+  }
+}
