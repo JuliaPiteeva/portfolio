@@ -1,0 +1,44 @@
+.projects-brief__techno {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.projects-brief__content {
+  font-family: "Open Sans";
+  margin-bottom: 30px;
+  h3 {
+    font-size: 30px;
+    color: @text-color;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  p {
+    font-size: 16px;
+    color: @text-color;
+    font-weight: 600;
+    opacity: 0.7;
+  }
+}
+.projects-brief__link {
+  font-size: 18px;
+  color: #586ed3;
+  font-weight: 700;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 20px;
+    background: svg-load(
+      "link.svg",
+      fill=currentColor,
+      width=100%,
+      height=100%
+    );
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: -26px;
+    left: 0;
+  }
+}

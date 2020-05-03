@@ -45,7 +45,7 @@ html(lang="en")
                   .user-info
                     .user-info__avatar
                       .avatar
-                        +image("content/user.jpg","avatar__img", "Фото")
+                        +image("content/user.jpg","Фото", "avatar__img")
                     .user-content
                   .user-info__content
                   -
@@ -94,12 +94,55 @@ html(lang="en")
                     each cell in row[1]
                       li.skills-row__item
                         .skill
-                          //- <svg class="skill__circle" xmlns="http://www.w3.org/2000/svg">
-                          //-   <circle cx="50" cy="50" r="45" >
-                          //-   </circle>
-                          //- </svg>
-                          //-  <svg class="skill__circle-val" xmlns="http://www.w3.org/2000/svg">
-                          //-   <circle cx="50" cy="50" r="45" >
-                          //-   </circle>
-                          //- </svg>
                           .skill__title=cell
+                          svg.skill__circle.circle(xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none")
+                            circle(cx="50" cy="50" r="45").circle__icon.circle__icon--above
+                            circle(cx="50" cy="50" r="45").circle__icon.circle__icon--under
+        section.projects-section
+          .container
+            .projects-section__title.section-title
+              h2 Мои работы
+            .projects-section__content
+              .projects-section__left
+                .projects-slider
+                  .projects-slider__list.slider
+                    ul.slider__list
+                      -var images=["content/prj1.png","content/prj1.png", "content/prj1.png"]
+                          each icon in images
+                            li.slider__item
+                              +image(`${icon}`, "Фото проекта", "slider__img")
+                  .projects-slider__points.points
+                    ul.points__list
+                      -var images=["content/mprj1.png","content/mprj1.png", "content/mprj1.png"]
+                        each icon in images
+                          li.points__item
+                            a.points__link(href="#")
+                              +image(`${icon}`, "Иконка проекта", "slider__icon")
+                  .projects-slider__arrows.arrows
+                    .arrows-left
+                      a.arrows__link(icon="#")
+                        +icon("arrow-down", "arrows__link-icon arrows__link-up")
+                    .arrows-right
+                      a.arrows__link(icon="#")
+                        +icon("arrow-down", "arrows__link-icon arrows__link-down")
+
+              .projects-section__right
+                .projects-brief
+                  ul.projects-brief__techno.techno__list 
+                    -var techno=["HTML", "CSS", "JavaScript"]
+                      each item in techno
+                        li.techno__item=item
+                  .projects-brief__content
+                    h3 Сайт школы образования
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
+                  a.projects-brief__link Посмотреть сайт
+          section.triangles.reviews__triangles
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
+                polygon(points="0,0 0,100 1000,100")
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
+                polygon(points="1000,0 1000,100 0,100")
+        .last-section
+          section.reviews
+            .container
+          section.section-form 
+            .container
