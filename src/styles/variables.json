@@ -7,6 +7,8 @@
   "link-site-color": "#586ed3",
   "quote-color": "rgba(70, 77, 98, 0.05)",
   "reviews-color": "#464d62",
+  "form-icon-color": "rgba(70, 77, 98, 0.3)",
+  "linear-gradient": "linear-gradient(90deg, #9300e7 0%, #4900ed 100%)",
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",
   "bp-tablets": "768px",

@@ -99,7 +99,7 @@ html(lang="en")
                               circle(cx="50" cy="50" r="45").circle__icon.circle__icon--above
                               circle(cx="50" cy="50" r="45").circle__icon.circle__icon--under
         section.projects-section
-          .container
+          .container.projects-container
             .projects-section__title.section__title
               h2 Мои работы
             .projects-section__content
@@ -134,7 +134,7 @@ html(lang="en")
                     h3 Сайт школы образования
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
                   a.projects-brief__link Посмотреть сайт
-          section.triangles.reviews__triangles
+          section.reviews__triangles.triangles
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
@@ -176,3 +176,20 @@ html(lang="en")
                             h3.reviews__author-name  #{item.name}
                             p.reviews__author-position  #{item.position}
           section.section-form
+            .container
+              .feedback-section
+                .section__title
+                  h2 Связаться со мной
+                form.feedback
+                  .feedback-row
+                    label.feedback__block
+                      span.feedback__title Введите ваше имя
+                      input.feedback__input.feedback__input--bg--name(type="text" placeholder="Бубнова Юлия" name="name")
+                    label.feedback__block
+                      span.feedback__title Введите ваше e-mail
+                      input.feedback__input.feedback__input--bg--mail(type="text" placeholder="Bubnovayn@gmail.com" name="name")                 
+                  .feedback-row
+                    label.feedback__block.feedback__block--width
+                      span.feedback__title Сообщение к письму
+                      textarea(name="comment", cols="30", rows="1" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
+                  button.feedback__btn(type="submit") Отправить
