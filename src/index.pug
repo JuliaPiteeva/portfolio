@@ -74,43 +74,39 @@ html(lang="en")
               polygon(points="0,0 0,100 1000,100")
             svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
               polygon(points="1000,0 1000,100 0,100")
-
-          .values__title
-            .values__title-content
-              h2.values__title-text Чем я могу быть полезна вам
-              .values__title-desc
-                p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint provident dolore possimus quas alias nesciunt dignissimos quos tempora ipsa accusantium quam repellendus velit dolores, quidem, nemo facere! Modi, corrupti minus.
-          .values__content
-            -
-              var items=[
-                ["Front-end", ["HTML5", "CSS3", "javascript", "jquery и Vue.js"]],
-                ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
-              ];
-            ul.skills-list
-              each row in items
-                li.skills-list__item.skills-row
-                  .skills-row__title #{row[0]}
-                  ul.skills-row__list
-                    each cell in row[1]
-                      li.skills-row__item
-                        .skill
-                          .skill__title=cell
-                          svg.skill__circle.circle(xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none")
-                            circle(cx="50" cy="50" r="45").circle__icon.circle__icon--above
-                            circle(cx="50" cy="50" r="45").circle__icon.circle__icon--under
+          .container
+            .values__title
+              .values__title-content
+                h2.values__title-text Чем я могу быть полезна вам
+                .values__title-desc
+                  p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint provident dolore possimus quas alias nesciunt dignissimos quos tempora ipsa accusantium quam repellendus velit dolores, quidem, nemo facere! Modi, corrupti minus.
+            .values__content
+              -
+                var items=[
+                  ["Front-end", ["HTML5", "CSS3", "javascript", "jquery и Vue.js"]],
+                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
+                ];
+              ul.skills-list
+                each row in items
+                  li.skills-list__item.skills-row
+                    .skills-row__title #{row[0]}
+                    ul.skills-row__list
+                      each cell in row[1]
+                        li.skills-row__item
+                          .skill
+                            .skill__title=cell
+                            svg.skill__circle.circle(xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none")
+                              circle(cx="50" cy="50" r="45").circle__icon.circle__icon--above
+                              circle(cx="50" cy="50" r="45").circle__icon.circle__icon--under
         section.projects-section
           .container
-            .projects-section__title.section-title
+            .projects-section__title.section__title
               h2 Мои работы
             .projects-section__content
               .projects-section__left
                 .projects-slider
-                  .projects-slider__list.slider
-                    ul.slider__list
-                      -var images=["content/prj1.png","content/prj1.png", "content/prj1.png"]
-                          each icon in images
-                            li.slider__item
-                              +image(`${icon}`, "Фото проекта", "slider__img")
+                  .projects-slider.slider
+                      +image("content/prj1.png", "Фото проекта", "slider__img")
                   .projects-slider__points.points
                     ul.points__list
                       -var images=["content/mprj1.png","content/mprj1.png", "content/mprj1.png"]
@@ -127,11 +123,13 @@ html(lang="en")
                         +icon("arrow-down", "arrows__link-icon arrows__link-down")
 
               .projects-section__right
+                .projects-number
+                  p 2
                 .projects-brief
-                  ul.projects-brief__techno.techno__list 
+                  ul.projects-brief__tags.tags__list 
                     -var techno=["HTML", "CSS", "JavaScript"]
                       each item in techno
-                        li.techno__item=item
+                        li.tags__item=item
                   .projects-brief__content
                     h3 Сайт школы образования
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
@@ -142,7 +140,39 @@ html(lang="en")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
                 polygon(points="1000,0 1000,100 0,100")
         .last-section
-          section.reviews
+          section.reviews-section
             .container
-          section.section-form 
-            .container
+              .reviews-head
+                .section__title.reviews-title
+                  h2 Что обо мне говорят
+                .reviews-arrow
+                  .reviews-arrow__list
+                    li.reviews-arrow__item
+                      button(type="button").reviews-arrow__btn.reviews-arrow__btn--left
+                    li.reviews-arrow__item
+                      button(type="button").reviews-arrow__btn.reviews-arrow__btn--right
+              .reviews-slider
+                ul.reviews-slider__list
+                  -
+                    var reviews=[{
+                      name: "Владимир Сабанцев", 
+                      position: "Преподаватель",
+                      text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                      avatar: "content/user.jpg"},{
+                      name: "Владимир Сабанцев", 
+                      position: "Преподаватель",
+                      text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                      avatar: "content/user.jpg"}]
+                  each item in reviews
+                    li.reviews-slider__item
+                      .reviews-slider__quote
+                        +icon("quote", "quote")
+                      .reviews-slider__content.reviews
+                        p.reviews__text #{item.text}
+                        .reviews__author
+                          .reviews-col.avatar
+                            +image(`${item.avatar}`, "Фото автора отзыва", "reviews__author-icon")
+                          .reviews-col
+                            h3.reviews__author-name  #{item.name}
+                            p.reviews__author-position  #{item.position}
+          section.section-form
