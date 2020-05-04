@@ -61,7 +61,8 @@ html(lang="en")
                           td.user-info__data-key #{row[0]}
                           td.user-info__data-val #{row[1]}
                 .right-col
-                  about__disclamer Привет, меня зовут
+                  about__disclamer
+                    p Привет, меня зовут
                   h2.about__title Юлия Бубнова
                   .about__desc
                     p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia aliquam facere sit blanditiis. Ex eum tempore voluptate, rerum quia vitae quibusdam sint animi doloribus facere nam et voluptatum illo autem.
@@ -80,6 +81,7 @@ html(lang="en")
                 h2.values__title-text Чем я могу быть полезна вам
                 .values__title-desc
                   p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint provident dolore possimus quas alias nesciunt dignissimos quos tempora ipsa accusantium quam repellendus velit dolores, quidem, nemo facere! Modi, corrupti minus.
+            +image("content/bag.png", "Фото рюкзак", "values__img")
             .values__content
               -
                 var items=[
@@ -95,9 +97,15 @@ html(lang="en")
                         li.skills-row__item
                           .skill
                             .skill__title=cell
-                            svg.skill__circle.circle(xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none")
-                              circle(cx="50" cy="50" r="45").circle__icon.circle__icon--above
-                              circle(cx="50" cy="50" r="45").circle__icon.circle__icon--under
+                            svg.skill__circle.circle(width="160px" height="160px" xmlns="http://www.w3.org/2000/svg")
+                              circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--under
+                              circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--above
+                             
+              svg(width="130px" height="130px" )
+                linearGradient(id="gradient" x1="0" y1="100%" x2="100%" y2="0")
+                  stop(offset="0%" stop-color="#9300e7")
+                  stop(offset="100%" stop-color="#4900ed")
+
         section.projects-section
           .container.projects-container
             .projects-section__title.section__title
@@ -217,7 +225,7 @@ html(lang="en")
                           each item in icons
                             li.socials__item.socials__item--circle
                               a(href="").social__link.social__link--icon--small--size
-                                +icon(item, "socials__icon")
+                                +icon(item, "socials__icon socials__icon--footer")
                   .footer__content-right
                     blockquote.footer__qoute Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
                     cite.footer__qoute-author Martin Golding

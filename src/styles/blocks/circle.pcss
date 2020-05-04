@@ -1,15 +1,17 @@
 .circle__icon {
   fill: transparent;
-  stroke: grey;
-  transform: translate(25%, 25%);
+
+  /* transform: translate(25%, 25%); */
 }
 .circle__icon--above {
   /* stroke-dasharray: 252; */
   stroke-dashoffset: 10%;
-  stroke: green;
-  stroke-width: 10;
+  stroke: url(#gradient);
+  stroke-width: 20px;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 10%;
 }
 .circle__icon--under {
-  stroke: #e9e9e9;
-  stroke-width: 20;
+  stroke: $circle-color;
+  stroke-width: 10px;
 }
