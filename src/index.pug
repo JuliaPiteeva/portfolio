@@ -125,7 +125,7 @@ html(lang="en")
                   .projects-slider__arrows.arrows
                     .arrows-left
                       a.arrows__link(icon="#")
-                        +icon("arrow-down", "arrows__link-icon arrows__link-up")
+                        +icon("arrow-down", "arrows__link-icon arrows__link-icon--active arrows__link-up")
                     .arrows-right
                       a.arrows__link(icon="#")
                         +icon("arrow-down", "arrows__link-icon arrows__link-down")
@@ -151,7 +151,7 @@ html(lang="en")
           section.reviews-section
             .container
               .reviews-head
-                .section__title.reviews-title
+                .section__title.section__title--without--margin.reviews-title
                   h2 Что обо мне говорят
                 .reviews-arrow
                   .reviews-arrow__list

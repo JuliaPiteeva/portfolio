@@ -4,9 +4,13 @@
 }
 .menu__item {
   margin-right: 60px;
+  box-sizing: border-box;
 
   &:last-child {
     margin-right: 0;
+  }
+  &:hover {
+    border-bottom: 1px solid $main-color;
   }
 }
 .menu__link {
@@ -16,5 +20,8 @@
   font-weight: 400;
   &--white {
     color: $white-color;
+  }
+  &:hover {
+    color: $main-color;
   }
 }

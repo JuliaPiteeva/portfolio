@@ -1,5 +1,9 @@
 .feedback__title {
   margin-bottom: 15px;
+  color: $lightgray-color;
+  font-size: 16px;
+  font-family: "Open Sans";
+  font-weight: 600;
 }
 .feedback {
   width: 80%;
@@ -10,6 +14,7 @@
   flex: 1;
   flex-direction: column;
   margin-bottom: 30px;
+
   &--width {
     width: 100%;
   }
@@ -18,62 +23,86 @@
   display: flex;
 }
 .feedback__input {
-  border-bottom: 2px solid $reviews-color;
+  border-bottom: 2px solid $lightgray-color;
   background: transparent;
   padding: 20px 20px 20px 50px;
   outline: none;
   background-size: 30px 30px;
+  cursor: pointer;
+  resize: none;
 
-  &:-moz-placeholder {
+  &::placeholder {
     font-size: 18px;
     font-weight: 700;
-    color: green;
+    color: $lightgray-color;
   }
-  &:::-webkit-input-placeholder {
-    font-size: 18px;
-    font-weight: 700;
-    color: green;
-  }
+
   &--bg--name {
     background: svg-load(
         "user.svg",
-        fill=$form-icon-color,
+        fill=$lightgray-color,
         width=100%,
         height=100%
       )
       center left no-repeat;
     background-size: 30px 30px;
+    &:hover {
+      background: svg-load(
+          "user.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
+    }
   }
   &--bg--mail {
     background: svg-load(
         "envelope.svg",
-        fill=$form-icon-color,
+        fill=$lightgray-color,
         width=100%,
         height=100%
       )
       center left no-repeat;
     background-size: 30px 30px;
+    &:hover {
+      background: svg-load(
+          "envelope.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
+    }
   }
   &--bg--comm {
     background: svg-load(
         "message.svg",
-        fill=$form-icon-color,
+        fill=$lightgray-color,
         width=100%,
         height=100%
       )
       center left no-repeat;
     background-size: 30px 30px;
+    &:hover {
+      background: svg-load(
+          "message.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
+    }
   }
-}
-.feedback__title {
-  font-size: 16px;
-  color: $reviews-color;
-  font-family: "Open Sans";
-  font-weight: 600;
-  opacity: 0.3;
-}
-.feedback__input {
-  resize: none;
-  $--textarea {
+  &:hover {
+    &::placeholder {
+      font-size: 18px;
+      font-weight: 700;
+      color: $gray-color;
+    }
+    border-bottom-color: $main-color;
+  }
+  &--textarea {
+    resize: none;
   }
 }

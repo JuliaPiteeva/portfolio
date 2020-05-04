@@ -1,11 +1,17 @@
 .arrows__link {
-  padding: 10px;
+  padding: 10px 15px;
   background-color: $dark-blue;
+  &:hover {
+    background-color: $main-color;
+  }
 }
 .arrows__link-icon {
   fill: $white-color;
   width: 10px;
   height: 10px;
+  &--active {
+    fill: #6d7781;
+  }
 }
 .arrows__link-up {
   transform: rotate(-90deg);
