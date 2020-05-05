@@ -5,8 +5,8 @@
   font-family: "Open Sans";
   font-weight: 600;
 }
-.feedback {
-  width: 80%;
+.feedback__row {
+  display: flex;
 }
 .feedback__block {
   margin-right: 100px;
@@ -19,9 +19,7 @@
     width: 100%;
   }
 }
-.feedback-row {
-  display: flex;
-}
+
 .feedback__input {
   border-bottom: 2px solid $lightgray-color;
   background: transparent;
@@ -41,12 +39,13 @@
     background: svg-load(
         "user.svg",
         fill=$lightgray-color,
-        width=100%,
-        height=100%
+        width=30px,
+        height=30px
       )
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
+      transition: 0.5s;
       background: svg-load(
           "user.svg",
           fill=$main-color,
@@ -60,12 +59,13 @@
     background: svg-load(
         "envelope.svg",
         fill=$lightgray-color,
-        width=100%,
-        height=100%
+        width=30px,
+        height=30px
       )
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
+      transition: 0.5s;
       background: svg-load(
           "envelope.svg",
           fill=$main-color,
@@ -79,12 +79,13 @@
     background: svg-load(
         "message.svg",
         fill=$lightgray-color,
-        width=100%,
-        height=100%
+        width=30px,
+        height=30px
       )
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
+      transition: 0.5s;
       background: svg-load(
           "message.svg",
           fill=$main-color,
@@ -96,6 +97,7 @@
   }
   &:hover {
     &::placeholder {
+      transition: 0.5s;
       font-size: 18px;
       font-weight: 700;
       color: $gray-color;

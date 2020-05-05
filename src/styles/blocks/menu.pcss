@@ -5,15 +5,18 @@
 .menu__item {
   margin-right: 60px;
   box-sizing: border-box;
+  min-height: 30px; //костыль-чтобы ссылка не пригала при ховере
 
   &:last-child {
     margin-right: 0;
   }
   &:hover {
-    border-bottom: 1px solid $main-color;
+    transition: 0.5s;
+    border-bottom: 3px solid $main-color;
   }
 }
 .menu__link {
+  vertical-align: middle;
   font-size: 16px;
   color: $gray-color;
   font-family: "Open Sans";
@@ -22,6 +25,7 @@
     color: $white-color;
   }
   &:hover {
+    transition: 0.5s;
     color: $main-color;
   }
 }

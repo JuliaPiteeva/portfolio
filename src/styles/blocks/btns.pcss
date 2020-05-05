@@ -3,12 +3,17 @@
   text-transform: uppercase;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  background-image: $linear-gradient;
+  background: $linear-gradient;
   font-size: 18px;
   color: #ffffff;
   font-family: "Open Sans";
   font-weight: 700;
   &--mrg--bottom {
     margin-bottom: 100px;
+  }
+  &:hover {
+    transition: 0.7s;
+    color: $main-color;
+    background: $white-color;
   }
 }

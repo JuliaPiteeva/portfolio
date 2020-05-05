@@ -1,8 +1,8 @@
 {
   "text-color": "#414c63",
   "gray-color": "#464d62",
-  "grayscale-color": "rgba(70, 77, 98, 0.5);",
-  "lightgray-color": "rgba(70, 77, 98, 0.3);",
+  "grayscale-color": "rgba(70, 77, 98, 0.5)",
+  "lightgray-color": "rgba(70, 77, 98, 0.3)",
   "links-color": "#4b6fd7",
   "main-color": "#5500f3",
   "dark-blue": "#353e4e",
