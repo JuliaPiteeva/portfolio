@@ -17,16 +17,19 @@
   &--footer {
     fill: $footer-text-color;
   }
-  &:hover {
-    transition: 0.5s;
-    fill: $main-color;
-  }
 }
 .socials__item {
   margin-right: 40px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    .socials__icon {
+      transition: 0.6s;
+      fill: $main-color;
+    }
+  }
   &:last-child {
     margin-right: 0;
   }
@@ -36,12 +39,17 @@
     border-radius: 50%;
     border: 1px solid $footer-text-color;
   }
+  &:hover {
+    border-color: $main-color;
+  }
 }
-.social__link {
+
+.socials__link {
   position: relative;
   width: 34px;
   height: 27px;
   display: block;
+
   &--icon--small--size {
     width: 17px;
     height: 22px;
