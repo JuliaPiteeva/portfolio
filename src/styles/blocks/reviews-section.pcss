@@ -1,13 +1,18 @@
 .reviews-section__head {
-  margin-bottom: 65px;
+  margin-bottom: 20%;
   display: flex;
   align-items: center;
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10%;
+  }
 }
 
 .reviews-section__slider {
   width: 80%;
   overflow: hidden;
-  margin-bottom: 100px;
+  margin-bottom: 20%;
   @include tablets {
     width: 100%;
   }

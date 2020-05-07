@@ -1,11 +1,18 @@
 .about {
   display: flex;
   font-family: "Open Sans";
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .about__left-col {
   align-items: flex-start;
   flex: 1;
   margin-right: 130px;
+  @include phones {
+    margin-right: 0;
+  }
 }
 .about__right-col {
   display: flex;
@@ -19,16 +26,25 @@
     color: $grayscale-color;
     font-weight: 600;
   }
+  @include phones {
+    margin-bottom: 5%;
+  }
 }
 .about__title {
   font-size: 36px;
   color: $gray-color;
   font-weight: 700;
+  @include phones {
+    margin-bottom: 10%;
+  }
 }
 .about__desc {
   font-size: 16px;
   font-weight: 600;
   color: $grayscale-color;
+  @include phones {
+    margin-bottom: 10%;
+  }
 }
 .about__ps {
   margin-top: auto;
@@ -48,5 +64,8 @@
     font-weight: 400;
     font-style: italic;
     opacity: 0.2;
+    @include phones {
+      left: -8%;
+    }
   }
 }

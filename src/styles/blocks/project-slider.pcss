@@ -1,5 +1,6 @@
 .projects-slider {
   position: relative;
+
 }
 .projects-slider__arrows {
   display: flex;
@@ -7,10 +8,16 @@
   position: absolute;
   top: 100%;
   right: 0;
+  @include phones {
+    top: 82%;
+  }
 }
 
 .projects-slider__points {
   position: absolute;
   right: 0;
   bottom: 7%;
+  @include phones {
+    display: none;
+  }
 }

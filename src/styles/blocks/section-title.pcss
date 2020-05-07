@@ -1,5 +1,5 @@
 .section__title {
-  margin-bottom: 65px;
+  margin-bottom: 20%;
   text-align: left;
   h2 {
     font-size: 36px;
@@ -11,7 +11,11 @@
     margin-bottom: 0px;
   }
   &--margin--right {
-    margin-right: 70px;
+    margin-right: 10%;
+    @include phones {
+      margin-right: 0;
+      margin-bottom: 10%;
+    }
   }
   &--align--center {
     @include tablets {

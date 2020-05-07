@@ -9,31 +9,43 @@ feedback-section__form {
   font-size: 16px;
   font-family: "Open Sans";
   font-weight: 600;
+  @include phones {
+    text-align: center;
+  }
 }
 .feedback__row {
   display: flex;
   @include tablets {
     justify-content: center;
   }
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .feedback__block {
-  margin-right: 100px;
+  margin-right: 14%;
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 4%;
   &--width {
-    width: 100%;
+    width: 80%;
   }
   &:last-child {
     margin-right: 0;
+  }
+  @include phones {
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 15%;
   }
 }
 
 .feedback__input {
   border-bottom: 2px solid $lightgray-color;
   background: transparent;
-  padding: 20px 20px 20px 50px;
+  padding: 9% 10%;
   outline: none;
   background-size: 30px 30px;
   cursor: pointer;
@@ -43,6 +55,10 @@ feedback-section__form {
     font-size: 18px;
     font-weight: 700;
     color: $lightgray-color;
+  }
+
+  &::-webkit-input-placeholder {
+    text-align: left;
   }
 
   &--bg--name {
@@ -55,7 +71,6 @@ feedback-section__form {
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
-      transition: 0.5s;
       background: svg-load(
           "user.svg",
           fill=$main-color,
@@ -63,6 +78,9 @@ feedback-section__form {
           height=30px
         )
         center left no-repeat;
+      @include phones {
+        background-size: 0;
+      }
     }
   }
   &--bg--mail {
@@ -75,7 +93,6 @@ feedback-section__form {
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
-      transition: 0.5s;
       background: svg-load(
           "envelope.svg",
           fill=$main-color,
@@ -83,6 +100,9 @@ feedback-section__form {
           height=30px
         )
         center left no-repeat;
+      @include phones {
+        background-size: 0;
+      }
     }
   }
   &--bg--comm {
@@ -95,7 +115,6 @@ feedback-section__form {
       center left no-repeat;
     background-size: 30px 30px;
     &:hover {
-      transition: 0.5s;
       background: svg-load(
           "message.svg",
           fill=$main-color,
@@ -103,6 +122,9 @@ feedback-section__form {
           height=30px
         )
         center left no-repeat;
+      @include phones {
+        background-size: 0;
+      }
     }
   }
   &:hover {
@@ -116,5 +138,12 @@ feedback-section__form {
   }
   &--textarea {
     resize: none;
+    padding: 5% 5%;
+    @include phones {
+      padding-bottom: 9%;
+    }
+  }
+  @include phones {
+    background: transparent;
   }
 }

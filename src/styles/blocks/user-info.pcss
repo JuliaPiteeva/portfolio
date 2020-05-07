@@ -2,19 +2,24 @@
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
+  @include phones {
+    margin-right: 0;
+  }
 }
 .user-info {
   margin-bottom: 50px;
 }
 .user-info__data {
-  min-width: 300px;
   font-size: 16px;
   color: $gray-color;
   font-family: "Open Sans";
   font-weight: 600;
+  @include phones {
+  }
 }
 .user-info__data-key {
   color: $lightgray-color;
+  padding-right: 10px;
 }
 .user-info__data-val {
   color: inherit;

@@ -2,11 +2,14 @@
   @include tablets {
     text-align: center;
   }
+  @include phones {
+    text-align: left;
+  }
 }
 
 .projects-brief__content {
   font-family: "Open Sans";
-  margin-bottom: 30px;
+  margin-bottom: 10%;
   h3 {
     font-size: 30px;
     color: $text-color;
@@ -22,6 +25,10 @@
   @include tablets {
     text-align: center;
     padding: 0 20%;
+  }
+  @include phones {
+    padding: 0;
+    text-align: left;
   }
 }
 .projects-brief__link {
@@ -49,5 +56,8 @@
   }
   &:hover {
     text-decoration: underline;
+  }
+  @include phones {
+    margin-left: 8%;
   }
 }

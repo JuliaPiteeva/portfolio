@@ -8,14 +8,22 @@
 
   &:nth-child(2n + 1) {
     margin-right: 4%;
+    @include phones {
+      margin-right: 0;
+    }
   }
   @include tablets {
     width: 50%;
   }
+  @include phones {
+    width: 100%;
+  }
 }
 .rv-slider__item-quote {
-  margin-right: 20px;
-  
+  margin-right: 5%px;
+  @include phones {
+    display: none;
+  }
 }
 .rv-slider__item-content {
   font-family: "Open Sans";
