@@ -1,3 +1,8 @@
+.fedback-section {
+  justify-content: center;
+}
+feedback-section__form {
+}
 .feedback__title {
   margin-bottom: 15px;
   color: $lightgray-color;
@@ -7,6 +12,9 @@
 }
 .feedback__row {
   display: flex;
+  @include tablets {
+    justify-content: center;
+  }
 }
 .feedback__block {
   margin-right: 100px;
@@ -14,9 +22,11 @@
   flex: 1;
   flex-direction: column;
   margin-bottom: 30px;
-
   &--width {
     width: 100%;
+  }
+  &:last-child {
+    margin-right: 0;
   }
 }
 

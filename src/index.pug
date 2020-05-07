@@ -30,6 +30,9 @@ html(lang="en")
                         li.socials__item
                           a(target="_blank" href="").socials__link
                             +icon(item, "socials__icon")
+                .hamburger
+                  a.hamburger__icon
+                  .hamburger__menu
               .hero__content
                 .user-data
                   .user-data__desc Личный сайт веб разработчика
@@ -74,13 +77,14 @@ html(lang="en")
               polygon(points="0,0 0,100 1000,100")
             svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
               polygon(points="1000,0 1000,100 0,100")
-          .container
+          .container.values-container
             .values__title
               .values__title-content
                 h2.values__title-text Чем я могу быть полезна вам
                 .values__title-desc
                   p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint provident dolore possimus quas alias nesciunt dignissimos quos tempora ipsa accusantium quam repellendus velit dolores, quidem, nemo facere! Modi, corrupti minus.
-            +image("content/bag.png", "Фото рюкзак", "values__img")
+            .values__img
+              +image("content/bag.png", "Фото рюкзак", "values__img-icon")
             .values__content
               -
                 var items=[
@@ -100,14 +104,14 @@ html(lang="en")
                               circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--under
                               circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--above
                              
-              svg(width="130px" height="130px" )
+              svg(width="0" height="0" )
                 linearGradient(id="gradient" x1="0" y1="100%" x2="100%" y2="0")
                   stop(offset="0%" stop-color="#9300e7")
                   stop(offset="100%" stop-color="#4900ed")
 
         section.projects-section
           .container.projects-container
-            .section__title.section__title--without--margin
+            .section__title
               h2 Мои работы
             .projects-section__content
               .projects-section__left
@@ -121,15 +125,16 @@ html(lang="en")
                           li.points__item
                             a.points__link(href="#")
                               +image(`${icon}`, "Иконка проекта", "slider__icon")
+                  .projects-number
+                    p 2
                   .projects-slider__arrows.arrows
                     ul.arrows__list
                       li.arrows__item.arrows__item--bg--gray
                         button(type="button").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
                       li.arrows__item.arrows__item--bg--gray
                         button(type="button").arrows__btn.square-btn.square-btn--rotate--down
+                 
               .projects-section__right
-                .projects-number
-                  p 2
                 .projects-brief.tags
                   ul.tags__list 
                     -var techno=["HTML", "CSS", "JavaScript"]
@@ -183,7 +188,7 @@ html(lang="en")
           section.section-form
             .container
               .feedback-section
-                .section__title
+                .section__title.section__title--align--center
                   h2 Связаться со мной
                 form.feedback-section__form.feedback
                   .feedback__row
@@ -196,8 +201,9 @@ html(lang="en")
                   .feedback__row
                     label.feedback__block.feedback__block--width
                       span.feedback__title Сообщение к письму
-                      textarea(name="comment", cols="30", rows="1" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
-                  button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
+                      textarea(name="comment", cols="30", rows="2" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
+                  .feedback__row
+                    button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
         footer.footer
           .container.footer-container
             .footer__left-col

@@ -1,5 +1,6 @@
 .section__title {
   margin-bottom: 65px;
+  text-align: left;
   h2 {
     font-size: 36px;
     color: $text-color;
@@ -11,5 +12,10 @@
   }
   &--margin--right {
     margin-right: 70px;
+  }
+  &--align--center {
+    @include tablets {
+      text-align: center;
+    }
   }
 }

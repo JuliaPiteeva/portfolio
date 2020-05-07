@@ -1,0 +1,39 @@
+.hamburger {
+  display: none;
+  margin-left: 90px;
+
+  @include tablets {
+    display: block;
+  }
+}
+.hamburger-menu {
+  display: none;
+}
+.hamburger__icon {
+  display: block;
+  position: relative;
+  width: 25px;
+  height: 4px;
+  background: $text-color;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 4px;
+    background: inherit;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 4px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 4px;
+    background: inherit;
+    position: absolute;
+    top: 100%;
+    margin-top: 4px;
+  }
+}

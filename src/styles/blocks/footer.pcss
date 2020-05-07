@@ -30,6 +30,10 @@
 .footer__content {
   display: flex;
   align-items: flex-start;
+  @include tablets {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 .footer__left-col {
   margin-right: 100px;
@@ -41,12 +45,25 @@
 .footer__content-left {
   width: 50%;
   margin-right: 50px;
+  @include tablets {
+    margin-right: 0;
+    width: 100%;
+  }
 }
 .footer__content-right {
   width: 50%;
+  @include tablets {
+    width: 100%;
+  }
 }
 .footer__btns {
   margin-bottom: 65px;
+}
+.footer__socials {
+  color: $footer-text-color;
+  @include tablets {
+    margin-bottom: 60px;
+  }
 }
 .footer__comment {
   margin-bottom: 25px;

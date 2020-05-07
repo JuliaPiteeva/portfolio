@@ -15,8 +15,8 @@
   "linear-gradient": "linear-gradient(90deg, #9300e7 0%, #4900ed 100% )",
   "footer-text-color": "rgba(255, 255, 255, 0.3)",
   "bg-footer-color": "#1f232e",
-  "bp-desktop-hd": "1800px",
-  "bp-desktop": "1200px",
-  "bp-tablets": "768px",
-  "bp-phones": "480px"
+  "bp-desktop-hd": "1800Px",
+  "bp-desktop": "1200Px",
+  "bp-tablets": "768Px",
+  "bp-phones": "480Px"
 }
