@@ -10,7 +10,15 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        .welcome-section
+        .welcome-section.parallax
+          -
+            var parts=[
+              {speed:"0.1", name:"sky"},{speed:"0.25",name:"mountain"}, 
+              {speed: "0.35", name:"baloon"},{speed:"0.38", name: "middle-cloud"}, 
+              {speed:"0.45", name: "man"}, {speed:"0.48", name:"slope" }, {speed:"0.50", name: "lower-cloud"}]
+          each part in parts
+            .parallax__layer(data-speed=`${part.speed}`)
+                +image(`parallax/${part.name}.png`, "", "parallax__image")
           section.hero
             .container
               header.header
@@ -39,7 +47,7 @@ html(lang="en")
                   .user-data__name
                     h1 Юлия Бубнова
               .hero__bottom-btn.scroll
-                a(href="").scroll__down-btn Скролл
+                a(href="#").scroll__down-btn Скролл
 
           section.about-section
             .container
@@ -70,13 +78,13 @@ html(lang="en")
                     p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia aliquam facere sit blanditiis. Ex eum tempore voluptate, rerum quia vitae quibusdam sint animi doloribus facere nam et voluptatum illo autem.
                   .about__ps
                     p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae at eveniet sit, asperiores repellendus fuga temporibus cumque tempora sunt. Molestias ullam exercitationem magni veritatis ipsum, rerum facere in officia sint?
-                  
+          .triangles.welcome-section__triangles
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
+                polygon(points="0,0 0,100 1000,100")
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
+                polygon(points="1000,0 1000,100 0,100")          
         section.values
-          .triangles.values__triangles
-            svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
-              polygon(points="0,0 0,100 1000,100")
-            svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
-              polygon(points="1000,0 1000,100 0,100")
+          
           .container.values-container
             .values__title
               .values__title-content
@@ -144,7 +152,7 @@ html(lang="en")
                     h3 Сайт школы образования
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
                   a.projects-brief__link Посмотреть сайт
-          .reviews__triangles.triangles
+          .reviews__triangles.triangles.triangles--lower
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle

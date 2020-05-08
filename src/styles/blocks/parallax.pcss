@@ -1,0 +1,76 @@
+.parallax {
+  position: relative;
+  overflow: hidden;
+  height: 1740px;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+
+  &:nth-child(1) {
+    //sky
+    .parallax__image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &:nth-child(2) {
+    //mountain
+    .parallax__image {
+      right: 0;
+      left: 0;
+      top: 435px;
+    }
+  }
+
+  &:nth-child(3) {
+    //baloon
+    .parallax__image {
+      right: 50%;
+      margin-right: -44%;
+      top: 460px;
+      width: 170px;
+      height: 220px;
+    }
+  }
+  &:nth-child(4) {
+    // middle-cloud
+    .parallax__image {
+      top: 565px;
+      left: 0;
+      right: 0;
+    }
+  }
+  &:nth-child(5) {
+    //man
+    .parallax__image {
+      top: 650px;
+      left: -11%;
+    }
+  }
+  &:nth-child(6) {
+    //slope
+    .parallax__image {
+      /* right: -6%; */
+      top: 650px;
+      width: 100%;
+    }
+  }
+  &:nth-child(7) {
+    //lower-cloud
+    .parallax__image {
+      bottom: -60%;
+      left: 0;
+      right: 0;
+      height: 1288px;
+    }
+  }
+}
+.parallax__image {
+  position: absolute;
+}
