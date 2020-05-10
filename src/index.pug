@@ -13,9 +13,9 @@ html(lang="en")
         .welcome-section.parallax
           -
             var parts=[
-              {speed:"0.1", name:"sky"},{speed:"0.25",name:"mountain"}, 
-              {speed: "0.35", name:"baloon"},{speed:"0.38", name: "middle-cloud"}, 
-              {speed:"0.45", name: "man"}, {speed:"0.48", name:"slope" }, {speed:"0.50", name: "lower-cloud"}]
+              {speed:"0.1", name:"sky"},{speed:"0.15",name:"mountain"}, 
+              {speed: "0.20", name:"baloon"},{speed:"0.25", name: "middle-cloud"}, 
+              {speed:"0.30", name: "man"}, {speed:"0.35", name:"slope" }, {speed:"0.50", name: "lower-cloud"}]
           each part in parts
             .parallax__layer(data-speed=`${part.speed}`)
                 +image(`parallax/${part.name}.png`, "", "parallax__image")
@@ -78,13 +78,12 @@ html(lang="en")
                     p Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia aliquam facere sit blanditiis. Ex eum tempore voluptate, rerum quia vitae quibusdam sint animi doloribus facere nam et voluptatum illo autem.
                   .about__ps
                     p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae at eveniet sit, asperiores repellendus fuga temporibus cumque tempora sunt. Molestias ullam exercitationem magni veritatis ipsum, rerum facere in officia sint?
-          .triangles.welcome-section__triangles
+          .triangles.values__triangles
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
-                polygon(points="1000,0 1000,100 0,100")          
+                polygon(points="1000,0 1000,100 0,100") 
         section.values
-          
           .container.values-container
             .values__title
               .values__title-content
@@ -94,28 +93,7 @@ html(lang="en")
             .values__img
               +image("content/bag.png", "Фото рюкзак", "values__img-icon")
             .values__content
-              -
-                var items=[
-                  ["Front-end", ["HTML5", "CSS3", "javascript", "jquery и Vue.js"]],
-                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
-                ];
-              ul.skills-list
-                each row in items
-                  li.skills-list__item.skills-row
-                    h3.skills-row__title #{row[0]}
-                    ul.skills-row__list
-                      each cell in row[1]
-                        li.skills-row__item
-                          .skill
-                            h4.skill__title=cell
-                            svg.skill__circle.circle(width="160px" height="160px" xmlns="http://www.w3.org/2000/svg")
-                              circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--under
-                              circle(cx="50%" cy="50%" r="66").circle__icon.circle__icon--above
-                             
-              svg(width="0" height="0" )
-                linearGradient(id="gradient" x1="0" y1="100%" x2="100%" y2="0")
-                  stop(offset="0%" stop-color="#9300e7")
-                  stop(offset="100%" stop-color="#4900ed")
+              #skills-component
 
         section.projects-section
           .container.projects-container
@@ -152,12 +130,23 @@ html(lang="en")
                     h3 Сайт школы образования
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
                   a.projects-brief__link Посмотреть сайт
+
           .reviews__triangles.triangles.triangles--lower
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
                 polygon(points="1000,0 1000,100 0,100")
-        .last-section
+
+        .last-section.parallax-budda
+          //- -
+          //-   var parts=[
+          //-     {speed:"0.1", name:"1-sky"},{speed:"0.15",name:"2-mountain"}, 
+          //-     {speed: "0.20", name:"3-budda"},{speed:"0.25", name: "5-cloud"}, 
+          //-     {speed:"0.30", name: "6-cloud"}, {speed:"0.35", name:"4-cloud" }, 
+          //-     {speed:"0.40", name: "4-cloud"}]
+          //- each part in parts
+          //-   .parallax__layer-budda(data-speed=`${part.speed}`)
+          //-     +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
           section.reviews-section
             .container
               .reviews-section__head
@@ -212,6 +201,7 @@ html(lang="en")
                       textarea(name="comment",wrap="soft"  placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
                   .feedback__row
                     button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
+        
         footer.footer
           .container.footer-container
             .footer__left-col
@@ -236,4 +226,5 @@ html(lang="en")
                           +icon(item, "socials__icon socials__icon--footer ")
               blockquote.footer__qoute Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
               cite.footer__qoute-author Martin Golding
+      include ./templates/entry.pug
 

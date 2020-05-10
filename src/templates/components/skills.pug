@@ -1,0 +1,27 @@
+
+script(type="text-/x-template")#skills-list
+    ul.skills-list
+        li.skills-list__item(v-for="category in skills" :key="category.title")
+            skills-row(
+                :category="category"
+            )
+
+script(type="text-/x-template")#skills-row
+    .skills-row
+        h3.skills-row__title {{category.title}}
+        ul.skills-row__list
+            li.skills-row__item(v-for="skill in category.skills" :key="skill.id")
+                skill(
+                    :skill="skill"
+                )
+
+script(type="text-/x-template")#skill
+    .skill
+        h4.skill__title {{skill.title}}
+        svg.skill__circle.circle(width="160px" height="160px" xmlns="http://www.w3.org/2000/svg")
+            circle(cx="50%" cy="50%" r="66" ).circle__icon.circle__icon--under
+            circle(cx="50%" cy="50%" ref="circle" r="66" stroke="url(#gradient)").circle__icon.circle__icon--above
+        svg(width="0" height="0" )
+            linearGradient(id="gradient" x1="0" y1="100%" x2="100%" y2="0")
+                stop(offset="0%" stop-color="#9300e7")
+                stop(offset="100%" stop-color="#4900ed")   

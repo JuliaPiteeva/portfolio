@@ -1,8 +1,8 @@
 // const parallax = document.querySelector(".parallax");
-// const layers = document.querySelectorAll(".parallax__layer");
+// const layersBudda = document.querySelectorAll(".parallax__layer-budda");
 
 // function moveLayersDependsOnScroll(wScroll) {
-//   Array.from(layers).forEach((layer) => {
+//   Array.from(layersBudda).forEach((layer) => {
 //     const divider = layer.dataset.speed;
 //     const strate = (wScroll * divider) / 10;
 

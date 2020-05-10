@@ -1,0 +1,45 @@
+script(type="text-/x-template")#slider-container
+    .slider-container
+        display (:currentProject="currentProject")    
+        info
+
+script(type="text-/x-template")#slider-display
+    .projects-section__left
+         pre {{currentProject}}
+            .projects-slider
+                .projects-slider.slider
+                img.slider__img
+                thumbs
+                btns
+
+
+script(type="text-/x-template")#slider-thumbs
+    .projects-slider__points.points
+        ul.points__list
+            li.points__item
+                .points__link(href="#")
+                    img.slider__icon
+
+
+script(type="text-/x-template")#slider-btns
+    .projects-slider__arrows.arrows
+        ul.arrows__list
+            li.arrows__item.arrows__item--bg--gray
+                button(type="button").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
+            li.arrows__item.arrows__item--bg--gray
+                button(type="button").arrows__btn.square-btn.square-btn--rotate--down       
+
+script(type="text-/x-template")#slider-info
+    .projects-section__right
+        tags
+            .projects-brief__content
+                h3 Сайт школы образования
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
+            a.projects-brief__link Посмотреть сайт
+
+script(type="text-/x-template")#slider-tags
+    .projects-brief.tags
+            ul.tags__list 
+                li.tags__item
+
+
