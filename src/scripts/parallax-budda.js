@@ -1,4 +1,4 @@
-// const parallax = document.querySelector(".parallax");
+// const parallaxBudda = document.querySelector(".parallax-budda");
 // const layersBudda = document.querySelectorAll(".parallax__layer-budda");
 
 // function moveLayersDependsOnScroll(wScroll) {

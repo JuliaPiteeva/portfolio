@@ -5,7 +5,7 @@
     "skills": "1 Html, Css, JavaScript",
     "photo": "prj1.png",
     "link": "//google.com",
-    "desc": "1 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    "desc": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita! "
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "skills": "2 Html, Css, JavaScript",
     "photo": "prj1.png",
     "link": "//yandex.ru",
-    "desc": "2 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    "desc": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!"
   },
   {
     "id": 3,
@@ -21,6 +21,6 @@
     "skills": "3 Html, Css, JavaScript",
     "photo": "prj1.png",
     "link": "//rambler.ru",
-    "desc": "3 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    "desc": " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!"
   }
 ]

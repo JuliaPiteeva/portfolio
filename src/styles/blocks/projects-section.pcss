@@ -3,6 +3,7 @@
 }
 .projects-section__content {
   display: flex;
+
   justify-content: space-between;
   @include tablets {
     flex-direction: column;
@@ -14,8 +15,18 @@
   width: 66%;
   position: relative;
   z-index: 10;
-  height: 340px;
-  margin-right: 100px;
+  height: 380px;
+  margin-right: 120px;
+  &:before {
+    content: attr(data-slide);
+    position: absolute;
+    left: 97%;
+    top: -31%;
+    font-size: 300px;
+    color: $project-number-color;
+    font-family: "Open Sans";
+    font-weight: 800;
+  }
   @include tablets {
     margin-right: 0;
     flex: 1;

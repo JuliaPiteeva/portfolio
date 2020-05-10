@@ -5,3 +5,5 @@ mixin icon(name, className)
 
 mixin image(path, alt, className)
   img(src=require(`images/${path}`) alt="" class=className)
+mixin imageParallax(path, alt, className)
+  img(src=require(`images/${path}`) alt="" class=className data-speed="")

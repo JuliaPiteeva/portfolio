@@ -2,36 +2,77 @@ import Vue from "vue";
 
 const thumbs = {
   template: "#slider-thumbs",
+  props: ["projects", "currentProject"],
 };
 const btns = {
   template: "#slider-btns",
 };
+
 const display = {
   template: "#slider-display",
   components: { thumbs, btns },
-  props: ["currentProject"],
+  props: ["currentProject", "projects", "currentIndex"],
+  computed: {
+    reversedProjects() {
+      const projects = [...this.projects];
+      return projects.reverse();
+    },
+  },
 };
 const tags = {
   template: "#slider-tags",
+  props: ["tags"], //tagsArray
 };
 const info = {
   template: "#slider-info",
-  conponents: { tags },
+  components: { tags },
+  props: ["currentProject"],
+  computed: {
+    tagsArray() {
+      return this.currentProject.skills.split(",");
+    },
+  },
 };
 
 new Vue({
   el: "#slider-component",
   template: "#slider-container",
-  conponents: { display, info },
+  components: { display, info },
   data() {
     return {
       projects: [],
-      currentProject: {},
+      currentIndex: 0,
     };
   },
+  computed: {
+    currentProject() {
+      return this.projects[this.currentIndex];
+    },
+  },
+  watch: {
+    currentIndex(value) {
+      this.makeInfiniteLoopForIndex(value);
+    },
+  },
+
   methods: {
-    makeArrWithRequireImages(Array) {
-      return Array.map((item) => {
+    makeInfiniteLoopForIndex(value) {
+      const projectsAmountFromZero = this.projects.lehgth - 1;
+      if (value > projectsAmountFromZero) this.currentIndex = 0;
+      if (value < 0) this.currentIndex = projectsAmountFromZero;
+    },
+    handleSlide(direction) {
+      switch (direction) {
+        case "next":
+          this.currentIndex++;
+          break;
+        case "prev":
+          this.currentIndex--;
+          break;
+      }
+    },
+    makeArrWithRequireImages(array) {
+      return array.map((item) => {
         const requirePic = require(`../images/content/${item.photo}`);
         item.photo = requirePic;
         return item;
@@ -40,7 +81,7 @@ new Vue({
   },
   created() {
     const data = require("../data/projects.json");
-    this.projects = makeArrWithRequireImages(data);
-    this.currentProject = this.projects[0];
+    this.projects = this.makeArrWithRequireImages(data);
+    // this.currentProject = this.projects[this.currentIndex];
   },
 });

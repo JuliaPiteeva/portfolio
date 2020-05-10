@@ -2,45 +2,62 @@ script(type="text-/x-template")#slider-container
     .slider-container
         display(
             :currentProject="currentProject"
+            :projects="projects"
+            :currentIndex="currentIndex"
+            @slide="handleSlide"
             )    
-        info
+        info(
+            :currentProject="currentProject"
+        )
 
 script(type="text-/x-template")#slider-display
-    .projects-section__pics(data-slide="1")
+    .projects-section__pics(:data-slide="currentIndex+1")
         .projects-slider
             .projects-slider__container.slider
                 img(:src="currentProject.photo").slider__img
-            thumbs
-            btns
+            thumbs(
+               :projects="reversedProjects" 
+               :currentProject="currentProject"
+            )
+            btns(
+                @slide="'slide', $event"
+            )
 
 
 script(type="text-/x-template")#slider-thumbs
     .projects-slider__points.points
         ul.points__list
-            li.points__item
+            li.points__item(
+                v-for="project in projects" 
+                :key="project.id"
+                :class="{active: currentProject.id===project.id}"
+                )
                 a.points__link(href="#")
-                    img.slider__icon
+                    img(:src="project.photo").slider__icon
 
 
 script(type="text-/x-template")#slider-btns
     .projects-slider__arrows.arrows
         ul.arrows__list
             li.arrows__item.arrows__item--bg--gray
-                button(type="button").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
+                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
             li.arrows__item.arrows__item--bg--gray
-                button(type="button").arrows__btn.square-btn.square-btn--rotate--down       
+                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--down       
 
 script(type="text-/x-template")#slider-info
     .projects-section__info
-        tags
+        tags(
+            :tags="tagsArray"
+        )
         .projects-brief__content
-            h3 Сайт школы образования
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
-        a.projects-brief__link Посмотреть сайт
+            h3 {{currentProject.title}}
+            p {{currentProject.desc}}
+        a(:href="currentProject.link").projects-brief__link Посмотреть сайт
 
 script(type="text-/x-template")#slider-tags
     .projects-brief.tags
         ul.tags__list 
-            li.tags__item
+            li.tags__item(v-for="tag in tags" :key="tag")
+                .tag {{tag}}
 
 
