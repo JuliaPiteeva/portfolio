@@ -100,36 +100,7 @@ html(lang="en")
             .section__title
               h2 Мои работы
             .projects-section__content
-              .projects-section__left
-                .projects-slider
-                  .projects-slider.slider
-                      +image("content/prj1.png", "Фото проекта", "slider__img")
-                  .projects-slider__points.points
-                    ul.points__list
-                      -var images=["content/mprj1.png","content/mprj1.png", "content/mprj1.png"]
-                        each icon in images
-                          li.points__item
-                            a.points__link(href="#")
-                              +image(`${icon}`, "Иконка проекта", "slider__icon")
-                  .projects-number
-                    p 2
-                  .projects-slider__arrows.arrows
-                    ul.arrows__list
-                      li.arrows__item.arrows__item--bg--gray
-                        button(type="button").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
-                      li.arrows__item.arrows__item--bg--gray
-                        button(type="button").arrows__btn.square-btn.square-btn--rotate--down
-                 
-              .projects-section__right
-                .projects-brief.tags
-                  ul.tags__list 
-                    -var techno=["HTML", "CSS", "JavaScript"]
-                      each item in techno
-                        li.tags__item=item
-                  .projects-brief__content
-                    h3 Сайт школы образования
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
-                  a.projects-brief__link Посмотреть сайт
+              #slider-component
 
           .reviews__triangles.triangles.triangles--lower
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
@@ -138,50 +109,51 @@ html(lang="en")
                 polygon(points="1000,0 1000,100 0,100")
 
         .last-section.parallax-budda
-          //- -
-          //-   var parts=[
-          //-     {speed:"0.1", name:"1-sky"},{speed:"0.15",name:"2-mountain"}, 
-          //-     {speed: "0.20", name:"3-budda"},{speed:"0.25", name: "5-cloud"}, 
-          //-     {speed:"0.30", name: "6-cloud"}, {speed:"0.35", name:"4-cloud" }, 
-          //-     {speed:"0.40", name: "4-cloud"}]
-          //- each part in parts
-          //-   .parallax__layer-budda(data-speed=`${part.speed}`)
-          //-     +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
+          -
+            var parts=[
+              {speed:"0.1", name:"1-sky"},{speed:"0.15",name:"2-mountain"}, 
+              {speed: "0.20", name:"3-budda"},{speed:"0.25", name: "5-cloud"}, 
+              {speed:"0.30", name: "6-cloud"}, {speed:"0.35", name:"4-cloud" }, 
+              {speed:"0.40", name: "4-cloud"}]
+          each part in parts
+            .parallax__layer-budda(data-speed=`${part.speed}`)
+              +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
           section.reviews-section
             .container
-              .reviews-section__head
-                .section__title.section__title--margin--right.section__title--without--margin--bottom
-                  h2 Что обо мне говорят
-                .reviews-section__arrows.arrows
-                  ul.arrows__list
-                    li.arrows__item.arrows__item--margin-right
-                      button(type="button").arrows__btn.circle-btn.circle-btn--rotate--left
-                    li.arrows__item
-                      button(type="button").arrows__btn.circle-btn
-              .reviews-section__slider.rv-slider
-                ul.rv-slider__list
-                  -
-                    var reviews=[{
-                      name: "Владимир Сабанцев", 
-                      position: "Преподаватель",
-                      text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
-                      avatar: "content/user.jpg"},{
-                      name: "Владимир Сабанцев", 
-                      position: "Преподаватель",
-                      text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
-                      avatar: "content/user.jpg"}]
-                  each item in reviews
-                    li.rv-slider__item
-                      .rv-slider__item-quote
-                        +icon("quote", "quote")
-                      .rv-slider__item-content.reviews
-                        p.reviews__text #{item.text}
-                        .reviews__author.author
-                          .author__col.author__col-avatar.avatar
-                            +image(`${item.avatar}`, "Фото автора отзыва", "avatar__img")
-                          .author__col
-                            h3.author__col-name  #{item.name}
-                            p.author__col-position  #{item.position}
+              .reviews-section__block
+                .reviews-section__head
+                  .section__title.section__title--margin--right.section__title--without--margin--bottom
+                    h2 Что обо мне говорят
+                  .reviews-section__arrows.arrows
+                    ul.arrows__list
+                      li.arrows__item.arrows__item--margin-right
+                        button(type="button").arrows__btn.circle-btn.circle-btn--rotate--left
+                      li.arrows__item
+                        button(type="button").arrows__btn.circle-btn
+                .reviews-section__slider.rv-slider
+                  ul.rv-slider__list
+                    -
+                      var reviews=[{
+                        name: "Владимир Сабанцев", 
+                        position: "Преподаватель",
+                        text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                        avatar: "content/user.jpg"},{
+                        name: "Владимир Сабанцев", 
+                        position: "Преподаватель",
+                        text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                        avatar: "content/user.jpg"}]
+                    each item in reviews
+                      li.rv-slider__item
+                        .rv-slider__item-quote
+                          +icon("quote", "quote")
+                        .rv-slider__item-content.reviews
+                          p.reviews__text #{item.text}
+                          .reviews__author.author
+                            .author__col.author__col-avatar.avatar
+                              +image(`${item.avatar}`, "Фото автора отзыва", "avatar__img")
+                            .author__col
+                              h3.author__col-name  #{item.name}
+                              p.author__col-position  #{item.position}
           section.section-form
             .container
               .feedback-section

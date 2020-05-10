@@ -1,23 +1,24 @@
 script(type="text-/x-template")#slider-container
     .slider-container
-        display (:currentProject="currentProject")    
+        display(
+            :currentProject="currentProject"
+            )    
         info
 
 script(type="text-/x-template")#slider-display
-    .projects-section__left
-         pre {{currentProject}}
-            .projects-slider
-                .projects-slider.slider
-                img.slider__img
-                thumbs
-                btns
+    .projects-section__pics(data-slide="1")
+        .projects-slider
+            .projects-slider__container.slider
+                img(:src="currentProject.photo").slider__img
+            thumbs
+            btns
 
 
 script(type="text-/x-template")#slider-thumbs
     .projects-slider__points.points
         ul.points__list
             li.points__item
-                .points__link(href="#")
+                a.points__link(href="#")
                     img.slider__icon
 
 
@@ -30,16 +31,16 @@ script(type="text-/x-template")#slider-btns
                 button(type="button").arrows__btn.square-btn.square-btn--rotate--down       
 
 script(type="text-/x-template")#slider-info
-    .projects-section__right
+    .projects-section__info
         tags
-            .projects-brief__content
-                h3 Сайт школы образования
-                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
-            a.projects-brief__link Посмотреть сайт
+        .projects-brief__content
+            h3 Сайт школы образования
+            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad praesentium dicta id quod fugiat aliquam consequuntur, vel incidunt pariatur et? Similique, eveniet quod distinctio amet mollitia labore totam odio. Expedita!
+        a.projects-brief__link Посмотреть сайт
 
 script(type="text-/x-template")#slider-tags
     .projects-brief.tags
-            ul.tags__list 
-                li.tags__item
+        ul.tags__list 
+            li.tags__item
 
 

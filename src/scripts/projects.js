@@ -9,7 +9,7 @@ const btns = {
 const display = {
   template: "#slider-display",
   components: { thumbs, btns },
-  props:["currentProject"]
+  props: ["currentProject"],
 };
 const tags = {
   template: "#slider-tags",
@@ -29,9 +29,18 @@ new Vue({
       currentProject: {},
     };
   },
+  methods: {
+    makeArrWithRequireImages(Array) {
+      return Array.map((item) => {
+        const requirePic = require(`../images/content/${item.photo}`);
+        item.photo = requirePic;
+        return item;
+      });
+    },
+  },
   created() {
     const data = require("../data/projects.json");
-    this.projects = data;
-    this.currentProject = data[1];
+    this.projects = makeArrWithRequireImages(data);
+    this.currentProject = this.projects[0];
   },
 });

@@ -1,0 +1,48 @@
+script(type="text-/x-template")#rev-block
+    .reviews-section__block
+        .reviews-section__head
+            .section__title.section__title--margin--right.section__title--without--margin--bottom
+                h2 Что обо мне говорят
+                btns
+            .reviews-section__slider.rv-slider
+                slider
+                  
+
+script(type="text-/x-template")#rev-btns
+    .reviews-section__arrows.arrows
+         ul.arrows__list
+            li.arrows__item.arrows__item--margin-right
+                button(type="button").arrows__btn.circle-btn.circle-btn--rotate--left
+            li.arrows__item
+                button(type="button").arrows__btn.circle-btn
+                
+script(type="text-/x-template")#rev-slider
+    ul.rv-slider__list
+        -
+            var reviews=[{
+                name: "Владимир Сабанцев", 
+                position: "Преподаватель",
+                text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                avatar: "content/user.jpg"},{
+                name: "Владимир Сабанцев", 
+                position: "Преподаватель",
+                text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                avatar: "content/user.jpg"}]
+        each item in reviews
+            li.rv-slider__item
+                .rv-slider__item-quote
+                    +icon("quote", "quote")
+                slide
+                
+script(type="text-/x-template")#rev-slide
+    .rv-slider__item-content.reviews
+        p.reviews__text text
+        .reviews__author.author
+            .author__col.author__col-avatar.avatar
+                +image("content/user.jpg", "Фото автора отзыва", "avatar__img")
+            .author__col
+                h3.author__col-name  name
+                p.author__col-position  position
+
+
+                
