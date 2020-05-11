@@ -5,6 +5,6 @@ if (process.env.NODE_ENV === "development") {
 
 import "./scripts/skills";
 import "./scripts/parallax";
-import "./scripts/parallax-budda";
 import "./scripts/projects";
 import "./scripts/skills";
+import "./scripts/parallax-budda";

@@ -1,23 +1,22 @@
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  align-items: center;
+}
 .hero {
   height: 100vh;
   position: relative;
   min-height: 650px;
   margin-bottom: 100px;
+
   @include phones {
     margin-bottom: 0;
   }
 }
 .hero__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .hero__bottom-btn {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   @include tablets {
     display: none;
   }

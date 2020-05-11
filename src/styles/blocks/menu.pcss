@@ -1,14 +1,21 @@
 .menu__list {
   display: flex;
   align-items: center;
-  @include tablets {
-    flex-wrap: wrap;
-    line-height: 30px;
+  &--wrap {
+    @include beforeTablets {
+      flex-wrap: wrap;
+      line-height: 30px;
+    }
+    @include phones {
+      line-height: 40px;
+      padding-right: 18%;
+      text-align: left;
+    }
   }
-  @include phones {
-    line-height: 40px;
-    padding-right: 18%;
-    text-align: left;
+  &--popup {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
   }
 }
 .menu__item {
@@ -22,6 +29,9 @@
   &:hover {
     transition: 0.5s;
     border-bottom: 3px solid $main-color;
+  }
+  &--popup {
+    margin-right: 0;
   }
 }
 .menu__link {

@@ -2,6 +2,13 @@
   display: flex;
   /* justify-content: space-between;
   align-items: center; */
+  @include tablets {
+    flex-wrap: wrap;
+  }
+  @include phones {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .skills-row__title {
   font-size: 18px;
@@ -15,5 +22,12 @@
   margin-right: 40px;
   &:last-child {
     margin-right: 0;
+    @include phones {
+      margin-right: 20px;
+    }
+  }
+  @include tablets {
+    margin-right: 20px;
+    margin-bottom: 5%;
   }
 }

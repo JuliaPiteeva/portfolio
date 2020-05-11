@@ -4,21 +4,19 @@
   align-items: center;
   color: $gray-color;
   min-height: 100px;
+  /* margin-bottom: auto; */
 }
 .header__logo {
   font-size: 36px;
   font-family: "Open Sans";
   font-weight: 800;
+  @include beforeTablets {
+    margin-right: auto;
+  }
 }
 .header__btns {
   margin: 0 20px;
-  @include tablets {
-    display: none;
-  }
-}
-.header__socials {
-  /* margin-left: auto; */
-  @include phones {
+  @include beforeTablets {
     display: none;
   }
 }

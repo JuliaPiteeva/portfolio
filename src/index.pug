@@ -20,7 +20,7 @@ html(lang="en")
             .parallax__layer(data-speed=`${part.speed}`)
                 +image(`parallax/${part.name}.png`, "", "parallax__image")
           section.hero
-            .container
+            .container.hero-container
               header.header
                 .header__logo
                   p БЮ
@@ -38,9 +38,24 @@ html(lang="en")
                         li.socials__item
                           a(target="_blank" href="").socials__link
                             +icon(item, "socials__icon")
-                .hamburger
-                  a.hamburger__icon
-                  .hamburger__menu
+                
+                button.hamburger__btn
+                  span.hamburger__icon
+              //- .hamburger
+              //-   .hamburger-menu
+              //-     nav.menu
+              //-       - var items=["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться",]
+              //-         ul.menu__list.menu__list--popup
+              //-           each item in items
+              //-             li.menu__item.menu__item--popup
+              //-               a.menu__link #{item}
+              //-   .header__socials
+              //-     - var icons=["vk", "insta", "github",]
+              //-       ul.socials__list
+              //-         each item in icons
+              //-           li.socials__item
+              //-             a(target="_blank" href="").socials__link
+              //-               +icon(item, "socials__icon")
               .hero__content
                 .user-data
                   .user-data__desc Личный сайт веб разработчика
@@ -105,11 +120,11 @@ html(lang="en")
 
           
         .last-section.parallax-budda
-          //- .triangles.triangles--lower
-          //-     svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
-          //-       polygon(points="0,0 0,100 1000,100")
-          //-     svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
-          //-       polygon(points="1000,0 1000,100 0,100")
+          .triangles.triangles--lower
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
+                polygon(points="0,0 0,100 1000,100")
+              svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangles__item-rotate.triangle
+                polygon(points="1000,0 1000,100 0,100")
           -
             var parts=[
               {speed:"0.1", name:"1-sky"} ,{speed:"0.13",name:"2-mountain"}, 
@@ -118,61 +133,61 @@ html(lang="en")
           each part in parts
             .parallax__layer-budda(data-speed=`${part.speed}`)
               +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
-          //- section.reviews-section
-          //-   .container
-          //-     .reviews-section__block
-          //-       .reviews-section__head
-          //-         .section__title.section__title--margin--right.section__title--without--margin--bottom
-          //-           h2 Что обо мне говорят
-          //-         .reviews-section__arrows.arrows
-          //-           ul.arrows__list
-          //-             li.arrows__item.arrows__item--margin-right
-          //-               button(type="button").arrows__btn.circle-btn.circle-btn--rotate--left
-          //-             li.arrows__item
-          //-               button(type="button").arrows__btn.circle-btn
-          //-       .reviews-section__slider.rv-slider
-          //-         ul.rv-slider__list
-          //-           -
-          //-             var reviews=[{
-          //-               name: "Владимир Сабанцев", 
-          //-               position: "Преподаватель",
-          //-               text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
-          //-               avatar: "content/user.jpg"},{
-          //-               name: "Владимир Сабанцев", 
-          //-               position: "Преподаватель",
-          //-               text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
-          //-               avatar: "content/user.jpg"}]
-          //-           each item in reviews
-          //-             li.rv-slider__item
-          //-               .rv-slider__item-quote
-          //-                 +icon("quote", "quote")
-          //-               .rv-slider__item-content.reviews
-          //-                 p.reviews__text #{item.text}
-          //-                 .reviews__author.author
-          //-                   .author__col.author__col-avatar.avatar
-          //-                     +image(`${item.avatar}`, "Фото автора отзыва", "avatar__img")
-          //-                   .author__col
-          //-                     h3.author__col-name  #{item.name}
-          //-                     p.author__col-position  #{item.position}
-          //- section.section-form
-          //-   .container
-          //-     .feedback-section
-          //-       .section__title.section__title--align--center
-          //-         h2 Связаться со мной
-          //-       form.feedback-section__form.feedback
-          //-         .feedback__row
-          //-           label.feedback__block
-          //-             span.feedback__title Введите ваше имя
-          //-             input.feedback__input.feedback__input--bg--name(type="text" placeholder="Бубнова Юлия" name="name")
-          //-           label.feedback__block
-          //-             span.feedback__title Введите ваше e-mail
-          //-             input.feedback__input.feedback__input--bg--mail(type="text" placeholder="Bubnovayn@gmail.com" name="name")                 
-          //-         .feedback__row
-          //-           label.feedback__block.feedback__block--width
-          //-             span.feedback__title Сообщение к письму
-          //-             textarea(name="comment",wrap="soft"  placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
-          //-         .feedback__row
-          //-           button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
+          section.reviews-section
+            .container
+              .reviews-section__block
+                .reviews-section__head
+                  .section__title.section__title--margin--right.section__title--without--margin--bottom
+                    h2 Что обо мне говорят
+                  .reviews-section__arrows.arrows
+                    ul.arrows__list
+                      li.arrows__item.arrows__item--margin-right
+                        button(type="button").arrows__btn.circle-btn.circle-btn--rotate--left
+                      li.arrows__item
+                        button(type="button").arrows__btn.circle-btn
+                .reviews-section__slider.rv-slider
+                  ul.rv-slider__list
+                    -
+                      var reviews=[{
+                        name: "Владимир Сабанцев", 
+                        position: "Преподаватель",
+                        text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                        avatar: "content/user.jpg"},{
+                        name: "Владимир Сабанцев", 
+                        position: "Преподаватель",
+                        text:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo minima nesciunt autem repudiandae. Dolores, velit nulla. Cupiditate aliquid quos, quam deserunt quidem at sint recusandae sed eaque, iure quis expedita.",
+                        avatar: "content/user.jpg"}]
+                    each item in reviews
+                      li.rv-slider__item
+                        .rv-slider__item-quote
+                          +icon("quote", "quote")
+                        .rv-slider__item-content.reviews
+                          p.reviews__text #{item.text}
+                          .reviews__author.author
+                            .author__col.author__col-avatar.avatar
+                              +image(`${item.avatar}`, "Фото автора отзыва", "avatar__img")
+                            .author__col
+                              h3.author__col-name  #{item.name}
+                              p.author__col-position  #{item.position}
+          section.section-form
+            .container
+              .feedback-section
+                .section__title.section__title--align--center
+                  h2 Связаться со мной
+                form.feedback-section__form.feedback
+                  .feedback__row
+                    label.feedback__block
+                      span.feedback__title Введите ваше имя
+                      input.feedback__input.feedback__input--bg--name(type="text" placeholder="Бубнова Юлия" name="name")
+                    label.feedback__block
+                      span.feedback__title Введите ваше e-mail
+                      input.feedback__input.feedback__input--bg--mail(type="text" placeholder="Bubnovayn@gmail.com" name="name")                 
+                  .feedback__row
+                    label.feedback__block.feedback__block--width
+                      span.feedback__title Сообщение к письму
+                      textarea(name="comment",wrap="soft"  placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
+                  .feedback__row
+                    button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
         
         footer.footer
           .container.footer-container
@@ -183,7 +198,7 @@ html(lang="en")
             .footer__right-col
               nav.menu.footer__menu
                 - var items=["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться",]
-                  ul.menu__list
+                  ul.menu__list.menu__list--wrap
                     each item in items
                       li.menu__item
                         a.menu__link.menu__link--white #{item}
@@ -191,7 +206,7 @@ html(lang="en")
               p.footer__comment Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool
               .footer__socials.socials
                 - var icons=["vk", "insta", "github",]
-                  ul.socials__list
+                  ul.socials__list.socials__list
                     each item in icons
                       li.socials__item.socials__item--circle
                         a(target="_blank"  href="").socials__link.socials__link--icon--small--size
@@ -199,4 +214,5 @@ html(lang="en")
               blockquote.footer__qoute Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
               cite.footer__qoute-author Martin Golding
       include ./templates/entry.pug
-
+<script src="/path/to/vue.js"></script>
+<script src="/path/to/vue-carousel.js"></script>

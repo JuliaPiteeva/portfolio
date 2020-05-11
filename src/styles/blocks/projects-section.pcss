@@ -12,11 +12,11 @@
 }
 
 .projects-section__pics {
-  width: 66%;
+  width: 62%;
   position: relative;
   z-index: 10;
   height: 380px;
-  margin-right: 120px;
+  margin-right: 10%;
   &:before {
     content: attr(data-slide);
     position: absolute;
@@ -26,13 +26,24 @@
     color: $project-number-color;
     font-family: "Open Sans";
     font-weight: 800;
+    @include beforeTablets {
+      left: 91%;
+    }
+    @include tablets {
+      left: 96%;
+    }
+    @include beforePhones {
+      display: none;
+    }
   }
   @include tablets {
     margin-right: 0;
-    flex: 1;
+    width: 88%;
+    margin-bottom: 10%;
   }
-  @include phones {
+  @include beforePhones {
     margin-bottom: 15%;
+    width: 100%;
   }
 }
 
@@ -41,4 +52,11 @@
   flex-direction: column;
   flex: 1;
   align-items: flex-start;
+  @include tablets {
+    align-items: center;
+  }
+  @include phones {
+    display: flex;
+    align-items: flex-start;
+  }
 }

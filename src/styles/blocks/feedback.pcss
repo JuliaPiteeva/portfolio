@@ -3,9 +3,12 @@
   position: absolute;
   top: 50%; */
 }
-feedback-section {
+.feedback-section {
   justify-content: center;
-  width: 70%;
+  width: 80%;
+  @include tablets {
+    width: 100%;
+  }
 }
 .feedback__title {
   margin-bottom: 15px;
@@ -54,6 +57,9 @@ feedback-section {
   background-size: 30px 30px;
   cursor: pointer;
   resize: none;
+  @include tablets {
+    padding: 9% 14%;
+  }
 
   &::placeholder {
     font-size: 18px;
@@ -145,6 +151,9 @@ feedback-section {
     padding: 5% 5%;
     @include phones {
       padding-bottom: 9%;
+    }
+    @include tablets {
+      padding-left: 8%;
     }
   }
   @include phones {

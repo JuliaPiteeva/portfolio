@@ -1,20 +1,44 @@
 .hamburger {
-  display: none;
-  margin-left: 90px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
+  background-color: $white-color;
+  color: #414c63;
+  padding-left: 20px;
 
-  @include tablets {
+  @include beforeTablets {
     display: block;
   }
 }
 .hamburger-menu {
+  display: block;
+}
+.hamburger__btn {
+  margin-left: 90px;
   display: none;
+  width: 25px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include beforeTablets {
+    display: block;
+  }
 }
 .hamburger__icon {
+  flex-shrink: 0;
   display: block;
-  position: relative;
   width: 25px;
   height: 4px;
   background: $text-color;
+  position: relative;
 
   &::before {
     content: "";
@@ -23,8 +47,7 @@
     height: 4px;
     background: inherit;
     position: absolute;
-    bottom: 100%;
-    margin-bottom: 4px;
+    top: 7px;
   }
   &:after {
     content: "";
@@ -33,7 +56,6 @@
     height: 4px;
     background: inherit;
     position: absolute;
-    top: 100%;
-    margin-top: 4px;
+    bottom: 7px;
   }
 }

@@ -20,5 +20,7 @@
   "bp-desktop-hd": "1800Px",
   "bp-desktop": "1200Px",
   "bp-tablets": "768Px",
-  "bp-phones": "480Px"
+  "bp-phones": "480Px",
+  "bp-beforeTablets": "940Px",
+  "bp-beforePhones": "600Px"
 }

@@ -21,3 +21,13 @@
     @content;
   }
 }
+@mixin beforeTablets() {
+  @media screen and (max-width: $bp-beforeTablets) {
+    @content;
+  }
+}
+@mixin beforePhones() {
+  @media screen and (max-width: $bp-beforePhones) {
+    @content;
+  }
+}
