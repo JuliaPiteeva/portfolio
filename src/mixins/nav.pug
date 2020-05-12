@@ -6,14 +6,14 @@ mixin nav(modif)
             ul.nav__list
             -
                 var items=[
-                    {title:"Главная", href:"#home", id: "#main"}, 
+                    {title:"Главная", href:"#home"}, 
                     {title:"Обо мне", href:"#about"},
                     {title: "Навыки", href:"#skills"}, 
                     {title:"Работы", href:"#works"}, 
                     {title:"Отзывы", href:"#reviews"}, 
                     {title:"Связаться", href:"#feedback"}]
             each item, index in items
-                li(class="nav__item "+((`${item.id}`===`${item.href}`)? "nav__item--active" : ""))
+                li.nav__item
                     a(href=`${item.href}`).nav__link #{item.title}
             if(`${modif}`=='header') 
                 +social('nav')
