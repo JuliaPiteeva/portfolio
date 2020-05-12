@@ -1,0 +1,15 @@
+.close {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: svg-load("Cross.svg", fill=$text-color, width=20px, height=20px)
+    center center no-repeat;
+  right: 0;
+  bottom: 134%;
+  cursor: pointer;
+  @include beforePhones {
+    width: 100%;
+    right: -120%;
+  }
+}

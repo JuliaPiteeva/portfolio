@@ -1,14 +1,17 @@
 .hero-container {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 .hero {
   height: 100vh;
   position: relative;
   min-height: 650px;
   margin-bottom: 100px;
+  display: flex;
+  align-items: flex-start;
 
   @include phones {
     margin-bottom: 0;

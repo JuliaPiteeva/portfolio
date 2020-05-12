@@ -1,0 +1,36 @@
+.popup {
+  transition: margin-right 1s;
+  margin-right: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 20;
+  background: $white-color;
+  align-items: center;
+  justify-content: center;
+
+  .nav__block {
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+  .nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 55px;
+  }
+  .nav__item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .nav__btn {
+    display: none;
+  }
+  @include beforeTablets {
+    width: 30%;
+  }
+  @include beforePhones {
+    width: 100%;
+  }
+}

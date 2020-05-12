@@ -1,4 +1,6 @@
 include ./mixins.pug
+include ./mixins/nav.pug
+include ./mixins/social.pug
 
 <!DOCTYPE html>
 html(lang="en")
@@ -19,43 +21,13 @@ html(lang="en")
           each part in parts
             .parallax__layer(data-speed=`${part.speed}`)
                 +image(`parallax/${part.name}.png`, "", "parallax__image")
-          section.hero
+          section.hero(id="home")
             .container.hero-container
               header.header
                 .header__logo
                   p БЮ
                 .header__btns
-                  nav.menu
-                    - var items=["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться",]
-                    ul.menu__list
-                      each item in items
-                        li.menu__item
-                          a.menu__link #{item}
-                .header__socials
-                  - var icons=["vk", "insta", "github",]
-                    ul.socials__list
-                      each item in icons
-                        li.socials__item
-                          a(target="_blank" href="").socials__link
-                            +icon(item, "socials__icon")
-                
-                button.hamburger__btn
-                  span.hamburger__icon
-              //- .hamburger
-              //-   .hamburger-menu
-              //-     nav.menu
-              //-       - var items=["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться",]
-              //-         ul.menu__list.menu__list--popup
-              //-           each item in items
-              //-             li.menu__item.menu__item--popup
-              //-               a.menu__link #{item}
-              //-   .header__socials
-              //-     - var icons=["vk", "insta", "github",]
-              //-       ul.socials__list
-              //-         each item in icons
-              //-           li.socials__item
-              //-             a(target="_blank" href="").socials__link
-              //-               +icon(item, "socials__icon")
+                  +nav('header')            
               .hero__content
                 .user-data
                   .user-data__desc Личный сайт веб разработчика
@@ -64,7 +36,7 @@ html(lang="en")
               .hero__bottom-btn.scroll
                 a(href="#").scroll__down-btn Скролл
 
-          section.about-section
+          section.about-section(id="about")
             .container
               .about
                 .about__left-col
@@ -98,7 +70,7 @@ html(lang="en")
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
                 polygon(points="1000,0 1000,100 0,100") 
-        section.values
+        section.values(id="skills")
           .container.values-container
             .values__title
               .values__title-content
@@ -110,7 +82,7 @@ html(lang="en")
             .values__content
               #skills-component
 
-        section.projects-section
+        section.projects-section(id="works")
           .container.projects-container
             .section__title
               h2 Мои работы
@@ -133,7 +105,7 @@ html(lang="en")
           each part in parts
             .parallax__layer-budda(data-speed=`${part.speed}`)
               +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
-          section.reviews-section
+          section.reviews-section(id="reviews")
             .container
               .reviews-section__block
                 .reviews-section__head
@@ -169,7 +141,7 @@ html(lang="en")
                             .author__col
                               h3.author__col-name  #{item.name}
                               p.author__col-position  #{item.position}
-          section.section-form
+          section.section-form(id="feedback")
             .container
               .feedback-section
                 .section__title.section__title--align--center
@@ -196,23 +168,12 @@ html(lang="en")
               h3.footer__user-name Юлия Бубнова
               p.footer__user-desc Личный сайт веб разработчика
             .footer__right-col
-              nav.menu.footer__menu
-                - var items=["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться",]
-                  ul.menu__list.menu__list--wrap
-                    each item in items
-                      li.menu__item
-                        a.menu__link.menu__link--white #{item}
+              +nav('footer')
               
               p.footer__comment Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool
-              .footer__socials.socials
-                - var icons=["vk", "insta", "github",]
-                  ul.socials__list.socials__list
-                    each item in icons
-                      li.socials__item.socials__item--circle
-                        a(target="_blank"  href="").socials__link.socials__link--icon--small--size
-                          +icon(item, "socials__icon socials__icon--footer ")
+              .footer__socials
+                +social('footer')
               blockquote.footer__qoute Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
               cite.footer__qoute-author Martin Golding
       include ./templates/entry.pug
-<script src="/path/to/vue.js"></script>
-<script src="/path/to/vue-carousel.js"></script>
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
