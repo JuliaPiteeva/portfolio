@@ -6,6 +6,7 @@ const thumbs = {
 };
 const btns = {
   template: "#slider-btns",
+  props: ["currentProject", "projects"],
 };
 
 const display = {

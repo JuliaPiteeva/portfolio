@@ -21,6 +21,8 @@ script(type="text-/x-template")#slider-display
             )
             btns(
                 @slide="$emit('slide', $event)"
+               :projects="reversedProjects" 
+               :currentProject="currentProject"
             )
 
 
@@ -30,7 +32,7 @@ script(type="text-/x-template")#slider-thumbs
             li.points__item(
                 v-for="project in projects" 
                 :key="project.id"
-                :class="{active: currentProject.id === project.id}"
+                :class="{pointsActive: currentProject.id === project.id}"
             )
                 a.points__link
                     img(:src="project.photo").slider__icon
@@ -40,9 +42,9 @@ script(type="text-/x-template")#slider-btns
     .projects-slider__arrows.arrows
         ul.arrows__list
             li.arrows__item.arrows__item--bg--gray
-                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
+                button(type="button" @click.prevent="$emit('slide','next')" :class="currentProject.id<projects.length? 'arrowActive': 'arrowPassive'").arrows__btn.square-btn.square-btn--rotate--up
             li.arrows__item.arrows__item--bg--gray
-                button(type="button" @click.prevent="$emit('slide','prev')").arrows__btn.square-btn.square-btn--rotate--down       
+                button(type="button" @click.prevent="$emit('slide','prev')" :class="currentProject.id>1? 'arrowActive' : 'arrowPassive'").arrows__btn.square-btn.square-btn--rotate--down       
 
 script(type="text-/x-template")#slider-info
     .projects-section__info

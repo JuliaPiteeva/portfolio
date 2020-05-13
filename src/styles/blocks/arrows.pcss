@@ -40,13 +40,7 @@
 .square-btn {
   transition: background-color 0.5s;
   background-color: $dark-blue;
-  background: svg-load(
-      "arrow-down.svg",
-      fill=$white-color,
-      width=10px,
-      height=10px
-    )
-    center center no-repeat;
+
   &:hover {
     background-color: $main-color;
   }
@@ -56,15 +50,19 @@
   &--rotate--down {
     transform: rotate(90deg);
   }
-  &--active {
-    background: svg-load(
-        "arrow-down.svg",
-        fill=#6d7781,
-        width=10px,
-        height=10px
-      )
-      center center no-repeat;
-  }
+}
+.arrowActive {
+  background: svg-load(
+      "arrow-down.svg",
+      fill=$white-color,
+      width=10px,
+      height=10px
+    )
+    center center no-repeat;
+}
+.arrowPassive {
+  background: svg-load("arrow-down.svg", fill=#6d7781, width=10px, height=10px)
+    center center no-repeat;
 }
 .circle-btn {
   background: svg-load(

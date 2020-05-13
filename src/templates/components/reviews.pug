@@ -5,6 +5,8 @@ script(type="text-/x-template")#rev-block
                 h2 Что обо мне говорят
             btns(
                  @click="handleSlide" 
+                 :projects="projects"
+                 
                 )
         .reviews-section__slider.rv-slider(ref="sliderBlock")
             slider(
