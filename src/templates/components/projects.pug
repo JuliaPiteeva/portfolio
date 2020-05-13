@@ -38,13 +38,11 @@ script(type="text-/x-template")#slider-thumbs
 
 script(type="text-/x-template")#slider-btns
     .projects-slider__arrows.arrows
-        a(@click.prevent="$emit('slide','next')").arrows-btn-right >
-        a(@click.prevent="$emit('slide','next')").arrows-btn-left <
-        //- ul.arrows__list
-            //- li.arrows__item.arrows__item--bg--gray
-            //-     button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
-            //- li.arrows__item.arrows__item--bg--gray
-            //-     button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--down       
+        ul.arrows__list
+            li.arrows__item.arrows__item--bg--gray
+                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.square-btn.square-btn--rotate--up.square-btn--active
+            li.arrows__item.arrows__item--bg--gray
+                button(type="button" @click.prevent="$emit('slide','prev')").arrows__btn.square-btn.square-btn--rotate--down       
 
 script(type="text-/x-template")#slider-info
     .projects-section__info
