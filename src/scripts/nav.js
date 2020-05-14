@@ -1,16 +1,16 @@
-const navHeader = $(".nav--header");
+const navHeader = $(".header__btns");
 const hamburgerButton = $(".nav__btn");
 
 $(".nav__btn").on("click", function(e) {
   console.log("click");
   e.preventDefault();
-  $(".nav--header").addClass("popup");
+  navHeader.addClass("popup");
   $("nav__btn").addClass("nav__btn--disabled");
 });
 
 $(".close").on("click", function(e) {
   e.preventDefault();
   console.log("click close");
-  $(".nav--header").removeClass("popup");
+  navHeader.removeClass("popup");
   $("nav__btn").removeClass("nav__btn--disabled");
 });

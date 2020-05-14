@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   color: $gray-color;
   min-height: 100px;
@@ -18,5 +18,8 @@
 .header__btns {
   margin-left: 20px;
   @include beforeTablets {
+    position: absolute;
+    left: 92%;
+    top: 5%;
   }
 }

@@ -26,7 +26,7 @@ html(lang="en")
           each part in parts
             .parallax__layer(data-speed=`${part.speed}`)
                 +image(`parallax/${part.name}.png`, "", "parallax__image")
-          section.hero(id="home")
+          section.section.hero(id="home")
             .container.hero-container
               header.header
                 .header__logo
@@ -41,7 +41,7 @@ html(lang="en")
               .hero__bottom-btn.scroll
                 a(href="#").scroll__down-btn Скролл
 
-          section.about-section(id="about")
+          section.section.about-section(id="about")
             .container
               .about
                 .about__left-col
@@ -75,7 +75,7 @@ html(lang="en")
                 polygon(points="0,0 0,100 1000,100")
               svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__item.triangle
                 polygon(points="1000,0 1000,100 0,100") 
-        section.values(id="skills")
+        section.section.values(id="skills")
           .container.values-container
             .values__title
               .values__title-content
@@ -87,7 +87,7 @@ html(lang="en")
             .values__content
               #skills-component
 
-        section.projects-section(id="works")
+        section.section.projects-section(id="works")
           .container.projects-container
             .section__title
               h2 Мои работы
@@ -110,10 +110,10 @@ html(lang="en")
           each part in parts
             .parallax__layer-budda(data-speed=`${part.speed}`)
               +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
-          section.reviews-section(id="reviews")
+          section.section.reviews-section(id="reviews")
             .container
               #reviwews-component
-          section.section-form(id="feedback")
+          section.section.section-form(id="feedback")
             .container
               .feedback-section
                 .section__title.section__title--align--center

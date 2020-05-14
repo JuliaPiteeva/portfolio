@@ -1,5 +1,7 @@
 .popup {
-  transition: margin-right 1s;
+  transform: translateX(-80%);
+  transition-property: transform;
+  transition-duration: 1.5s;
   margin-right: 0;
   position: absolute;
   right: 0;
@@ -7,6 +9,7 @@
   height: 100%;
   z-index: 20;
   background: $white-color;
+  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -28,9 +31,9 @@
     display: none;
   }
   @include beforeTablets {
-    width: 30%;
+    width: 40%;
   }
   @include beforePhones {
-    width: 100%;
+    width: 120%;
   }
 }

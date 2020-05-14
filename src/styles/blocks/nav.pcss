@@ -10,14 +10,10 @@
 }
 .nav--header {
   @include beforeTablets {
-    align-items: flex-start;
-    margin-right: -1000px;
+    /* transform: translateX(91%); */
   }
-  .nav__link {
+  .nav__block .nav__link {
     color: $gray-color;
-    &:focus {
-      outline: 1px solid $main-color;
-    }
   }
   .nav__item {
     &--active {
@@ -32,9 +28,6 @@
 
   .nav__link {
     color: $white-color;
-    &:focus {
-      outline: 1px solid $orange-color;
-    }
   }
   .nav__item {
     &:last-child {
@@ -69,8 +62,14 @@
   font-size: 16px;
   font-family: "Open Sans";
   font-weight: 400;
+  outline: none;
+  &:focus {
+    border-bottom: 3px solid $main-color;
+    color: $main-color;
+  }
 }
 .nav__btn {
+  outline: none;
   display: none;
   margin-right: 30px;
   width: 30px;

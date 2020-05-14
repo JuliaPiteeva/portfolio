@@ -52,14 +52,15 @@
 .feedback__input {
   border-bottom: 2px solid $lightgray-color;
   background: transparent;
-  padding: 9% 10%;
+  padding: 5% 5% 5% 12%;
   outline: none;
   background-size: 30px 30px;
   cursor: pointer;
   resize: none;
+  transition: color 0.5s;
 
-  @include tablets {
-    padding: 9% 14%;
+  @include beforeTablets {
+    padding: 5% 5% 5% 15%;
   }
 
   &::placeholder {
@@ -93,6 +94,15 @@
         background-size: 0;
       }
     }
+    &:focus {
+      background: svg-load(
+          "user.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
+    }
   }
   &--bg--mail {
     background: svg-load(
@@ -103,6 +113,7 @@
       )
       center left no-repeat;
     background-size: 30px 30px;
+
     &:hover {
       background: svg-load(
           "envelope.svg",
@@ -114,6 +125,15 @@
       @include phones {
         background-size: 0;
       }
+    }
+    &:focus {
+      background: svg-load(
+          "envelope.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
     }
   }
   &--bg--comm {
@@ -137,10 +157,18 @@
         background-size: 0;
       }
     }
+    &:focus {
+      background: svg-load(
+          "message.svg",
+          fill=$main-color,
+          width=30px,
+          height=30px
+        )
+        center left no-repeat;
+    }
   }
   &:hover {
     &::placeholder {
-      transition: 0.5s;
       font-size: 18px;
       font-weight: 700;
       color: $gray-color;
@@ -159,5 +187,9 @@
   }
   @include phones {
     background: transparent;
+  }
+  &:focus {
+    border-bottom: 2px solid $main-color;
+    fill: $main-color;
   }
 }
