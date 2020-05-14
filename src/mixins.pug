@@ -9,4 +9,5 @@ mixin image(path, alt, className)
 mixin imageParallax(path, alt, className)
   img(src=require(`images/${path}`) alt="" class=className data-speed="")
 
-  
+mixin source(path, className, mediaNumber)
+  source(scrset=require(`images/${path}`) class=`${className}` media=`"(min-width:${mediaNumber}px)"`)

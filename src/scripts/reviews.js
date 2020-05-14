@@ -2,6 +2,12 @@ import Vue from "vue";
 
 const btns = {
   template: "#rev-btns",
+  props: ["reviews"],
+  // methods: {
+  //   handleSlide(direction) {
+  //     console.log("passs");
+  //   },
+  // },
 };
 const slide = {
   template: "#rev-slide",
@@ -40,7 +46,7 @@ new Vue({
       let sumSlidesWidth = 0;
       let numbertoMove = 0;
 
-      const difineSlider = this.$children.$refs.moveSlider;
+      const difineSlider = this.$children[1].$refs.moveSlider;
       const sliderBlock = this.$refs.sliderBlock;
       let slidesArray = this.$children[1].$refs.moveSlider.children;
 
@@ -54,17 +60,19 @@ new Vue({
         sumSlidesWidth += sumWidth;
       }
 
-      screenSlides = Math.cell(sumSlidesWidth / sliderBlockWidth); //сколько всего может быть экранов
+      screenSlides = Math.ceil(sumSlidesWidth / sliderBlockWidth); //сколько всего может быть экранов
 
       if (direction === "next") {
         currentSlideIndex++;
         indexTest();
         this.currentIndex = currentSlideIndex;
+        console.log("passs", direction);
       }
       if (direction === "prev") {
         currentSlideIndex--;
         indexTest();
         this.currentIndex = currentSlideIndex;
+        console.log("passs", direction);
       }
 
       function indexTest() {

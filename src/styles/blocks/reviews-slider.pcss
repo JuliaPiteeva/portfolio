@@ -1,9 +1,10 @@
 .rv-slider__list {
   display: flex;
+  transition: 2s;
 }
 .rv-slider__item {
   display: flex;
-  width: 45%;
+  width: 38%;
   flex-shrink: 0;
 
   &:nth-child(2n + 1) {
@@ -13,14 +14,14 @@
     }
   }
   @include beforeTablets {
-    width: 50%;
+    width: 48%;
   }
   @include beforePhones {
     width: 100%;
   }
 }
 .rv-slider__item-quote {
-  margin-right: 5%px;
+  /* margin-right: 5%; */
   @include phones {
     display: none;
   }

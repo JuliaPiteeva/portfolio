@@ -13,11 +13,16 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section.parallax
+          //- picture.welcome-section__bg
+          //-   +source("bg/768-bg-Mountain.png","welcome-section__bg-img", '900')
+          //-   +source("bg/768-bg-Budda.png","welcome-section__bg-img", '500')
+          //- +image('bg/768-bg-Mountain.png', '', 'welcome-section__bg-img')
+
           -
             var parts=[
-              {speed:"0.1", name:"sky"},{speed:"0.15",name:"mountain"}, 
-              {speed: "0.17", name:"baloon"},{speed:"0.20", name: "middle-cloud"}, 
-              {speed:"0.23", name: "man"}, {speed:"0.26", name:"slope" }, {speed:"0.31", name: "lower-cloud"}]
+              {speed:"0.1", name:"sky"},{speed:"0.13",name:"mountain"}, 
+              {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 
+              {speed:"0.20", name: "man"}, {speed:"0.22", name:"slope" }, {speed:"0.24", name: "lower-cloud"}]
           each part in parts
             .parallax__layer(data-speed=`${part.speed}`)
                 +image(`parallax/${part.name}.png`, "", "parallax__image")
@@ -99,9 +104,9 @@ html(lang="en")
                 polygon(points="1000,0 1000,100 0,100")
           -
             var parts=[
-              {speed:"0.1", name:"1-sky"} ,{speed:"0.13",name:"2-mountain"}, 
-              {speed: "0.17", name:"3-budda"},{speed:"0.20", name: "5-cloud"}, 
-              {speed:"0.23", name: "6-cloud"}, {speed:"0.26", name:"4-cloud" }]
+              {speed:"0.1", name:"1-sky"} ,{speed:"0.12",name:"2-mountain"}, 
+              {speed: "0.14", name:"3-budda"},{speed:"0.16", name: "5-cloud"}, 
+              {speed:"0.18", name: "6-cloud"}, {speed:"0.20", name:"4-cloud" },{speed:"0.20", name:"4-cloud" }]
           each part in parts
             .parallax__layer-budda(data-speed=`${part.speed}`)
               +image(`parallax/${part.name}.png`, "", "parallax__image-budda")

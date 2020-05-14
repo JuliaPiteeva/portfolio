@@ -4,9 +4,7 @@ script(type="text-/x-template")#rev-block
             .section__title.section__title--margin--right.section__title--without--margin--bottom
                 h2 Что обо мне говорят
             btns(
-                 @click="handleSlide" 
-                 :projects="projects"
-                 
+                 @slide="handleSlide"                  
                 )
         .reviews-section__slider.rv-slider(ref="sliderBlock")
             slider(
@@ -20,9 +18,9 @@ script(type="text-/x-template")#rev-btns
     .reviews-section__arrows.arrows
          ul.arrows__list
             li.arrows__item.arrows__item--margin-right
-                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.circle-btn.circle-btn--rotate--left
+                button(type="button" @click.prevent="$emit('slide','prev')").arrows__btn.circle-btn.circle-btn--rotate--left
             li.arrows__item
-                button(type="button" @click.prevent="$emit('slide','prev')").arrows__btn.circle-btn
+                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.circle-btn
                 
 script(type="text-/x-template")#rev-slider
         ul.rv-slider__list(ref="moveSlider")

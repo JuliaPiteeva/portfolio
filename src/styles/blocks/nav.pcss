@@ -20,10 +20,6 @@
     }
   }
   .nav__item {
-    &:hover {
-      border-bottom: 3px solid $main-color;
-      color: $main-color;
-    }
     &--active {
       border-bottom: 3px solid $main-color;
       color: $main-color;
@@ -41,10 +37,6 @@
     }
   }
   .nav__item {
-    &:hover {
-      border-bottom: 3px solid $orange-color;
-      color: $orange-color;
-    }
     &:last-child {
       margin-right: 0;
     }
@@ -67,6 +59,10 @@
 
   transition: color 0.5s;
   transition: border-color 0.5s;
+  &:hover {
+    border-bottom: 3px solid $main-color;
+    color: $main-color;
+  }
 }
 .nav__link {
   vertical-align: middle;
