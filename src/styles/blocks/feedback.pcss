@@ -22,6 +22,7 @@
 }
 .feedback__row {
   display: flex;
+  margin-bottom: 30px;
   @include tablets {
     justify-content: center;
   }
@@ -29,8 +30,12 @@
     flex-direction: column;
     align-items: center;
   }
+  &:last-child {
+    margin-bottom: 0px;
+  }
 }
 .feedback__block {
+  position: relative;
   margin-right: 14%;
   display: flex;
   flex: 1;
@@ -50,6 +55,7 @@
 }
 
 .feedback__input {
+  position: relative;
   border-bottom: 2px solid $lightgray-color;
   background: transparent;
   padding: 5% 5% 5% 12%;
@@ -67,104 +73,50 @@
     font-size: 18px;
     font-weight: 700;
     color: $lightgray-color;
-  }
-
-  &::-webkit-input-placeholder {
     text-align: left;
   }
 
-  &--bg--name {
-    background: svg-load(
-        "user.svg",
-        fill=$lightgray-color,
-        width=30px,
-        height=30px
-      )
-      center left no-repeat;
-    background-size: 30px 30px;
-    &:hover {
-      background: svg-load(
-          "user.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
-      @include phones {
-        background-size: 0;
-      }
-    }
-    &:focus {
-      background: svg-load(
-          "user.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
-    }
+  &::-webkit-input-placeholder {
   }
-  &--bg--mail {
-    background: svg-load(
-        "envelope.svg",
-        fill=$lightgray-color,
-        width=30px,
-        height=30px
-      )
-      center left no-repeat;
+  &--bg--name {
+    @include formIcons("user.svg", $lightgray-color);
     background-size: 30px 30px;
 
     &:hover {
-      background: svg-load(
-          "envelope.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
+      @include formIcons("user.svg", $main-color);
       @include phones {
         background-size: 0;
       }
     }
     &:focus {
-      background: svg-load(
-          "envelope.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
+      @include formIcons("user.svg", $main-color);
+    }
+  }
+  &--bg--mail {
+    @include formIcons("envelope.svg", $lightgray-color);
+    background-size: 30px 30px;
+
+    &:hover {
+      @include formIcons("envelope.svg", $main-color);
+      @include phones {
+        background-size: 0;
+      }
+    }
+    &:focus {
+      @include formIcons("envelope.svg", $main-color);
     }
   }
   &--bg--comm {
-    background: svg-load(
-        "message.svg",
-        fill=$lightgray-color,
-        width=30px,
-        height=30px
-      )
-      center left no-repeat;
+    @include formIcons("message.svg", $lightgray-color);
     background-size: 30px 30px;
     &:hover {
-      background: svg-load(
-          "message.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
+      @include formIcons("message.svg", $main-color);
       @include phones {
         background-size: 0;
       }
     }
     &:focus {
-      background: svg-load(
-          "message.svg",
-          fill=$main-color,
-          width=30px,
-          height=30px
-        )
-        center left no-repeat;
+      @include formIcons("message.svg", $main-color);
     }
   }
   &:hover {
@@ -177,12 +129,12 @@
   }
   &--textarea {
     resize: none;
-    padding: 5% 5%;
+    padding: 3% 5% 3% 12%;
     @include phones {
       padding-bottom: 9%;
     }
     @include tablets {
-      padding-left: 8%;
+      padding-left: 15%;
     }
   }
   @include phones {
@@ -190,6 +142,8 @@
   }
   &:focus {
     border-bottom: 2px solid $main-color;
-    fill: $main-color;
   }
+}
+.feedback__input-error {
+  border-bottom: 2px solid $error-color;
 }

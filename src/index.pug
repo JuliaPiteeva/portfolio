@@ -13,19 +13,23 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section.parallax
-          //- picture.welcome-section__bg
-          //-   +source("bg/768-bg-Mountain.png","welcome-section__bg-img", '900')
-          //-   +source("bg/768-bg-Budda.png","welcome-section__bg-img", '500')
-          //- +image('bg/768-bg-Mountain.png', '', 'welcome-section__bg-img')
-
           -
             var parts=[
-              {speed:"0.1", name:"sky"},{speed:"0.13",name:"mountain"}, 
-              {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 
-              {speed:"0.20", name: "man"}, {speed:"0.22", name:"slope" }, {speed:"0.24", name: "lower-cloud"}]
+              {speed:"0.1", name:"sky", src: require(`images/bg/768-bg-Mountain.png`)},{speed:"0.13",name:"mountain", src:""}, 
+              {speed: "0.15", name:"baloon", src:""},{speed:"0.17", name: "middle-cloud", src:""}, 
+              {speed:"0.20", name: "man", src:""}, {speed:"0.22", name:"slope" , src:""}, {speed:"0.24", name: "lower-cloud", src:""}]
           each part in parts
             .parallax__layer(data-speed=`${part.speed}`)
-                +image(`parallax/${part.name}.png`, "", "parallax__image")
+              picture.parallax__picture
+                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 800px)" )
+                img(src=`${part.src}`)
+          //-   var parts=[
+          //-     {speed:"0.1", name:"sky"} ,{speed:"0.13",name:"mountain"}, 
+          //-     {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 
+          //-     {speed:"0.20", name: "man"}, {speed:"0.22", name:"slope" }, {speed:"0.24", name: "lower-cloud"}]
+          //- each part in parts
+          //-     .parallax__layer(data-speed=`${part.speed}`)
+          //-       +image(`parallax/${part.name}.png`, "", "parallax__image")
           section.section.hero(id="home")
             .container.hero-container
               header.header
@@ -118,18 +122,21 @@ html(lang="en")
               .feedback-section
                 .section__title.section__title--align--center
                   h2 Связаться со мной
-                form.feedback-section__form.feedback
+                form(id="formFeedback").feedback-section__form.feedback
                   .feedback__row
                     label.feedback__block
                       span.feedback__title Введите ваше имя
-                      input.feedback__input.feedback__input--bg--name(type="text" placeholder="Бубнова Юлия" name="name" autofocus)
+                      input.feedback__input.feedback__input--bg--name(type="text" placeholder="Бубнова Юлия" name="name" autofocus required)
+                      .error
                     label.feedback__block
                       span.feedback__title Введите ваше e-mail
-                      input.feedback__input.feedback__input--bg--mail(type="text" placeholder="Bubnovayn@gmail.com" name="name" )                 
+                      input.feedback__input.feedback__input--bg--mail(type="email" placeholder="Bubnovayn@gmail.com" name="email" required)
+                      .error                 
                   .feedback__row
                     label.feedback__block.feedback__block--width
                       span.feedback__title Сообщение к письму
-                      textarea(name="comment",wrap="soft"  placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса").feedback__input.feedback__input--textarea.feedback__input--bg--comm
+                      textarea(name="comment",wrap="soft"  placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса" required).feedback__input.feedback__input--textarea.feedback__input--bg--comm
+                      .error
                   .feedback__row
                     button.feedback__btn.feedback__btn--mrg--bottom(type="submit") Отправить
         

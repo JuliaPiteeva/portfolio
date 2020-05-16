@@ -2,7 +2,7 @@ import Vue from "vue";
 
 const btns = {
   template: "#rev-btns",
-  props: ["reviews"],
+  props: ["reviews", "currentRev"],
   // methods: {
   //   handleSlide(direction) {
   //     console.log("passs");
@@ -34,11 +34,7 @@ new Vue({
       return this.reviews[this.currentIndex];
     },
   },
-  watch: {
-    currentIndex(value) {
-      makeInfiniteLoopForIndex(value);
-    },
-  },
+
   methods: {
     handleSlide(direction) {
       let currentSlideIndex = this.currentIndex;
@@ -61,22 +57,19 @@ new Vue({
       }
 
       screenSlides = Math.ceil(sumSlidesWidth / sliderBlockWidth); //сколько всего может быть экранов
-
       if (direction === "next") {
         currentSlideIndex++;
         indexTest();
         this.currentIndex = currentSlideIndex;
-        console.log("passs", direction);
       }
       if (direction === "prev") {
         currentSlideIndex--;
         indexTest();
         this.currentIndex = currentSlideIndex;
-        console.log("passs", direction);
       }
 
       function indexTest() {
-        if (currentSlideIndex > screenSlides) {
+        if (currentSlideIndex > screenSlides - 1) {
           currentSlideIndex = screenSlides - 1;
         }
         if (currentSlideIndex < 0) {
@@ -87,12 +80,12 @@ new Vue({
         difineSlider.style.transform = `translateX(-${numbertoMove})`;
       }
     },
-    makeInfiniteLoopForIndex(value) {
-      const revievsAmountFromZero = this.reviews.length - 1;
-      if (value > revievsAmountFromZero) this.currentIndex = 0;
-      if (value < revievsAmountFromZero)
-        this.currentIndex = revievsAmountFromZero;
-    },
+    // makeInfiniteLoopForIndex(value) {
+    //   const revievsAmountFromZero = this.reviews.length - 1;
+    //   if (value > revievsAmountFromZero) this.currentIndex = 0;
+    //   if (value < revievsAmountFromZero)
+    //     this.currentIndex = revievsAmountFromZero;
+    // },
 
     makeArrayWithRequiredImages(array) {
       return array.map((item) => {
@@ -103,6 +96,7 @@ new Vue({
       });
     },
   },
+
   created() {
     const data = require("../data/reviews.json");
     this.reviews = this.makeArrayWithRequiredImages(data);

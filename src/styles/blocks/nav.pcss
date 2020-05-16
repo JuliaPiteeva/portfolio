@@ -4,14 +4,11 @@
   align-items: center;
 }
 .nav__block {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
 }
 .nav--header {
-  @include beforeTablets {
-    /* transform: translateX(91%); */
-  }
   .nav__block .nav__link {
     color: $gray-color;
   }
@@ -19,6 +16,12 @@
     &--active {
       border-bottom: 3px solid $main-color;
       color: $main-color;
+    }
+  }
+  .nav__block {
+    @include beforeTablets {
+      display: none;
+      width: 0;
     }
   }
 }

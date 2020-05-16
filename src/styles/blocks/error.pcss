@@ -1,0 +1,31 @@
+.error {
+  position: absolute;
+  top: 0;
+  left: -23%;
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: $white-color;
+  font-family: "Open Sans";
+  font-weight: 400;
+  position: relative;
+  &--active {
+    width: 155px;
+    height: 50px;
+    background-color: $error-color;
+    &:before {
+      content: "";
+      position: absolute;
+      background-color: $error-color;
+      display: block;
+      width: 20px;
+      height: 20px;
+      top: -9%;
+      left: 50%;
+      transform: translateX(-50%) rotate(138deg);
+      /* z-index: -1; */
+    }
+  }
+}

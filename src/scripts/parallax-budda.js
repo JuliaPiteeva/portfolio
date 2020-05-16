@@ -6,7 +6,6 @@ function moveLayersDependsOnScroll(wScroll) {
     const divider = layer.dataset.speed;
     const strate = (wScroll * divider) / 10;
     layer.style.transform = `translateY(-${strate}%)`;
-    console.log(wScroll);
   });
 }
 

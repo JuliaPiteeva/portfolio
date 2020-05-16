@@ -4,13 +4,15 @@ script(type="text-/x-template")#rev-block
             .section__title.section__title--margin--right.section__title--without--margin--bottom
                 h2 Что обо мне говорят
             btns(
-                 @slide="handleSlide"                  
+                 @slide="handleSlide" 
+                :currentRev="currentRev"
+                :reviews="reviews"          
                 )
         .reviews-section__slider.rv-slider(ref="sliderBlock")
             slider(
             :currentRev="currentRev"
             :reviews="reviews"
-             @click="handleSlide" 
+             @slide="handleSlide" 
         )
                   
 
@@ -18,9 +20,9 @@ script(type="text-/x-template")#rev-btns
     .reviews-section__arrows.arrows
          ul.arrows__list
             li.arrows__item.arrows__item--margin-right
-                button(type="button" @click.prevent="$emit('slide','prev')").arrows__btn.circle-btn.circle-btn--rotate--left
+                button(refs= "btn" type="button" @click.prevent="$emit('slide','prev')").arrows__btn.circle-btn.circle-btn--rotate--left
             li.arrows__item
-                button(type="button" @click.prevent="$emit('slide','next')").arrows__btn.circle-btn
+                button(refs= "btn"  type="button" @click.prevent="$emit('slide','next')").arrows__btn.circle-btn
                 
 script(type="text-/x-template")#rev-slider
         ul.rv-slider__list(ref="moveSlider")
@@ -41,7 +43,4 @@ script(type="text-/x-template")#rev-slide
                 img(:src="currentRev.avatar").avatar__img           
             .author__col
                 h3.author__col-name  {{slideInfo.name}}
-                p.author__col-position  {{slideInfo.position}}
-
-
-                
+                p.author__col-position  {{slideInfo.position}}    
