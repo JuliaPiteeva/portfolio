@@ -1,0 +1,79 @@
+.lock {
+  /* убираем скроллбары с основнового содержимого страницы */
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(45, 60, 78, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-container {
+  filter: drop-shadow(0 0 20px rgba(4, 5, 5, 0.22));
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 5%;
+}
+
+.content {
+  font-size: 36px;
+  color: $text-color;
+  font-family: "Open Sans";
+  font-weight: 600;
+  text-align: center;
+}
+
+.overlay-close {
+  font-size: 18px;
+  line-height: 20px;
+  color: $white-color;
+  font-family: "Open Sans";
+  font-weight: 700;
+  display: inline-block;
+  text-transform: uppercase;
+}
+.overlay-message {
+  background: green;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  padding: 30px;
+  line-height: 20px;
+  font-size: 18px;
+  color: $white-color;
+  font-family: "Open Sans";
+  font-weight: 600;
+
+  &--green {
+    background-color: $bg-overlay-message-green-color;
+  }
+  &--orange {
+    background-color: $bg-overlay-message-orange-color;
+  }
+  &--red {
+    background-color: $bg-overlay-message-red-color;
+  }
+}
+.close-overlay-message {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: svg-load("Cross.svg", fill=$white-color, width=15px, height=15px)
+    center center no-repeat;
+  margin-left: 30px;
+  cursor: pointer;
+}

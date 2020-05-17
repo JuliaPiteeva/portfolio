@@ -155,4 +155,12 @@ html(lang="en")
               blockquote.footer__qoute Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
               cite.footer__qoute-author Martin Golding
       include ./templates/entry.pug
+
+    script(type="template" id="overlayTemplate")
+        .overlay
+          .overlay-container
+            .content
+            button.overlay-close.feedback__btn Закрыть
+          .overlay-message Сообщение отправлено
+            span.close-overlay-message
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
