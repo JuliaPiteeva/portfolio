@@ -1,6 +1,7 @@
 const formFeedback = document.querySelector("#formFeedback");
 const send = document.querySelector(".feedback__btn");
 const closeOverlayMessage = document.querySelector(".close-overlay-message");
+const body = document.querySelector("body");
 
 send.addEventListener("click", (event) => {
   event.preventDefault();
@@ -8,7 +9,7 @@ send.addEventListener("click", (event) => {
   if (validateForm(formFeedback)) {
     var formData = new FormData();
     formData.append("name", formFeedback.elements.name.value);
-    formData.append("email", formFeedback.elements.email.value);
+    formData.append("phone", formFeedback.elements.email.value);
     formData.append("comment", formFeedback.elements.comment.value);
     formData.append("to", "a@a.a");
 
@@ -18,14 +19,11 @@ send.addEventListener("click", (event) => {
   }
 
   const xhr = new XMLHttpRequest();
-  const status = 200;
   xhr.responseType = "json";
   xhr.open("POST", "https://webdev-api.loftschool.com/sendmail");
   xhr.send(formData);
   xhr.addEventListener("load", () => {
-    status = xhr.response.status;
-
-    overlay.addClass(status);
+    overlay.addClass(xhr.status);
 
     if (xhr.response.status) {
       overlay.open();
@@ -85,7 +83,6 @@ function removeErrorClass(element) {
 
 const template = document.querySelector("#overlayTemplate").innerHTML;
 const overlay = createOverlay(template);
-
 function createOverlay(template) {
   const fragment = document.createElement("div");
 
@@ -94,7 +91,7 @@ function createOverlay(template) {
   const overlayElement = fragment.querySelector(".overlay");
   const contentElement = fragment.querySelector(".content");
   const closeElement = fragment.querySelector(".overlay-close");
-  const closeOverlayMessage = document.querySelector(".close-overlay-message");
+  const closeMessage = fragment.querySelector(".close-overlay-message");
   const messageElement = fragment.querySelector(".overlay-message");
 
   overlayElement.addEventListener("click", (e) => {
@@ -103,12 +100,11 @@ function createOverlay(template) {
     }
   });
 
-  // closeOverlayMessage.addEventListener("click", (e) => {
-  //   if (e.target === closeOverlayMessage) {
-  //     closeElement.click();
-  //   }
-  //
-  // });
+  closeMessage.addEventListener("click", (e) => {
+    if (e.target === closeOverlayMessage) {
+      closeElement.click();
+    }
+  });
 
   closeElement.addEventListener("click", (e) => {
     e.preventDefault();
@@ -129,15 +125,15 @@ function createOverlay(template) {
     setMessage(message) {
       messageElement.innerHTML = message;
     },
-    addClass(status) {yr
-      if ((status = 200)) {
-        messageElement.classList.add("overlay-message--green");
-      }
-      if ((status = 503)) {
-        messageElement.classList.add("overlay-message--orange");
-      } else {
-        messageElement.classList.add("overlay-message--red");
-      }
-    },
+    // addClass(statusGet) {
+    //   if (statusGet === 200) {
+    //     messageElement.classList.add("overlay-message--green");
+    //   }
+    //   if (statusGet === 503) {
+    //     messageElement.classList.add("overlay-message--orange");
+    //   } else {
+    //     messageElement.classList.add("overlay-message--red");
+    //   }
+    // },
   };
 }

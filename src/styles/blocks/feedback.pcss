@@ -146,4 +146,7 @@
 }
 .feedback__input-error {
   border-bottom: 2px solid $error-color;
+  .feedback__input--bg--name {
+    @include formIcons("name.svg", $error-color);
+  }
 }
