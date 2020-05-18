@@ -24,6 +24,7 @@ send.addEventListener("click", (event) => {
   xhr.send(formData);
   xhr.addEventListener("load", () => {
     overlay.addClass(xhr.status);
+    console.log("1 " + xhr.status);
 
     if (xhr.response.status) {
       overlay.open();
@@ -125,15 +126,16 @@ function createOverlay(template) {
     setMessage(message) {
       messageElement.innerHTML = message;
     },
-    // addClass(statusGet) {
-    //   if (statusGet === 200) {
-    //     messageElement.classList.add("overlay-message--green");
-    //   }
-    //   if (statusGet === 503) {
-    //     messageElement.classList.add("overlay-message--orange");
-    //   } else {
-    //     messageElement.classList.add("overlay-message--red");
-    //   }
-    // },
+    addClass(statusGet) {
+      // console.log(statusGet == 200);
+      if (statusGet == 200) {
+        messageElement.classList.add("overlay-message--green");
+      }
+      if (statusGet == 503) {
+        messageElement.classList.add("overlay-message--orange");
+      } else {
+        messageElement.classList.add("overlay-message--red");
+      }
+    },
   };
 }
