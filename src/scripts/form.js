@@ -12,14 +12,8 @@ send.addEventListener("click", (event) => {
     formData.append("comment", formFeedback.elements.comment.value);
     formData.append("to", "a@a.a");
 
-    // overlay.open();
-    // overlay.setContent("Сообщение отправлено!");
-    // closeOverlayMessage.classList.add{
     console.log("Форма заполнена");
-    // }
   } else {
-    // overlay.open();
-    // overlay.setContent("Сообщение не отправлено!");
     console.log("Форма NE заполнена");
   }
 
@@ -31,20 +25,20 @@ send.addEventListener("click", (event) => {
   xhr.addEventListener("load", () => {
     status = xhr.response.status;
 
-    console.log("status " + status);
-
     overlay.addClass(status);
 
     if (xhr.response.status) {
       overlay.open();
+      body.classList.add("lock");
       overlay.setContent("Письмо отправлено");
       overlay.setMessage(xhr.response.message);
 
-      myForm.elements.name.value = "";
-      myForm.elements.email.value = "";
-      myForm.elements.comment.value = "";
+      formFeedback.elements.name.value = "";
+      formFeedback.elements.email.value = "";
+      formFeedback.elements.comment.value = "";
     } else {
       overlay.open();
+      body.classList.add("lock");
       overlay.setContent("Письмо не отправлено");
       overlay.setMessage(xhr.response.message);
     }
@@ -113,13 +107,13 @@ function createOverlay(template) {
   //   if (e.target === closeOverlayMessage) {
   //     closeElement.click();
   //   }
-  //   console.log("fhjfjf");
+  //
   // });
 
   closeElement.addEventListener("click", (e) => {
     e.preventDefault();
     document.body.removeChild(overlayElement);
-    // body.classList.remove("lock");
+    body.classList.remove("lock");
   });
 
   return {
@@ -135,7 +129,7 @@ function createOverlay(template) {
     setMessage(message) {
       messageElement.innerHTML = message;
     },
-    addClass(status) {
+    addClass(status) {yr
       if ((status = 200)) {
         messageElement.classList.add("overlay-message--green");
       }
@@ -144,14 +138,6 @@ function createOverlay(template) {
       } else {
         messageElement.classList.add("overlay-message--red");
       }
-
-      // switch(status){
-      //   case 200:
-      //     messageElement.classList.add(".overlay-message--green");
-      //     break;
-      //   case 503:
-      //     messageElement.classList.add(".overlay-message--orange");
-      // }
     },
   };
 }

@@ -3,10 +3,9 @@ main.main
   .container
       header.header
         .header__user-info
-          .user
-            .user__avatar 
-              img.user__avatar-img
-            p.user__name Юлия Бубнова
+          .user__avatar 
+            img.user__avatar-img(src="../images/content/user.jpg")
+          p.user__name Юлия Бубнова
         .header__title
           p Панель администрирования
         button.exit Выйти
@@ -292,8 +291,11 @@ textarea {
   background-image: linear-gradient(90deg, #3d3d59 0%, #444472 100%);
   font-family: "Open Sans";
 }
-.user {
+.header__user-info {
   margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .header__title {
   font-family: inherit;
@@ -301,6 +303,14 @@ textarea {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   opacity: 0.5;
+}
+.user__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  border: none;
 }
 .user__name {
   font-family: inherit;
