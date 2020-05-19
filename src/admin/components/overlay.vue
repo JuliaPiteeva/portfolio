@@ -1,37 +1,64 @@
 <template lang="pug">
   .overlay
+    pre {{user}}
     .overlay-container
       .overlay-content
         h2 Авторизация
-        form.authorization(id="authorization"  action="https://vuejs.org/" method="post" )
+        form.authorization(id="authorization"  action="https://vuejs.org/" method="post" @submit.prevent="login")
           label.login-block
             span.login-title Логин
-            input.login-input.authorization-input(type="text" name="login" required placeholder="Terminator_2000")
+            input.login-input.authorization-input(type="text" name="login" required placeholder="Terminator_2000" v-model="user.name")
           label.login-block
             span.login-title Пароль
-            input.password-input.authorization-input(type="password" name="password" required placeholder="•••••••••••••••••••••")
-          button.authorization-btn(type="submit") Отправить
-          .checkbox__row
-            label.robot-block
-              input(type="checkbox" checked  name="checkbox").input-checkbox
-              .input-checkbox__visible
-              .robot-checkbox__title Я человек
-          span.robot-title Вы точно не робот?
-          .radio__row
-            label.robot-block
-              input(type="radio"  name="radio").input-radio
-              .input-radio__visible
-              .robot-radio__title Да
-            label.robot-block
-              input(type="radio" checked  name="radio" ).input-radio
-              .input-radio__visible
-              .robot-radio__title Не уверен
+            input.password-input.authorization-input(type="password" name="password" required placeholder="•••••••••••••••••••••" v-model="user.password")
+          button.authorization-btn(type="submit" ) Отправить
+          //- .checkbox__row
+          //-   label.robot-block
+          //-     input(type="checkbox" checked  name="checkbox" value="human").input-checkbox
+          //-     .input-checkbox__visible
+          //-     .robot-checkbox__title Я человек
+          //- span.robot-title Вы точно не робот?
+          //- .radio__row
+          //-   label.robot-block
+          //-     input(type="radio"  name="radio" value="yes").input-radio
+          //-     .input-radio__visible
+          //-     .robot-radio__title Да
+          //-   label.robot-block
+          //-     input(type="radio" checked  name="radio" value="no").input-radio
+          //-     .input-radio__visible
+          //-     .robot-radio__title Не уверен
         span.close-cross +
     .overlay-message Неверно введен логин или пароль
         span.close-overlay-message
 </template>
 <script>
+import axios from "axios";
+const baseUrl = "https://webdev-api.loftschool.com/";
+export default {
+  inheritAttrs: false,
+  data() {
+    return {
+      user: {
+        name: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    login() {
+      axios
+        .post(baseUrl + "/login", this.user)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    },
+  },
+};
 </script>
+
 <style lang="pcss" scoped>
 .overlay {
   display: none;

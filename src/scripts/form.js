@@ -13,35 +13,31 @@ send.addEventListener("click", (event) => {
     formData.append("comment", formFeedback.elements.comment.value);
     formData.append("to", "a@a.a");
 
-    console.log("Форма заполнена");
-  } else {
-    console.log("Форма NE заполнена");
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = "json";
+    xhr.open("POST", "https://webdev-api.loftschool.com/sendmail");
+    xhr.send(formData);
+    xhr.addEventListener("load", () => {
+      overlay.addClass(xhr.status);
+      console.log("1 " + xhr.status);
+
+      if (xhr.response.status) {
+        overlay.open();
+        body.classList.add("lock");
+        overlay.setContent(xhr.response.message);
+        overlay.setMessage(xhr.response.message);
+
+        formFeedback.elements.name.value = "";
+        formFeedback.elements.email.value = "";
+        formFeedback.elements.comment.value = "";
+      } else {
+        overlay.open();
+        body.classList.add("lock");
+        overlay.setContent("Письмо не отправлено");
+        overlay.setMessage(xhr.response.message);
+      }
+    });
   }
-
-  const xhr = new XMLHttpRequest();
-  xhr.responseType = "json";
-  xhr.open("POST", "https://webdev-api.loftschool.com/sendmail");
-  xhr.send(formData);
-  xhr.addEventListener("load", () => {
-    overlay.addClass(xhr.status);
-    console.log("1 " + xhr.status);
-
-    if (xhr.response.status) {
-      overlay.open();
-      body.classList.add("lock");
-      overlay.setContent("Письмо отправлено");
-      overlay.setMessage(xhr.response.message);
-
-      formFeedback.elements.name.value = "";
-      formFeedback.elements.email.value = "";
-      formFeedback.elements.comment.value = "";
-    } else {
-      overlay.open();
-      body.classList.add("lock");
-      overlay.setContent("Письмо не отправлено");
-      overlay.setMessage(xhr.response.message);
-    }
-  });
 });
 
 function validateForm(form) {
@@ -128,10 +124,9 @@ function createOverlay(template) {
     },
     addClass(statusGet) {
       // console.log(statusGet == 200);
-      if (statusGet == 200) {
+      if (statusGet === 200) {
         messageElement.classList.add("overlay-message--green");
-      }
-      if (statusGet == 503) {
+      } else if (statusGet === 503) {
         messageElement.classList.add("overlay-message--orange");
       } else {
         messageElement.classList.add("overlay-message--red");

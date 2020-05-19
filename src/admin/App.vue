@@ -26,8 +26,8 @@ main.main
       addWork
       worksList
     .block-title
-        .title
-          h1 Блок "Отзывы"
+      .title
+        h1 Блок "Отзывы"
     .revs
       addRev
       revsList 
@@ -37,11 +37,11 @@ main.main
 import addRev from "./components/addRev";
 import addSkill from "./components/addSkill";
 import addWork from "./components/addWork";
-import overlay from "./components/overlay";
 import revsList from "./components/revsList";
 import skillsList from "./components/skillsList";
 import worksList from "./components/worksList";
 import vueHeader from "./components/vueHeader";
+import overlay from "./components/overlay";
 
 export default {
   name: "App",
