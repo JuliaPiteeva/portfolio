@@ -1,31 +1,34 @@
 <template lang="pug">
-  .rev-add
-    form.rev-add__form(id="addRevForm")
-      .rev-add__title Новый отзыв
-      .rev-add__container
-        .rev-add__left
-          .rev-add__img
-            img.rev-add__icon
-          .input(type="file" name="uploadFile" required).rev-add__upload Добавить фото
-        .rev-add__right
-          .rev-add__row
+  .rev-wrapper
+    .block-title
+      .title
+        h1 Блок "Отзывы"
+    .rev-add
+      form.rev-add__form(id="addRevForm")
+        .rev-add__title Новый отзыв
+        .rev-add__container
+          .rev-add__left
+            .rev-add__img
+              img.rev-add__icon
+            .input(type="file" name="uploadFile" required).rev-add__upload Добавить фото
+          .rev-add__right
+            .rev-add__row
+              label.rev-add__block
+                span.rev__input-title Имя автора
+                input(type="text" name="revName" required).rev__input
+              label.rev-add__block
+                span.rev__input-title Титул автора
+                input(type="text" name="revPos" required).rev__input
             label.rev-add__block
-              span.rev__input-title Имя автора
-              input(type="text" name="revName" required).rev__input
-            label.rev-add__block
-              span.rev__input-title Титул автора
-              input(type="text" name="revPos" required).rev__input
-          label.rev-add__block
               span.rev__input-title Отзыв
               textarea(type="text" row="3" name="revText" required).rev__textarea.rev__input
-          saveCancelBtns
+            .save-cancel__btns
+              button(type="button").btn-cancel.btn Отмена
+              button(type="button").btn Сохранить
 </template>
 <script>
-import saveCancelBtns from "./saveCancelBtns";
 export default {
-  components: {
-    saveCancelBtns
-  }
+  components: {},
 };
 </script>
 <style lang="pcss" scoped>
@@ -106,10 +109,11 @@ export default {
 }
 .rev-add__block {
   margin-bottom: 30px;
-  &:first-child {
+
+}
+.rev-add__block:first-child {
     margin-right: 30px;
   }
-}
 .rev__input {
   font-size: 16px;
   color: #414c63;
@@ -119,25 +123,50 @@ export default {
   width: 100%;
   padding: 20px 0;
   border-bottom: 1px solid #dedee0;
-  &:focus {
+
+}
+.rev__input:focus {
     border-bottom: 2px solid #383bcf;
   }
-}
 .rev__input-title {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 20px;
-  &::placeholder {
+
+}
+.rev__input-title::placeholder {
     font-size: 16px;
     line-height: 30px;
     color: rgba(65, 76, 99, 0.5);
     font-family: "Open Sans";
     font-weight: 600;
   }
-}
 .rev__textarea {
   resize: none;
   border: 1px solid rgba(65, 76, 99, 0.2);
   margin-bottom: 35px;
+}
+.save-cancel__btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  width: 181px;
+  height: 50px;
+  border-radius: 25px;
+  background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
+  font-size: 16px;
+  line-height: 48px;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+.btn-cancel {
+  text-transform: capitalize;
+  color: #383bcf;
+  background: transparent;
 }
 </style>

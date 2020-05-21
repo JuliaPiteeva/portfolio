@@ -1,60 +1,23 @@
 <template lang="pug">
-main.main
-  .container
+  .wrap-admin
     vueHeader
-    nav.nav
-      .nav__list
-        .nav__item.nav__item-active
-          a.nav__link Обо мне
-        .nav__item
-          a.nav__link Работы
-        .nav__item
-          a.nav__link Отзывы
-    .block-title
-      .title
-        h1 Блок "Обо мне"
-      .add-group__btns
-        button.add-group__btn(type="submit") +
-        span.add-group__exp Добавить группу
-    .skills
-      addSkill
-      skillsList
-    .block-title
-      .title
-         h1 Блок "Работы"  
-    .works
-      addWork
-      worksList
-    .block-title
-      .title
-        h1 Блок "Отзывы"
-    .revs
-      addRev
-      revsList 
-    overlay  
+    vueMenu
+        
 </template>
 <script>
-import addRev from "./components/addRev";
-import addSkill from "./components/addSkill";
-import addWork from "./components/addWork";
-import revsList from "./components/revsList";
-import skillsList from "./components/skillsList";
-import worksList from "./components/worksList";
 import vueHeader from "./components/vueHeader";
 import overlay from "./components/overlay";
+import vueMenu from "./components/vueMenu";
 
 export default {
   name: "App",
   components: {
-    addRev,
-    addSkill,
-    addWork,
     overlay,
-    revsList,
-    revsList,
-    skillsList,
-    worksList,
-    vueHeader
+    vueHeader,
+    vueMenu
+  },
+  methods: {
+    addGroup() {}
   }
 };
 </script>
@@ -69,9 +32,6 @@ button {
   cursor: pointer;
   background: transparent;
   cursor: pointer;
-  &:active {
-    outline: none;
-  }
 }
 
 * {
@@ -110,11 +70,10 @@ a {
   color: inherit;
   cursor: pointer;
   text-decoration: none;
-  &:active {
-    outline: none;
-  }
 }
-
+a:active {
+  outline: none;
+}
 img {
   display: block;
   max-width: 100%;
@@ -135,55 +94,25 @@ button {
   border: none;
   background: transparent;
   cursor: pointer;
-  &:active {
-    outline: none;
-  }
 }
-
+button:active {
+  outline: none;
+}
 input,
 textarea {
   border: none;
   box-shadow: none;
-  &:active {
-    border-bottom: 2px solid #383bcf;
-  }
+}
+textarea:active {
+  border-bottom: 2px solid #383bcf;
 }
 .main {
   background: #f7f9fe;
 }
-.container {
+.container,
+.wrap-admin {
   margin: 0 auto;
   max-width: 1000px;
-}
-.nav {
-  background-color: #ffffff;
-  margin-bottom: 55px;
-}
-.nav__list {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.nav__item {
-  min-height: 77px;
-  min-width: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.nav__item-active {
-  color: #3d36cc;
-  border-bottom: 2px solid #3d36cc;
-}
-
-.nav__link {
-  font-size: 16px;
-  color: #414c63;
-  font-family: "Open Sans";
-  font-weight: 400;
-  display: block;
 }
 
 .block-title {
@@ -192,55 +121,10 @@ textarea {
   justify-content: flex-start;
   margin-bottom: 55px;
 }
-.title {
-  margin-right: 60px;
-  h1 {
-    font-size: 21px;
-    color: #414c63;
-    font-family: "Open Sans";
-    font-weight: 700;
-  }
-}
-
-.add-group__btns {
-  display: flex;
-  align-items: center;
-}
-.add-group__btn {
-  font-size: 15px;
-  color: #ffffff;
-  font-family: "Open Sans";
-  font-weight: 600;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
-  margin-right: 20px;
-}
-.add-group__exp {
-  font-size: 16px;
-  color: #383bcf;
-  font-family: "Open Sans";
-  font-weight: 600;
-  text-align: center;
-}
 
 input {
   border: none;
   box-shadow: none;
   padding: 5px;
-}
-.skills {
-  margin-bottom: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.works {
-  margin-bottom: 100px;
-}
-.revs {
-  margin-bottom: 100px;
 }
 </style>

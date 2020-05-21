@@ -1,6 +1,5 @@
 <template lang="pug">
   .overlay
-    pre {{user}}
     .overlay-container
       .overlay-content
         h2 Авторизация
@@ -27,13 +26,18 @@
           //-     input(type="radio" checked  name="radio" value="no").input-radio
           //-     .input-radio__visible
           //-     .robot-radio__title Не уверен
-        span.close-cross +
-    .overlay-message Неверно введен логин или пароль
-        span.close-overlay-message
+    //-     span.close-cross +
+    //- .overlay-message Неверно введен логин или пароль
+    //-     span.close-overlay-message
+    //- form.skills-add__form(@submit.prevent="createCategory")
+    //-   input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="title").skills-add__title
+    //-   button() go
+  
 </template>
 <script>
 import axios from "axios";
-const baseUrl = "https://webdev-api.loftschool.com/";
+axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
+const token = localStorage.getItem("token") || "";
 export default {
   inheritAttrs: false,
   data() {
@@ -42,14 +46,17 @@ export default {
         name: "",
         password: "",
       },
+      title: "",
     };
   },
   methods: {
     login() {
       axios
-        .post(baseUrl + "/login", this.user)
+        .post("/login", this.user)
         .then((response) => {
-          console.log(response.data);
+          const token = response.data.token;
+          axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+          localStorage.setItem("token", token);
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -81,15 +88,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  h2 {
+  width: 90%;}
+.overlay-content h2 {
     font-size: 36px;
     color: #414c63;
     font-family: "Open Sans";
     font-weight: 600;
     margin-bottom: 40px;
   }
-}
 .login-title {
   font-size: 16px;
   color: rgba(65, 76, 99, 0.3);
@@ -138,22 +144,21 @@ export default {
   background-size: 30px 30px;
   flex: 1;
   border-bottom: 1px solid rgba(65, 76, 99, 0.5);
-  box-sizing: border-box;
-  &:active {
+  box-sizing: border-box;}
+.authorization-input:active {
     outline: none;
     border-bottom: 2px solid #3d36cc;
   }
-  &:focus {
+.authorization-input:focus {
     outline: none;
     border-bottom: 2px solid #3d36cc;
   }
-  &::placeholder {
+.authorization-input::placeholder {
     font-size: 18px;
     color: rgba(65, 76, 99, 0.8);
     font-family: "Open Sans";
     font-weight: 700;
   }
-}
 .login-input {
   background: svg-load(
       "user.svg",
@@ -174,7 +179,6 @@ export default {
 }
 .authorization-btn {
   padding: 7% 19%;
-  /* width: 76%; */
   text-transform: uppercase;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -185,6 +189,7 @@ export default {
   font-weight: 700;
   transition: color 0.9s;
   margin-bottom: 25px;
+    /* width: 76%; */
 }
 .close-cross {
   position: absolute;

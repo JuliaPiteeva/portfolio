@@ -1,38 +1,41 @@
 <template lang="pug">
-  .works-add
-    form.works-add__form(id="addWorksForm")
-      .works-add__title Добавление работы
-      .works-add__container
-        .works-add__coll
-          .works__drop-zone(id="dropZone")
-            .works__drop-exp  Перетащите или загрузите изображение
-            label.works__upload-block
-              .works__upload-btn Загрузить
-              input(type="file" name="uploadFile" required).works__upload
-        .works-add__coll.works-add__coll--column
-          label.works-add__block
-            span.work__input-title Название
-            input(type="text" name="workName" required).work__name.work__input
-          label.works-add__block
-            span.work__input-title Ссылка
-            input(type="text" name="workLink" required).work__link.work__input
-          label.works-add__block
-            span.work__input-title Описание
-            textarea(type="text" row="3" name="workDesc" required).work__textarea.work__input
-          label.works-add__block
-            span.work__input-title Добавление тега
-            input(type="text" name="workTags" required).work__tags.work__input
-          ul.tags__list 
-            li.tags__item Test
-              span.close-cross +
-          saveCancelBtns
+  .works-wrapper
+    .block-title
+      .title
+        h1 Блок "Работы" 
+    .works-add
+      form.works-add__form(id="addWorksForm")
+        .works-add__title Добавление работы
+        .works-add__container
+          .works-add__coll
+            .works__drop-zone(id="dropZone")
+              .works__drop-exp  Перетащите или загрузите изображение
+              label.works__upload-block
+                .works__upload-btn Загрузить
+                input(type="file" name="uploadFile" required).works__upload
+          .works-add__coll.works-add__coll--column
+            label.works-add__block
+              span.work__input-title Название
+              input(type="text" name="workName" required).work__name.work__input
+            label.works-add__block
+              span.work__input-title Ссылка
+              input(type="text" name="workLink" required).work__link.work__input
+            label.works-add__block
+              span.work__input-title Описание
+              textarea(type="text" row="3" name="workDesc" required).work__textarea.work__input
+            label.works-add__block
+              span.work__input-title Добавление тега
+              input(type="text" name="workTags" required).work__tags.work__input
+            ul.tags__list 
+              li.tags__item Test
+                span.close-cross +
+            .save-cancel__btns
+              button(type="button").btn-cancel.btn Отмена
+              button(type="button").btn Сохранить
 </template>
 <script>
-import saveCancelBtns from "./saveCancelBtns";
 export default {
-  components: {
-    saveCancelBtns
-  }
+  components: {},
 };
 </script>
 <style lang="pcss" scoped>
@@ -80,14 +83,14 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 30px;
-  &:last-child {
+  margin-right: 30px;}
+.works-add__coll:last-child {
     margin-right: 0;
   }
-  &--column {
+.works-add__coll--column {
     flex-direction: column;
   }
-}
+
 
 .works__drop-zone {
   width: 494px;
@@ -140,11 +143,10 @@ export default {
   outline: none;
   width: 100%;
   padding: 20px 0;
-  border-bottom: 1px solid #dedee0;
-  &:focus {
+  border-bottom: 1px solid #dedee0;}
+.work__input:focus {
     border-bottom: 2px solid #383bcf;
   }
-}
 .work__input-title {
   font-size: 16px;
   color: rgba(65, 76, 99, 0.5);
@@ -175,11 +177,11 @@ export default {
   margin-right: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  &:last-child {
+  justify-content: space-between;}
+.tags__item:last-child {
     margin-right: 0;
   }
-}
+
 .close-cross {
   margin-left: 15px;
   cursor: pointer;
@@ -188,5 +190,28 @@ export default {
   font-family: "Open Sans";
   font-weight: 800;
   transform: rotate(45deg);
+}
+.save-cancel__btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  width: 181px;
+  height: 50px;
+  border-radius: 25px;
+  background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
+  font-size: 16px;
+  line-height: 48px;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+.btn-cancel {
+  text-transform: capitalize;
+  color: #383bcf;
+  background: transparent;
 }
 </style>

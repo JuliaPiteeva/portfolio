@@ -1,15 +1,32 @@
 <template lang="pug">
-    .add-input
-        input(type="text" name="skillName" required).add-input__name(placeholder="Новый навык")
-        input(type="text" name="skillPerc" required).add-input__percent(placeholder="%")
-        addBtn
+    form.add-input(id="skillAdd" @submit.prevent="addNewSkill")
+      input(type="text" name="skillName" required placeholder="Новый навык" v-model="skill.title").add-input__name
+      input(type="text" name="skillPerc" required placeholder="%" v-model="skill.percent").add-input__percent
+      button(type="button").btn__add
 </template>
 <script>
-import addBtn from "./addBtn";
+import axios from "axios";
 export default {
-  components: {
-    addBtn
-  }
+  props: ["categoryId"],
+  data() {
+    return {
+      skill: {
+        title: "",
+        percent: 0,
+        category: this.categoryId,
+      },
+    };
+  },
+  components: {},
+  methods: {
+    addNewSkill() {
+      axios.post("/skills", this.skill).then((response) => {
+        this.$emit("skillAdded", response.data);
+        this.skill.title = "";
+        this.skill.percent = "";
+      });
+    },
+  },
 };
 </script>
 <style lang="pcss">
@@ -20,10 +37,11 @@ export default {
   margin-bottom: 35px;
   margin-top: auto;
 }
-.add-input__name{
+.add-input__name {
   border-bottom: 1px solid #dedee0;
   margin-right: 10px;
-  &::placeholder {
+}
+.add-input__name::placeholder {
     text-align: left;
     font-size: 16px;
     line-height: 32px;
@@ -31,19 +49,16 @@ export default {
     font-family: "Open Sans";
     font-weight: 400;
   }
-  &:focus {
+
+.add-input__name:active:focus {
     outline: none;
     border-bottom: 2px solid #383bcf;
   }
-  &:active {
-    outline: none;
-    border-bottom: 2px solid #383bcf;
-  }
-}
 .add-input__percent {
   border-bottom: 1px solid #dedee0;
   margin-right: 20px;
-  &::placeholder {
+}
+.add-input__percent::placeholder {
     text-align: right;
     font-size: 16px;
     line-height: 32px;
@@ -51,13 +66,26 @@ export default {
     font-family: "Open Sans";
     font-weight: 400;
   }
-  &:focus {
+.add-input__percent:focus:active {
     outline: none;
     border-bottom: 2px solid #383bcf;
   }
-  &:active {
-    outline: none;
-    border-bottom: 2px solid #383bcf;
+
+.btn__add {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);}
+.btn__add:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: svg-load("Cross.svg", fill=#ffffff, width=10px, height=10px)
+      center center no-repeat;
   }
-}
 </style>

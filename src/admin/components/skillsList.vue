@@ -1,31 +1,31 @@
 <template lang="pug">
-  .skills-list
-    .skills__group
-      .title-group Workflow 
-      tickCrossBtns
-    table.skills__table  
-      -var skills=[{skill:"Git", perc:"100"}, {skill:"Terminal", perc:"90"}, {skill:"Gulp", perc:"80"},{skill:"Webpack", perc:"85"}]
-        each skill in skills
-          tr.skills__row
-            td.skills__coll #{skill.skill}
-            td.skills__coll.skills__coll--percent #{skill.perc}
-            td.skills__coll.skills__coll--btn
-              edidTrashBtnsIcons
+.skills-list
+    .skills__row
+      .title-group {{title}}
+      .editBtns
+        button.edit
+        button.trash
+    table.skills__table
+      tr(v-for="skill in cat.skills" :key="skill.id")
+        td {{skill.title}} 
+        td {{skill.percent}}
+        td  
+          .editBtns
+            button.edit
+            button.trash            
     addInput
+//- li.skills-add(v-for="cat in categories" :key="cat.id")
 </template>
 <script>
 import addInput from "./addInput";
-import tickCrossBtns from "./tickCrossBtns";
-import edidTrashBtnsIcons from "./edidTrashBtnsIcons";
+
 export default {
   components: {
-    addInput,
-    tickCrossBtns,
-    edidTrashBtnsIcons
+    addInput
   }
 };
 </script>
-<style lang="pcss" scoped>
+<style lang="pcss">
 .skills-list {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
@@ -37,7 +37,7 @@ export default {
   width: 45%;
   padding: 0 2%;
 }
-.skills__group {
+.skills__row {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -66,17 +66,13 @@ export default {
   font-weight: 400;
 }
 
-.skills__coll {
-  &--btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  &--percent {
-    &:after {
-      content: "%";
-      margin-left: 30px;
-    }
-  }
+.skills__coll--btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skills__coll---percent:after {
+  content: "%";
+  margin-left: 30px;
 }
 </style>
