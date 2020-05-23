@@ -1,19 +1,19 @@
 <template lang="pug">
-main.main
-  .container
-    ul.nav__list
-      li.nav__item.nav__item-active
-        router-link(tag="a" class="nav__link" to="/admin" ) Обо мне
-      li.nav__item 
-        router-link(tag="a" class="nav__link" to="/admin/works"  ) Работы
-      li.nav__item 
-        router-link( tag="a" class="nav__link" to="/admin/revs" ) Отзывы
-  .main__block
-    router-view
+  main.main
+    .container
+      ul.nav__list
+        li.nav__item
+          router-link(to="/").nav__link Обо мне
+        li.nav__item 
+          router-link(to="/works").nav__link Работы
+        li.nav__item 
+          router-link(to="/revs").nav__link Отзывы
+    .main__block
+      router-view
 </template>
 <script>
 export default {
-  components: {}
+  components: {},
 };
 </script>
 <style lang="pcss">
@@ -30,12 +30,12 @@ export default {
 }
 
 .nav__item {
-  min-height: 77px;
-  min-width: 140px;
+  /* min-height: 77px;
+  min-width: 140px; */
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+
 }
 
 .nav__item-active {
@@ -44,10 +44,14 @@ export default {
 }
 
 .nav__link {
+  width: 100%;
+  height: 100%;
+  display: block;
   font-size: 16px;
   color: #414c63;
   font-family: "Open Sans";
   font-weight: 400;
   display: block;
+  cursor: pointer;
 }
 </style>

@@ -8,18 +8,18 @@ import reviewsComp from "./components/reviews.vue";
 
 const routes = [
   {
-    path: "/admin",
+    path: "/",
     component: skillsComp,
   },
   {
-    path: "/admin/works",
+    path: "/works",
     component: worksComp,
   },
   {
-    path: "/admin/revs",
+    path: "/revs",
     component: reviewsComp,
   },
 ];
 
-export default new VueRouter({ routes, mode: "history" });
+export default new VueRouter({ routes });
 //mode: "history"

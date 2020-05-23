@@ -1,8 +1,8 @@
 <template lang="pug">
   .wrap-admin
-    login
     vueHeader
     vueMenu
+    
 </template>
 <script>
 import vueHeader from "./components/vueHeader";
