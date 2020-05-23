@@ -1,41 +1,53 @@
 <template lang="pug">
 .skills-list
-    .skills__row
-      .title-group {{title}}
-      .editBtns
-        button.edit
-        button.trash
-    table.skills__table
-      tr(v-for="skill in cat.skills" :key="skill.id")
-        td {{skill.title}} 
-        td {{skill.percent}}
-        td  
-          .editBtns
-            button.edit
-            button.trash            
-    addInput
-//- li.skills-add(v-for="cat in categories" :key="cat.id")
+  .skills__row {{categName}}
+      button.edit
+      button(v-on:click="delCategory").trash
+  table.skills__table
+    tr(v-for="skill in categories.skills" key:="skill.id")
+      td {{skill.title}}
+      td {{skill.percent}}
+      td  
+        .editBtns
+          button.edit
+          button.trash            
+  addInput
+
 </template>
 <script>
+const baseURL = "https://webdev-api.loftschool.com/";
+const token = localStorage.getItem("token");
+axios.defaults.baseURL = baseURL;
+axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+import axios from "axios";
 import addInput from "./addInput";
 
 export default {
+  data() {
+    return {
+      categId: "5419"
+    };
+  },
+  props: ["categName", "categID", "categories"],
   components: {
     addInput
+  },
+  methods: {
+    delCategory() {
+      console.log(categId + "categId");
+      axios.delete(`/categories/${categId}`).then(response => {
+        console.log(response.data);
+      });
+    }
   }
 };
 </script>
 <style lang="pcss">
 .skills-list {
-  filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  min-height: 350px;
-  width: 45%;
-  padding: 0 2%;
 }
 .skills__row {
   width: 100%;

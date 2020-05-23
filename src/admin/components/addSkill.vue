@@ -1,68 +1,63 @@
 <template lang="pug">
-  .skills-add
-    form.skills-add__form(id="addSkiilsForm" @submit.prevent="createCategory")
-      .skills-add__group
-        input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="title").skills-add__title
-      .tick-cross__btns
-        button(type="button").tick
-        button(type="button").cross
-    addInput(
-      :categoryId="cat.id"
-        @skillAdded='addSkill'
-    )
+.skills-add
+  form.skills-add__form(id="addSkiilsForm" @submit.prevent="createCategory")
+    input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="title").skills-add__title
+    .tick-cross__btns
+      button(type="submit").tick
+      button(type="submit").cross
+  addInput(
+    :categoryId="categories.id"
+    @skillAdded='addSkill'
+  )
 </template>
 <script>
-import addInput from "./addInput";
+const baseURL = "https://webdev-api.loftschool.com/";
+const token = localStorage.getItem("token");
+//|| ""
+axios.defaults.baseURL = baseURL;
+axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 import axios from "axios";
+import addInput from "./addInput";
+
 axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
 
 //id 319
 export default {
   inheritAttrs: false,
+  props: ["categories"],
   data() {
     return {
-      title: "",
-      categories: [],
-      newSkillsBlock: false,
+      title: ""
     };
   },
   components: {
-    addInput,
-  },
-  created() {
-    this.fetchcategories();
+    addInput
   },
   methods: {
     createCategory() {
       axios
         .post("/categories", {
-          title: this.title,
+          title: this.title
         })
-        .then((response) => {
+        .then(response => {
           this.categories.unshift(response.data);
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error.response.data);
         });
     },
-    fetchcategories() {
-      axios
-        .get("/categories/319", { categories: this.categories })
-        .then((response) => {
-          this.categories = response.data;
-          console.log(response.data);
-        });
-    },
+
     addSkill(newSkill) {
-      this.categories = this.categories.map((category) => {
-        if (category.id === newSkill.category) {
-          category.skills.push(newSkill);
-        }
-        return category;
-      });
-    },
-  },
+      // this.categories = this.categories.map(category => {
+      //   if (category.id === newSkill.category) {
+      //     category.skills.push(newSkill);
+      //   }
+      //   return category;
+      // });
+      console.log(newSkill);
+    }
+  }
 };
 </script>
 <style lang="pcss">
@@ -71,39 +66,32 @@ export default {
   flex-wrap: wrap;
 }
 .skills-add {
-  filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  min-height: 350px;
-  width: 45%;
-  padding: 0 2%;
 }
-  .skills-add:nth-child(2n + 1) {
-    margin-right: 10%;
-  }
+/* .skills-add:nth-child(2n + 1) {
+  margin-right: 10%;
+} */
 
 .skills-add__form {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.skills-add__group {
-  width: 100%;
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dedee0;
   padding: 5%;
   margin-bottom: 20px;
 }
+.skills-add__title {
+  width: 100%;
+  border-bottom: 1px solid #dedee0;
+  padding: 1%;
+}
 .tick-cross__btns {
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .cross {
   display: block;
@@ -128,15 +116,15 @@ export default {
   border-bottom: 2px solid #dedee0;
 }
 .skills-add__title::placeholder {
-    font-size: 18px;
-    color: rgba(65, 76, 99, 0.5);
-    font-family: "Open Sans";
-    font-weight: 600;
-  }
+  font-size: 18px;
+  color: rgba(65, 76, 99, 0.5);
+  font-family: "Open Sans";
+  font-weight: 600;
+}
 .skills-add__title:focus:active {
-    outline: none;
-    border-bottom: 2px solid #383bcf;
-  }
+  outline: none;
+  border-bottom: 2px solid #383bcf;
+}
 
 .editBtns {
   display: flex;
@@ -154,11 +142,12 @@ export default {
       height=15px
     )
     center center no-repeat;
-  margin-right: 20px;}
+  margin-right: 20px;
+}
 .edit--blue {
-    background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
-      center center no-repeat;
-  }
+  background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
+    center center no-repeat;
+}
 
 .trash {
   display: block;

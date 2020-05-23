@@ -1,8 +1,7 @@
 <template lang="pug">
-  .container
-    .revs
-      addRev
-      revsList
+.revs.container
+  addRev
+  yarrevsList
 </template>
 <script>
 import addRev from "./addRev";
@@ -10,8 +9,8 @@ import revsList from "./revsList";
 export default {
   components: {
     revsList,
-    addRev
-  }
+    addRev,
+  },
 };
 </script>
 <style style="pcss">

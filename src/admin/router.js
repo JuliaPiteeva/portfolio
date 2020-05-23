@@ -2,24 +2,24 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-import skills from "./components/skills.vue";
-import works from "./components/works.vue";
-import reviews from "./components/reviews.vue";
+import skillsComp from "./components/skills.vue";
+import worksComp from "./components/works.vue";
+import reviewsComp from "./components/reviews.vue";
 
 const routes = [
   {
     path: "/admin",
-    components: skills,
+    component: skillsComp,
   },
   {
     path: "/admin/works",
-    components: works,
+    component: worksComp,
   },
   {
-    path: "/admin/reviews",
-    components: reviews,
+    path: "/admin/revs",
+    component: reviewsComp,
   },
 ];
 
-export default new VueRouter({ routes });
+export default new VueRouter({ routes, mode: "history" });
 //mode: "history"

@@ -1,17 +1,16 @@
 <template lang="pug">
-  .container
-    .works
-      addWork
-      worksList
+.works.container
+  addWork
+  worksList
 </template>
 <script>
 import addWork from "./addWork";
-import worksList from "./worksList";
+import worksList from ".//worksList";
 export default {
   components: {
     addWork,
-    worksList
-  }
+    worksList,
+  },
 };
 </script>
 <style style="pcss">

@@ -1,42 +1,42 @@
 <template lang="pug">
-  ul.works__list
-    li.works__item.works__item--add
-      label.works__add-label
-        .works__add-visible +
-        input.works__add-input(type="file")
-        span.works__add-exp Добавить фото
-    li.works__item
-      .works__img
+ul.works__list
+  li.works__item.works__item--add
+    label.works__add-label
+      .works__add-visible +
+      input.works__add-input(type="file")
+      span.works__add-exp Добавить фото
+  li.works__item
+    .works__img
+      img.works__img-icon(src="")
+    .works__tags
+    h2.works__title Сайт школы образования
+    p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
+    a.works__link http://loftschool.ru
+    .edit-trash__btns
+      label.btn-label
+        span.btn-text Править
+        button(type="button").edit.edit--blue
+      label.btn-label
+        span.btn-text Удалить
+        buttonbutton(type="button").cross
+  li.works__item
+    .works__img
         img.works__img-icon(src="")
-      .works__tags
-      h2.works__title Сайт школы образования
-      p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
-      a.works__link http://loftschool.ru
-      .edit-trash__btns
-        label.btn-label
-          span.btn-text Править
-          button(type="button").edit.edit--blue
-        label.btn-label
-          span.btn-text Удалить
-          buttonbutton(type="button").cross
-    li.works__item
-      .works__img
-          img.works__img-icon(src="")
-      .works__tags
-      h2.works__title Сайт школы образования
-      p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
-      a.works__link http://loftschool.ru
-      .edit-trash__btns
-        label.btn-label
-          span.btn-text Править
-          button(type="button").edit.edit--blue
-        label.btn-label
-          span.btn-text Удалить
-          buttonbutton(type="button").cross
+    .works__tags
+    h2.works__title Сайт школы образования
+    p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
+    a.works__link http://loftschool.ru
+    .edit-trash__btns
+      label.btn-label
+        span.btn-text Править
+        button(type="button").edit.edit--blue
+      label.btn-label
+        span.btn-text Удалить
+        buttonbutton(type="button").cross
 </template>
 <script>
 export default {
-  components: {},
+  components: {}
 };
 </script>
 <style lang="pcss">
@@ -61,16 +61,17 @@ export default {
   font-family: "Open Sans";
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
-  padding: 10px 20px;}
+  padding: 10px 20px;
+}
 .works__item--add {
-    background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
-    align-items: center;
-    justify-content: center;
-  }
+  background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
+  align-items: center;
+  justify-content: center;
+}
 
 .works__item:nth-child(3) {
-    margin-right: 0;
-  }
+  margin-right: 0;
+}
 .works__add-label {
   display: flex;
   justify-content: center;
@@ -154,11 +155,12 @@ export default {
       height=15px
     )
     center center no-repeat;
-  margin-right: 20px;}
+  margin-right: 20px;
+}
 .edit--blue {
-    background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
-      center center no-repeat;
-  }
+  background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
+    center center no-repeat;
+}
 
 .cross {
   display: block;

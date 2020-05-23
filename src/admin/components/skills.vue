@@ -1,22 +1,55 @@
 <template lang="pug">
-  .container
-    .block-title
-      .title
-        h1 Блок "Обо мне"
-    form.add-group__btns(@submit.prevent="addGroup")
-      button(type="button").add-group__btn  +
+.container
+  .block-title
+    .title
+      h1 Блок "Обо мне"
+    form.add-group__btns
+      button(type="button" ).add-group__btn  +
       span.add-group__exp Добавить группу
-    ul.skills
-      li.skill__item
-        addSkill
-      li.skills__item
-        skillsList 
+  ul.skills
+    li.skill__item
+      addSkill(
+        :categories="categories"
+        ) 
+    li.skill__item(v-for="cat in categories" key:="cat.id") {{ cat.title }}
+      skillsList(
+        :categName="cat.category"
+        :categID="cat.id"
+        :categories="categories"
+      )
 </template>
 <script>
+const baseURL = "https://webdev-api.loftschool.com/";
+const token = localStorage.getItem("token");
+axios.defaults.baseURL = baseURL;
+axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+
 import addSkill from "./addSkill";
 import skillsList from "./skillsList";
+import axios from "axios";
 export default {
-  components: { addSkill, skillsList }
+  data() {
+    return {
+      categories: []
+    };
+  },
+  created() {
+    this.fetchcategories();
+  },
+  methods: {
+    fetchcategories() {
+      axios
+        .get("/categories/319", { categories: this.categories })
+        .then(response => {
+          this.categories = response.data;
+          console.log(response.data);
+        });
+    }
+  },
+  components: {
+    addSkill,
+    skillsList
+  }
 };
 </script>
 <style lang="pcss">
@@ -29,7 +62,20 @@ export default {
   font-family: "Open Sans";
   font-weight: 700;
 }
-
+.skill__item {
+  filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 350px;
+  width: 45%;
+  padding: 0 2%;
+}
+.skill__item:nth-child(2n + 1) {
+  margin-right: 10%;
+}
 .add-group__btns {
   display: flex;
   align-items: center;

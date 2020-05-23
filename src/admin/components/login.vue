@@ -1,16 +1,19 @@
 <template lang="pug">
-  .overlay
-    .overlay-container
-      .overlay-content
-        h2 Авторизация
-        form.authorization(id="authorization"  action="https://vuejs.org/" method="post" @submit.prevent="login")
-          label.login-block
-            span.login-title Логин
-            input.login-input.authorization-input(type="text" name="login" required placeholder="Terminator_2000" v-model="user.name")
-          label.login-block
-            span.login-title Пароль
-            input.password-input.authorization-input(type="password" name="password" required placeholder="•••••••••••••••••••••" v-model="user.password")
-          button.authorization-btn(type="submit" ) Отправить
+.login
+  .login__container
+    .login__content
+      h2 Авторизация
+      form.authorization(id="authorization"  action="https://vuejs.org/" method="post" @submit.prevent="loginUser")
+        label.login-block
+          span.login-title Логин
+          input.login-input.authorization-input(type="text" name="login" required autocomplete placeholder="Terminator_2000" v-model="user.name")
+        label.login-block
+          span.login-title Пароль
+          input.password-input.authorization-input(type="password" name="password" required autocomplete placeholder="•••••••••••••••••••••" v-model="user.password")
+        button.authorization-btn(type="submit" ) Отправить
+      span.close-cross +
+    .login__btn-wrap
+      button.login__btn(type="submit") Авторизоваться
           //- .checkbox__row
           //-   label.robot-block
           //-     input(type="checkbox" checked  name="checkbox" value="human").input-checkbox
@@ -29,15 +32,18 @@
     //-     span.close-cross +
     //- .overlay-message Неверно введен логин или пароль
     //-     span.close-overlay-message
-    //- form.skills-add__form(@submit.prevent="createCategory")
-    //-   input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="title").skills-add__title
-    //-   button() go
+   
   
 </template>
 <script>
-import axios from "axios";
-axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
-const token = localStorage.getItem("token") || "";
+import $axios from "../requests";
+// import axios from "axios";
+// const baseURL = "https://webdev-api.loftschool.com/";
+// const token = localStorage.getItem("token");
+// //|| ""
+// axios.defaults.baseURL = baseURL;
+// axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+
 export default {
   inheritAttrs: false,
   data() {
@@ -50,52 +56,62 @@ export default {
     };
   },
   methods: {
-    login() {
-      axios
-        .post("/login", this.user)
-        .then((response) => {
-          const token = response.data.token;
-          axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-          localStorage.setItem("token", token);
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
+    async loginUser() {
+      try {
+        const response = await $axios.post("/login", this.user);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+        // this.$router.replace("/");
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
 </script>
 
-<style lang="pcss" scoped>
-.overlay {
-  display: none;
-  /* position: fixed; */
-
+<style lang="pcss">
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(45, 60, 78, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  background: rgba(45, 60, 78, 0.5);
+  z-index: -20
 }
-
-.overlay-content {
+.login__container {
+  position: relative;
+  padding: 2%;
+  max-width: 563px;
+  max-height: 517px;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;}
-.overlay-content h2 {
-    font-size: 36px;
-    color: #414c63;
-    font-family: "Open Sans";
-    font-weight: 600;
-    margin-bottom: 40px;
-  }
+}
+.login__content {
+  width: 100%;
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+.login__content h2 {
+  font-size: 36px;
+  color: #414c63;
+  font-family: "Open Sans";
+  font-weight: 600;
+  margin-bottom: 40px;
+}
 .login-title {
   font-size: 16px;
   color: rgba(65, 76, 99, 0.3);
@@ -107,17 +123,6 @@ export default {
 .lock {
   /* убираем скроллбары с основнового содержимого страницы */
   overflow: hidden;
-}
-
-.overlay-container {
-  position: relative;
-  padding: 2%;
-  width: 563px;
-  min-height: 517px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .authorization {
@@ -144,21 +149,22 @@ export default {
   background-size: 30px 30px;
   flex: 1;
   border-bottom: 1px solid rgba(65, 76, 99, 0.5);
-  box-sizing: border-box;}
+  box-sizing: border-box;
+}
 .authorization-input:active {
-    outline: none;
-    border-bottom: 2px solid #3d36cc;
-  }
+  outline: none;
+  border-bottom: 2px solid #3d36cc;
+}
 .authorization-input:focus {
-    outline: none;
-    border-bottom: 2px solid #3d36cc;
-  }
+  outline: none;
+  border-bottom: 2px solid #3d36cc;
+}
 .authorization-input::placeholder {
-    font-size: 18px;
-    color: rgba(65, 76, 99, 0.8);
-    font-family: "Open Sans";
-    font-weight: 700;
-  }
+  font-size: 18px;
+  color: rgba(65, 76, 99, 0.8);
+  font-family: "Open Sans";
+  font-weight: 400;
+}
 .login-input {
   background: svg-load(
       "user.svg",
@@ -178,19 +184,20 @@ export default {
     center left no-repeat;
 }
 .authorization-btn {
-  padding: 7% 19%;
+  padding: 5% 10%;
   text-transform: uppercase;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  background: $linear-gradient;
+  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100% );
   font-size: 18px;
   color: #ffffff;
   font-family: "Open Sans";
   font-weight: 700;
   transition: color 0.9s;
   margin-bottom: 25px;
-    /* width: 76%; */
+  /* width: 76%; */
 }
+
 .close-cross {
   position: absolute;
   cursor: pointer;
@@ -204,7 +211,7 @@ export default {
 }
 .overlay-message {
   /* position: absolute; */
-  background-color: $bg-overlay-message-red-color;
+  background-color: #b13333;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -212,7 +219,7 @@ export default {
   padding: 30px;
   line-height: 20px;
   font-size: 18px;
-  color: $white-color;
+  color: #fff;
   font-family: "Open Sans";
   font-weight: 600;
 }
@@ -220,7 +227,7 @@ export default {
   display: block;
   width: 15px;
   height: 15px;
-  background: svg-load("Cross.svg", fill=$white-color, width=15px, height=15px)
+  background: svg-load("Cross.svg", fill=white, width=15px, height=15px)
     center center no-repeat;
   margin-left: 30px;
   cursor: pointer;
@@ -313,4 +320,20 @@ export default {
   border: 1px solid #414c63;
   position: relative;
 }
+.login__btn-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.login__btn {
+  /* padding: 1% 9%; */
+  text-transform: uppercase;
+  /* border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px; */
+  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100% );
+  font-size: 16px;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-weight: 700;
+  }
 </style>

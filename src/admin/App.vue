@@ -1,24 +1,24 @@
 <template lang="pug">
   .wrap-admin
+    login
     vueHeader
     vueMenu
-        
 </template>
 <script>
 import vueHeader from "./components/vueHeader";
-import overlay from "./components/overlay";
+import login from "./components/login";
 import vueMenu from "./components/vueMenu";
 
 export default {
   name: "App",
   components: {
-    overlay,
+    login,
     vueHeader,
-    vueMenu
+    vueMenu,
   },
   methods: {
-    addGroup() {}
-  }
+    addGroup() {},
+  },
 };
 </script>
 <style lang="pcss">
@@ -109,8 +109,8 @@ textarea:active {
 .main {
   background: #f7f9fe;
 }
-.container,
-.wrap-admin {
+.container
+ {
   margin: 0 auto;
   max-width: 1000px;
 }

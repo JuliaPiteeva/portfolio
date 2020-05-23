@@ -1,15 +1,15 @@
 <template lang="pug">
-  main.main
-    .container
-      ul.nav__list
-        li.nav__item.nav__item-active
-          router-link(to="/admin/" tag="a" class="nav__link") Обо мне
-        li.nav__item 
-          router-link(to="/admin/works" tag="a" class="nav__link") Работы
-        li.nav__item 
-          router-link(to="/admin/reviews" tag="a" class="nav__link") Отзывы
-    .main__block
-      router-view
+main.main
+  .container
+    ul.nav__list
+      li.nav__item.nav__item-active
+        router-link(tag="a" class="nav__link" to="/admin" ) Обо мне
+      li.nav__item 
+        router-link(tag="a" class="nav__link" to="/admin/works"  ) Работы
+      li.nav__item 
+        router-link( tag="a" class="nav__link" to="/admin/revs" ) Отзывы
+  .main__block
+    router-view
 </template>
 <script>
 export default {

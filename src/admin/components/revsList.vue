@@ -1,30 +1,30 @@
 <template lang="pug">
-  ul.rev__list
-    li.rev__item.rev__item--add
-      label.rev__add-label
-        .rev__add-visible +
-        input.rev__add-input(type="button")
-        span.rev__add-text Добавить отзыв
-    li.rev__item
-      .rev__row
-        .rev__img
-          img(src="").rev__icon
-        .rev__info
-          h3 Владимир
-          p Преподаватель
-      .rev__content
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repudiandae totam minus eveniet vero eum, culpa sapiente accusantium accusamus quos. Quidem a, quia ea consequuntur ducimus nam repellat quas laudantium!
-      .edit-trash__btns
-        label.btn-label
-          span.btn-text Править
-          button.edit.edit--blue
-        label.btn-label
-          span.btn-text Удалить
-          button.cross 
+ul.rev__list
+  li.rev__item.rev__item--add
+    label.rev__add-label
+      .rev__add-visible +
+      input.rev__add-input(type="button")
+      span.rev__add-text Добавить отзыв
+  li.rev__item
+    .rev__row
+      .rev__img
+        img(src="").rev__icon
+      .rev__info
+        h3 Владимир
+        p Преподаватель
+    .rev__content
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repudiandae totam minus eveniet vero eum, culpa sapiente accusantium accusamus quos. Quidem a, quia ea consequuntur ducimus nam repellat quas laudantium!
+    .edit-trash__btns
+      label.btn-label
+        span.btn-text Править
+        button.edit.edit--blue
+      label.btn-label
+        span.btn-text Удалить
+        button.cross 
 </template>
 <script>
 export default {
-  components: {},
+  components: {}
 };
 </script>
 <style lang="pcss">
@@ -49,16 +49,17 @@ export default {
   font-family: "Open Sans";
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
-  padding: 20px 20px;}
+  padding: 20px 20px;
+}
 .rev__item--add {
-    background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
-    align-items: center;
-    justify-content: center;
-  }
+  background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
+  align-items: center;
+  justify-content: center;
+}
 
 .rev__item:last-child {
-    margin-right: 0;
-  }
+  margin-right: 0;
+}
 
 .rev__add-label {
   display: flex;
@@ -100,18 +101,19 @@ export default {
 }
 .rev__info {
   flex: 1;
-  margin-bottom: 20px;}
+  margin-bottom: 20px;
+}
 
 .rev__info h3 {
-    font-size: 18px;
-    color: rgba(65, 76, 99, 1);
-    font-weight: 700;
-  }
+  font-size: 18px;
+  color: rgba(65, 76, 99, 1);
+  font-weight: 700;
+}
 .rev__info p {
-    font-size: 16px;
-    color: rgba(65, 76, 99, 0.5);
-    font-weight: 600;
-  }
+  font-size: 16px;
+  color: rgba(65, 76, 99, 0.5);
+  font-weight: 600;
+}
 .rev__img {
   width: 50px;
   height: 50px;

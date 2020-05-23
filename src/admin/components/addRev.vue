@@ -1,34 +1,34 @@
 <template lang="pug">
-  .rev-wrapper
-    .block-title
-      .title
-        h1 Блок "Отзывы"
-    .rev-add
-      form.rev-add__form(id="addRevForm")
-        .rev-add__title Новый отзыв
-        .rev-add__container
-          .rev-add__left
-            .rev-add__img
-              img.rev-add__icon
-            .input(type="file" name="uploadFile" required).rev-add__upload Добавить фото
-          .rev-add__right
-            .rev-add__row
-              label.rev-add__block
-                span.rev__input-title Имя автора
-                input(type="text" name="revName" required).rev__input
-              label.rev-add__block
-                span.rev__input-title Титул автора
-                input(type="text" name="revPos" required).rev__input
+.rev-wrapper
+  .block-title
+    .title
+      h1 Блок "Отзывы"
+  .rev-add
+    form.rev-add__form(id="addRevForm")
+      .rev-add__title Новый отзыв
+      .rev-add__container
+        .rev-add__left
+          .rev-add__img
+            img.rev-add__icon
+          .input(type="file" name="uploadFile" required).rev-add__upload Добавить фото
+        .rev-add__right
+          .rev-add__row
             label.rev-add__block
-              span.rev__input-title Отзыв
-              textarea(type="text" row="3" name="revText" required).rev__textarea.rev__input
-            .save-cancel__btns
-              button(type="button").btn-cancel.btn Отмена
-              button(type="button").btn Сохранить
+              span.rev__input-title Имя автора
+              input(type="text" name="revName" required).rev__input
+            label.rev-add__block
+              span.rev__input-title Титул автора
+              input(type="text" name="revPos" required).rev__input
+          label.rev-add__block
+            span.rev__input-title Отзыв
+            textarea(type="text" row="3" name="revText" required).rev__textarea.rev__input
+          .save-cancel__btns
+            button(type="button").btn-cancel.btn Отмена
+            button(type="button").btn Сохранить
 </template>
 <script>
 export default {
-  components: {},
+  components: {}
 };
 </script>
 <style lang="pcss" scoped>
@@ -109,11 +109,10 @@ export default {
 }
 .rev-add__block {
   margin-bottom: 30px;
-
 }
 .rev-add__block:first-child {
-    margin-right: 30px;
-  }
+  margin-right: 30px;
+}
 .rev__input {
   font-size: 16px;
   color: #414c63;
@@ -123,24 +122,22 @@ export default {
   width: 100%;
   padding: 20px 0;
   border-bottom: 1px solid #dedee0;
-
 }
 .rev__input:focus {
-    border-bottom: 2px solid #383bcf;
-  }
+  border-bottom: 2px solid #383bcf;
+}
 .rev__input-title {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 20px;
-
 }
 .rev__input-title::placeholder {
-    font-size: 16px;
-    line-height: 30px;
-    color: rgba(65, 76, 99, 0.5);
-    font-family: "Open Sans";
-    font-weight: 600;
-  }
+  font-size: 16px;
+  line-height: 30px;
+  color: rgba(65, 76, 99, 0.5);
+  font-family: "Open Sans";
+  font-weight: 600;
+}
 .rev__textarea {
   resize: none;
   border: 1px solid rgba(65, 76, 99, 0.2);

@@ -1,12 +1,12 @@
 <template lang="pug">
-  header.header
-    .header__user-info
-      .user__avatar 
-        img.user__avatar-img
-      p.user__name Юлия Бубнова
-    .header__title
-      p Панель администрирования
-    button.exit Выйти
+header.header
+  .header__user-info
+    .user__avatar 
+      img.user__avatar-img
+    p.user__name Юлия Бубнова
+  .header__title
+    p Панель администрирования
+  button.exit Выйти
 </template>
 <script>
 </script>
