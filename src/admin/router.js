@@ -5,10 +5,11 @@ Vue.use(VueRouter);
 import skillsComp from "./components/skills.vue";
 import worksComp from "./components/works.vue";
 import reviewsComp from "./components/reviews.vue";
+import loginComp from "./components/login/login.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/about",
     component: skillsComp,
   },
   {
@@ -18,6 +19,10 @@ const routes = [
   {
     path: "/revs",
     component: reviewsComp,
+  },
+  {
+    path: "/",
+    component: loginComp,
   },
 ];
 

@@ -1,7 +1,7 @@
 <template lang="pug">
 .revs.container
   addRev
-  yarrevsList
+  revsList
 </template>
 <script>
 import addRev from "./addRev";

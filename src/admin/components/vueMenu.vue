@@ -3,11 +3,17 @@
     .container
       ul.nav__list
         li.nav__item
-          router-link(to="/").nav__link Обо мне
+          router-link(to="/about",
+          tag="a",
+          class="nav__link" ) Обо мне
         li.nav__item 
-          router-link(to="/works").nav__link Работы
+          router-link(to="/works",
+          tag="a",
+          class="nav__link" ) Работы
         li.nav__item 
-          router-link(to="/revs").nav__link Отзывы
+          router-link(to="/revs", 
+          tag="a",
+          class="nav__link" ) Отзывы
     .main__block
       router-view
 </template>
@@ -30,12 +36,11 @@ export default {
 }
 
 .nav__item {
-  /* min-height: 77px;
-  min-width: 140px; */
+  min-height: 77px;
+  min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .nav__item-active {

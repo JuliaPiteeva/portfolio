@@ -2,17 +2,14 @@
   .wrap-admin
     vueHeader
     vueMenu
-    
 </template>
 <script>
 import vueHeader from "./components/vueHeader";
-import login from "./components/login";
 import vueMenu from "./components/vueMenu";
 
 export default {
   name: "App",
   components: {
-    login,
     vueHeader,
     vueMenu,
   },

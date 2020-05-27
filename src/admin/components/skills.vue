@@ -8,48 +8,36 @@
       span.add-group__exp Добавить группу
   ul.skills
     li.skill__item
-      addSkill(
-        :categories="categories"
-        ) 
-    li.skill__item(v-for="cat in categories" key:="cat.id") {{ cat.title }}
+      addSkill
+    li.skill__item(v-for="cat in categories" :key="cat.id")
       skillsList(
-        :categName="cat.category"
-        :categID="cat.id"
-        :categories="categories"
+       :category="cat" 
       )
 </template>
 <script>
-const baseURL = "https://webdev-api.loftschool.com/";
-const token = localStorage.getItem("token");
-axios.defaults.baseURL = baseURL;
-axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-
 import addSkill from "./addSkill";
 import skillsList from "./skillsList";
-import axios from "axios";
+import { mapActions, mapState } from "Vuex";
 export default {
+  components: {
+    addSkill,
+    skillsList,
+  },
   data() {
-    return {
-      categories: []
-    };
+    return {};
+  },
+
+  computed: {
+    ...mapState("categories", {
+      categories: (state) => state.categories,
+    }),
   },
   created() {
     this.fetchcategories();
   },
   methods: {
-    fetchcategories() {
-      axios
-        .get("/categories/319", { categories: this.categories })
-        .then(response => {
-          this.categories = response.data;
-          console.log(response.data);
-        });
-    }
+    ...mapActions("categories", ["fetchcategories"]),
   },
-  components: {
-    addSkill,
-    skillsList
-  }
 };
 </script>
 <style lang="pcss">
@@ -72,6 +60,7 @@ export default {
   min-height: 350px;
   width: 45%;
   padding: 0 2%;
+  margin-bottom: 20px;
 }
 .skill__item:nth-child(2n + 1) {
   margin-right: 10%;

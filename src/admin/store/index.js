@@ -1,15 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-Vue.use(Vuex);
+Vue.use(Vuex); // добавим методы vuex
 
 import user from "./modules/user";
 import categories from "./modules/categories";
+import login from "./modules/login";
+import skills from "./modules/skills";
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
   modules: {
     user,
     categories,
+    login,
+    skills,
   },
 });
-categories;

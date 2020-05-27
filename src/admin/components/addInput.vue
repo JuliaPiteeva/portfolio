@@ -1,32 +1,38 @@
 <template lang="pug">
-form.add-input(id="skillAdd" @submit.prevent="addNewSkill")
-  input(type="text" name="skillName" required placeholder="Новый навык" v-model="skill.title").add-input__name
-  input(type="text" name="skillPerc" required placeholder="%" v-model="skill.percent").add-input__percent
-  button(type="submit").btn__add
+  form.add-input(id="skillAdd" @submit.prevent="addNewSkill")
+    input(type="text" required placeholder="Новый навык" v-model="skill.title").add-input__name
+    input(type="text"  required placeholder="%" v-model="skill.percent").add-input__percent
+    button(type="submit").btn__add
 </template>
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 export default {
-  props: ["categoryId"],
+  props: {
+    category: Object,
+  },
   data() {
     return {
       skill: {
         title: "",
         percent: 0,
-        category: this.categoryId
-      }
+      },
     };
   },
   components: {},
   methods: {
-    addNewSkill() {
-      axios.post("/skills", this.skill).then(response => {
-        this.$emit("skillAdded", response.data);
-        this.skill.title = "";
-        this.skill.percent = "";
-      });
-    }
-  }
+    ...mapActions("skills", ["addSkill"]),
+    async addNewSkill() {
+      const skillData = {
+        ...this.skill,
+        category: this.category.id,
+      };
+      try {
+        await this.addSkill(skillData);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 };
 </script>
 <style lang="pcss">

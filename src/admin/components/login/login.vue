@@ -1,19 +1,19 @@
 <template lang="pug">
 .login
-  .login__container
-    .login__content
-      h2 Авторизация
-      form.authorization(id="authorization"  action="https://vuejs.org/" method="post" @submit.prevent="loginUser")
-        label.login-block
-          span.login-title Логин
-          input.login-input.authorization-input(type="text" name="login" required autocomplete placeholder="Terminator_2000" v-model="user.name")
-        label.login-block
-          span.login-title Пароль
-          input.password-input.authorization-input(type="password" name="password" required autocomplete placeholder="•••••••••••••••••••••" v-model="user.password")
-        button.authorization-btn(type="submit" ) Отправить
-      span.close-cross +
-    .login__btn-wrap
-      button.login__btn(type="submit") Авторизоваться
+  .login-wrapper
+    .login__container
+      .login__content(v-if='formIsActive')
+        h2 Авторизация
+        form.authorization(@submit.prevent="loginUser")
+          label.login-block
+            span.login-title Логин
+            input.login-input.authorization-input(type="text" name="login" required autocomplete placeholder="Terminator_2000" v-model="user.name")
+          label.login-block
+            span.login-title Пароль
+            input.password-input.authorization-input(type="password" name="password" required autocomplete placeholder="•••••••••••••••••••••" v-model="user.password")
+          button.authorization-btn(type="submit" ) Отправить
+        span.close-cross(@click.prevent="formIsActive=false") +
+      button.login__btn(type="submit" @click="formIsActive=true") Войти
           //- .checkbox__row
           //-   label.robot-block
           //-     input(type="checkbox" checked  name="checkbox" value="human").input-checkbox
@@ -36,55 +36,68 @@
   
 </template>
 <script>
-import $axios from "../requests";
-// import axios from "axios";
-// const baseURL = "https://webdev-api.loftschool.com/";
-// const token = localStorage.getItem("token");
-// //|| ""
-// axios.defaults.baseURL = baseURL;
-// axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-
+import { mapActions } from "vuex";
+import $axios from "../../requests";
 export default {
   inheritAttrs: false,
   data() {
     return {
+      formIsActive: true,
       user: {
         name: "",
-        password: "",
+        password: ""
       },
-      title: "",
+      title: ""
     };
   },
   methods: {
-    // async loginUser() {
-    //   try {
-    //     const response = await $axios.post("/login", this.user);
-    //     const token = response.data.token;
-    //     localStorage.setItem("token", token);
-    //     $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-    //     // this.$router.replace("/");
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
-  },
+    ...mapActions("login", ["toLogin"]),
+    async loginUser() {
+      if (this.validForm()) {
+        try {
+          const response = await this.toLogin(this.user);
+          const token = response.data.token;
+          localStorage.setItem("token", token);
+          $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+          this.$router.replace("/about");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
+    validForm() {
+      if (!this.user.name || !this.user.password) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
 };
 </script>
 
 <style lang="pcss">
 .login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(45, 60, 78, 0.5);
-  z-index: -20
+  background-image: url("../../images/bg-desktop.png");
+  background-position: center;
+  object-fit: contain;
+  z-index: 1000;
+}
+.login-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2d3c4e;
+  opacity: 0.9;
 }
 .login__container {
   position: relative;
@@ -99,7 +112,7 @@ export default {
 }
 .login__content {
   width: 100%;
-   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -188,7 +201,7 @@ export default {
   text-transform: uppercase;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100% );
+  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100%);
   font-size: 18px;
   color: #ffffff;
   font-family: "Open Sans";
@@ -227,8 +240,8 @@ export default {
   display: block;
   width: 15px;
   height: 15px;
-  background: svg-load("Cross.svg", fill=white, width=15px, height=15px)
-    center center no-repeat;
+  background: svg-load("Cross.svg", fill=white, width=15px, height=15px) center
+    center no-repeat;
   margin-left: 30px;
   cursor: pointer;
 }
@@ -330,10 +343,10 @@ export default {
   text-transform: uppercase;
   /* border-top-left-radius: 40px;
   border-bottom-right-radius: 40px; */
-  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100% );
+  background: linear-gradient(90deg, #9300e7 0%, #4900ed 100%);
   font-size: 16px;
   color: #ffffff;
   font-family: "Open Sans";
   font-weight: 700;
-  }
+}
 </style>

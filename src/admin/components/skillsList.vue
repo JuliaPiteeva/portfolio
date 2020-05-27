@@ -1,45 +1,36 @@
 <template lang="pug">
 .skills-list
-  .skills__row {{categName}}
+  .skills-row
+    .title-group  {{category.category}}
+    .edit-trash__btns-icon
       button.edit
-      button(v-on:click="delCategory").trash
+      button.trash
   table.skills__table
-    tr(v-for="skill in categories.skills" key:="skill.id")
-      td {{skill.title}}
-      td {{skill.percent}}
-      td  
-        .editBtns
-          button.edit
-          button.trash            
-  addInput
+    skillsListItem(
+      v-for="skill in category.skills" 
+      :key="skill.id"
+      :skill="skill"
+      )
+  .add-skill-wrapper       
+    addInput(
+      :category="category"
+    )
 
 </template>
 <script>
-const baseURL = "https://webdev-api.loftschool.com/";
-const token = localStorage.getItem("token");
-axios.defaults.baseURL = baseURL;
-axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-import axios from "axios";
 import addInput from "./addInput";
-
+import skillsListItem from "./skiilsList-item";
 export default {
-  data() {
-    return {
-      categId: "5419"
-    };
-  },
-  props: ["categName", "categID", "categories"],
   components: {
-    addInput
+    addInput,
+    skillsListItem,
   },
-  methods: {
-    delCategory() {
-      console.log(categId + "categId");
-      axios.delete(`/categories/${categId}`).then(response => {
-        console.log(response.data);
-      });
-    }
-  }
+  data() {
+    return {};
+  },
+  props: {
+    category: Object,
+  },
 };
 </script>
 <style lang="pcss">
@@ -49,7 +40,7 @@ export default {
   align-items: flex-start;
   justify-content: flex-start;
 }
-.skills__row {
+.skills-row {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -71,20 +62,10 @@ export default {
   width: 100%;
   border-spacing: 0px 20px;
 }
-.skills__row {
-  font-size: 16px;
-  color: #414c63;
-  font-family: "Open Sans";
-  font-weight: 400;
-}
-
-.skills__coll--btn {
-  display: flex;
+.edit-trash__btns-icon{
+ display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-.skills__coll---percent:after {
-  content: "%";
-  margin-left: 30px;
+  justify-content: flex-end;
+  margin-top: auto;
 }
 </style>

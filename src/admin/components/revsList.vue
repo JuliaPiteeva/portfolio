@@ -24,7 +24,7 @@ ul.rev__list
 </template>
 <script>
 export default {
-  components: {}
+  components: {},
 };
 </script>
 <style lang="pcss">
@@ -134,5 +134,12 @@ export default {
   color: rgba(65, 76, 99, 0.7);
   font-family: "Open Sans";
   font-weight: 600;
+}
+.edit-trash__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: auto;
+  width: 100%;
 }
 </style>

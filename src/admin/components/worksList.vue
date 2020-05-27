@@ -18,7 +18,7 @@ ul.works__list
         button(type="button").edit.edit--blue
       label.btn-label
         span.btn-text Удалить
-        buttonbutton(type="button").cross
+        button(type="button").cross
   li.works__item
     .works__img
         img.works__img-icon(src="")
@@ -32,11 +32,11 @@ ul.works__list
         button(type="button").edit.edit--blue
       label.btn-label
         span.btn-text Удалить
-        buttonbutton(type="button").cross
+        button(type="button").cross
 </template>
 <script>
 export default {
-  components: {}
+  components: {},
 };
 </script>
 <style lang="pcss">

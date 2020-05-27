@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`На странице есть кнопка Отправить Ищем кнопку по классу 1`] = `
+<button
+  class="authorization-btn"
+  type="submit"
+>
+  Отправить
+</button>
+`;
+
+exports[`при клике на кнопку авторизации появляется форма Форма открывается при клике 1`] = `
+<form
+  class="authorization"
+>
+  <label
+    class="login-block"
+  >
+    <span
+      class="login-title"
+    >
+      Логин
+    </span>
+    <input
+      autocomplete="autocomplete"
+      class="login-input authorization-input"
+      name="login"
+      placeholder="Terminator_2000"
+      required="required"
+      type="text"
+    />
+  </label>
+  <label
+    class="login-block"
+  >
+    <span
+      class="login-title"
+    >
+      Пароль
+    </span>
+    <input
+      autocomplete="autocomplete"
+      class="password-input authorization-input"
+      name="password"
+      placeholder="•••••••••••••••••••••"
+      required="required"
+      type="password"
+    />
+  </label>
+  <button
+    class="authorization-btn"
+    type="submit"
+  >
+    Отправить
+  </button>
+</form>
+`;
+
+exports[`форма имеет все необходимые поля есть поле логин 1`] = `
+<input
+  autocomplete="autocomplete"
+  class="login-input authorization-input"
+  name="login"
+  placeholder="Terminator_2000"
+  required="required"
+  type="text"
+/>
+`;
+
+exports[`форма имеет все необходимые поля есть поле пароль 1`] = `
+<input
+  autocomplete="autocomplete"
+  class="password-input authorization-input"
+  name="password"
+  placeholder="•••••••••••••••••••••"
+  required="required"
+  type="password"
+/>
+`;

@@ -10,7 +10,11 @@
         .rev-add__left
           .rev-add__img
             img.rev-add__icon
-          .input(type="file" name="uploadFile" required).rev-add__upload Добавить фото
+          .input(
+            type="file" 
+            required
+            @change="handleFileChange"
+          ).rev-add__upload Добавить фото
         .rev-add__right
           .rev-add__row
             label.rev-add__block
@@ -27,8 +31,28 @@
             button(type="button").btn Сохранить
 </template>
 <script>
+import axios from "axios";
 export default {
-  components: {}
+  components: {},
+  data() {
+    return {
+      photo: {},
+      title: "",
+      author: "",
+    };
+  },
+  methods: {
+    handleFileChange(event) {
+      this.photo = event.target.files[0];
+
+      const form = new formData();
+      formData.append("photo", this.photo);
+      formData.append("title", this.title);
+      formData.append("author", this.author);
+
+      axios.post("/reviews", formData);
+    },
+  },
 };
 </script>
 <style lang="pcss" scoped>

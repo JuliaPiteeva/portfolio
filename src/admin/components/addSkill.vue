@@ -1,63 +1,42 @@
 <template lang="pug">
 .skills-add
-  form.skills-add__form(id="addSkiilsForm" @submit.prevent="createCategory")
-    input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="title").skills-add__title
+  form.skills-add__form(@submit.prevent="createCategory")
+    input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="category.title").skills-add__title
     .tick-cross__btns
       button(type="submit").tick
       button(type="submit").cross
   addInput(
-    :categoryId="categories.id"
-    @skillAdded='addSkill'
+    :category="category"
   )
 </template>
 <script>
-const baseURL = "https://webdev-api.loftschool.com/";
-const token = localStorage.getItem("token");
-//|| ""
-axios.defaults.baseURL = baseURL;
-axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-import axios from "axios";
-import addInput from "./addInput";
-
-axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
-
 //id 319
+import addInput from "./addInput";
+import { mapActions, mapState } from "Vuex";
 export default {
   inheritAttrs: false,
-  props: ["categories"],
   data() {
     return {
-      title: ""
+      category: {
+        title: "",
+      },
     };
   },
   components: {
-    addInput
+    addInput,
   },
-  methods: {
-    createCategory() {
-      axios
-        .post("/categories", {
-          title: this.title
-        })
-        .then(response => {
-          this.categories.unshift(response.data);
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error.response.data);
-        });
-    },
 
-    addSkill(newSkill) {
-      // this.categories = this.categories.map(category => {
-      //   if (category.id === newSkill.category) {
-      //     category.skills.push(newSkill);
-      //   }
-      //   return category;
-      // });
-      console.log(newSkill);
-    }
-  }
+  methods: {
+    ...mapActions("categories", ["addCategory", "fetchcategories"]),
+    async createCategory() {
+      try {
+        await this.addCategory(this.category.title);
+        this.category.title = "";
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+  },
 };
 </script>
 <style lang="pcss">
@@ -125,11 +104,14 @@ export default {
   outline: none;
   border-bottom: 2px solid #383bcf;
 }
+.btns-row{
+  margin-left: auto;
+}
 
 .editBtns {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .edit {
   display: block;
