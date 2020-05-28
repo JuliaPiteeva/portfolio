@@ -3,11 +3,11 @@
   .block-title
     .title
       h1 Блок "Обо мне"
-    form.add-group__btns
-      button(type="button" ).add-group__btn  +
+    label.add-group__btns
+      button(type="button" @click="blockAddGroup").add-group__btn  +
       span.add-group__exp Добавить группу
   ul.skills
-    li.skill__item
+    li.skill__item(v-if="blockAddGroupIsActive")
       addSkill
     li.skill__item(v-for="cat in categories" :key="cat.id")
       skillsList(
@@ -21,23 +21,28 @@ import { mapActions, mapState } from "Vuex";
 export default {
   components: {
     addSkill,
-    skillsList,
+    skillsList
   },
   data() {
-    return {};
+    return {
+      blockAddGroupIsActive: false
+    };
   },
 
   computed: {
     ...mapState("categories", {
-      categories: (state) => state.categories,
-    }),
+      categories: state => state.categories
+    })
   },
   created() {
     this.fetchcategories();
   },
   methods: {
     ...mapActions("categories", ["fetchcategories"]),
-  },
+    blockAddGroup() {
+      this.blockAddGroupIsActive = !this.blockAddGroupIsActive;
+    }
+  }
 };
 </script>
 <style lang="pcss">
@@ -55,7 +60,7 @@ export default {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   min-height: 350px;
   width: 45%;
@@ -68,6 +73,7 @@ export default {
 .add-group__btns {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .add-group__btn {
   font-size: 15px;

@@ -1,17 +1,17 @@
 <template lang="pug">
     tr(v-if="editModeOn").skills__row
-      td 
+      td.coll 
         input(type="text" v-model="editedSkill.title")
-      td
+      td.coll
         input(type="text" v-model="editedSkill.percent")
-      td.skills__coll--btn
+      td.coll.skills__coll--btn
         .tick-cross__btns
           button(type="button" @click="editCurrentSkill").tick
           button(type="button", @click="editModeOn=false").cross
     tr(v-else).skills__row
-      td {{skill.title}}
-      td.skills__coll--percent {{skill.percent}}
-      td.skills__coll--btn
+      td.c0ll.skills__coll--title {{skill.title}}
+      td.coll.skills__coll--percent {{skill.percent}}
+      td.coll.skills__coll--btn
         .editBtns
           button.edit(type="button" @click="editModeOn=true")
           button(type="button" @click="removeCurrentSkill").trash
@@ -23,13 +23,13 @@ export default {
     skill: {
       type: Object,
       default: () => {},
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       editModeOn: false,
-      editedSkill: { ...this.skill },
+      editedSkill: { ...this.skill }
     };
   },
   methods: {
@@ -50,8 +50,8 @@ export default {
       } finally {
         this.editModeOn = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="pcss">
@@ -61,10 +61,19 @@ export default {
   font-family: "Open Sans";
   font-weight: 400;
 }
+.skills__coll--title {
+  font-size: 16px;
+}
+.coll {
+  padding: 5px 0;
+}
 .skills__coll--btn {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.skills__coll--percent {
+  text-align: right;
 }
 .skills__coll--percent:after {
   content: "%";

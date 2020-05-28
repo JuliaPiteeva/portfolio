@@ -18,12 +18,12 @@ export default {
   data() {
     return {
       category: {
-        title: "",
-      },
+        title: ""
+      }
     };
   },
   components: {
-    addInput,
+    addInput
   },
 
   methods: {
@@ -35,8 +35,8 @@ export default {
       } catch (error) {
         console.log(error.message);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="pcss">
@@ -46,6 +46,7 @@ export default {
 }
 .skills-add {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -55,16 +56,19 @@ export default {
 } */
 
 .skills-add__form {
+  width: 100%;
+  border-bottom: 1px solid #dedee0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5%;
+  padding: 5% 0;
   margin-bottom: 20px;
 }
 .skills-add__title {
   width: 100%;
   border-bottom: 1px solid #dedee0;
   padding: 1%;
+  margin-right: 100px;
 }
 .tick-cross__btns {
   height: 100%;
@@ -104,7 +108,7 @@ export default {
   outline: none;
   border-bottom: 2px solid #383bcf;
 }
-.btns-row{
+.btns-row {
   margin-left: auto;
 }
 

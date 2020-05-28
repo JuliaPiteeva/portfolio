@@ -1,5 +1,5 @@
 <template lang="pug">
-  form.add-input(id="skillAdd" @submit.prevent="addNewSkill")
+  form.add-input( @submit.prevent="addNewSkill")
     input(type="text" required placeholder="Новый навык" v-model="skill.title").add-input__name
     input(type="text"  required placeholder="%" v-model="skill.percent").add-input__percent
     button(type="submit").btn__add
@@ -8,14 +8,14 @@
 import { mapActions } from "vuex";
 export default {
   props: {
-    category: Object,
+    category: Object
   },
   data() {
     return {
       skill: {
         title: "",
-        percent: 0,
-      },
+        percent: 0
+      }
     };
   },
   components: {},
@@ -24,15 +24,15 @@ export default {
     async addNewSkill() {
       const skillData = {
         ...this.skill,
-        category: this.category.id,
+        category: this.category.id
       };
       try {
         await this.addSkill(skillData);
       } catch (error) {
         console.log(error);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="pcss">

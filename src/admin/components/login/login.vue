@@ -33,7 +33,6 @@
     //- .overlay-message Неверно введен логин или пароль
     //-     span.close-overlay-message
    
-  
 </template>
 <script>
 import { mapActions } from "vuex";
