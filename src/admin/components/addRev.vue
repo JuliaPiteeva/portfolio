@@ -1,61 +1,72 @@
 <template lang="pug">
-.rev-wrapper
-  .block-title
-    .title
-      h1 Блок "Отзывы"
   .rev-add
-    form.rev-add__form(id="addRevForm")
+    form(@submit.prevent="createNewRev").rev-add__form
       .rev-add__title Новый отзыв
       .rev-add__container
         .rev-add__left
-          .rev-add__img
-            img.rev-add__icon
-          .input(
-            type="file" 
-            required
-            @change="handleFileChange"
-          ).rev-add__upload Добавить фото
+          label.rev-add__label
+            input.rev-add__input(
+              type="file" 
+              @change="handleFileChange"
+              
+            )
+            .rev-add__img(
+              :style="{backgroundImage: `url(${renderedPhoto})`}"
+              :class="{'disabled': renderedPhoto.length}"
+            )
+              .rev-add__icon
+            //- img.rev-add__icon
+            span.input.rev-add__upload Добавить фото
         .rev-add__right
           .rev-add__row
             label.rev-add__block
               span.rev__input-title Имя автора
-              input(type="text" name="revName" required).rev__input
+              input(type="text" required v-model="newRevData.name").rev__input
             label.rev-add__block
               span.rev__input-title Титул автора
-              input(type="text" name="revPos" required).rev__input
+              input(type="text" required v-model="newRevData.position").rev__input
           label.rev-add__block
             span.rev__input-title Отзыв
-            textarea(type="text" row="3" name="revText" required).rev__textarea.rev__input
+            textarea(type="text" row="3" required v-model="newRevData.text").rev__textarea.rev__input
           .save-cancel__btns
             button(type="button").btn-cancel.btn Отмена
-            button(type="button").btn Сохранить
+            button(type="submit").btn Сохранить
 </template>
 <script>
-import axios from "axios";
+ 
+import { renderer } from "../helpers/pictures";
+import { mapActions, mapState } from "Vuex";
 export default {
   components: {},
   data() {
     return {
-      photo: {},
-      title: "",
-      author: "",
+      newRevData: {
+        name: "",
+        position: "",
+        text: "",
+        photo: {}
+      },
+      renderedPhoto: ""
     };
   },
   methods: {
+    ...mapActions("reviews", ["addReview"]),
     handleFileChange(event) {
-      this.photo = event.target.files[0];
-
-      const form = new formData();
-      formData.append("photo", this.photo);
-      formData.append("title", this.title);
-      formData.append("author", this.author);
-
-      axios.post("/reviews", formData);
+      this.newRevData.photo = event.target.files[0]; //кладем то что получили с инпута
     },
-  },
+    async createNewRev() {
+      try {
+        this.addReview(this.newRevData);
+        this.newRevData.name = "";
+        this.newRevData.position = "";
+        this.newRevData.text = "";
+        this.newRevData.photo = "";
+      } catch (error) {}
+    }
+  }
 };
 </script>
-<style lang="pcss" scoped>
+<style lang="pcss">
 .rev-add {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
@@ -80,7 +91,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid rgba(31, 35, 45, 0.15);
+  border-bottom: 2px solid rgba(31, 35, 45, 0.15);
   min-height: 70px;
   margin-bottom: 50px;
 }
@@ -96,6 +107,15 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.rev-add__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.rev-add__input {
+  display: none;
+}
 .rev-add__img {
   width: 200px;
   height: 200px;
@@ -106,13 +126,26 @@ export default {
   align-items: center;
   margin-right: 0;
   margin-bottom: 35px;
+  position: relative;
+  background-position: center center no-repeat cover;
+  background-size: cover;
 }
-.rev-add__icon {
+.rev-add__img:before {
+  content: "";
   width: 90px;
   height: 112px;
   background: svg-load("user.svg", fill=#fff, width=90px, height=112px) center
     center no-repeat;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+.rev-add__img.disabled:before {
+  display: none;
+}
+
 .rev-add__upload {
   font-size: 18px;
   color: #383bcf;
@@ -145,7 +178,7 @@ export default {
   outline: none;
   width: 100%;
   padding: 20px 0;
-  border-bottom: 1px solid #dedee0;
+  border-bottom: 2px solid #dedee0;
 }
 .rev__input:focus {
   border-bottom: 2px solid #383bcf;

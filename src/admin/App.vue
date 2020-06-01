@@ -11,11 +11,8 @@ export default {
   name: "App",
   components: {
     vueHeader,
-    vueMenu,
-  },
-  methods: {
-    addGroup() {},
-  },
+    vueMenu
+  }
 };
 </script>
 <style lang="pcss">
@@ -23,6 +20,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 button {
   border: 0;
@@ -106,8 +104,7 @@ textarea:active {
 .main {
   background: #f7f9fe;
 }
-.container
- {
+.container {
   margin: 0 auto;
   max-width: 1000px;
 }

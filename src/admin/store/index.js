@@ -7,6 +7,7 @@ import user from "./modules/user";
 import categories from "./modules/categories";
 import login from "./modules/login";
 import skills from "./modules/skills";
+import reviews from "./modules/reviews";
 
 export default new Vuex.Store({
   modules: {
@@ -14,5 +15,6 @@ export default new Vuex.Store({
     categories,
     login,
     skills,
+    reviews,
   },
 });

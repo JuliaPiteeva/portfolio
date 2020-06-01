@@ -32,18 +32,16 @@ export default {};
   justify-content: flex-start;
   margin-bottom: 55px;
 }
-
+.router-link-exact-active {
+  color: #3d36cc;
+  border-bottom: 2px solid #3d36cc;
+}
 .nav__item {
   min-height: 77px;
   min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.nav__item-active {
-  color: #3d36cc;
-  border-bottom: 2px solid #3d36cc;
 }
 
 .nav__link {
