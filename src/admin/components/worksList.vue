@@ -1,45 +1,46 @@
 <template lang="pug">
-ul.works__list
-  li.works__item.works__item--add
-    label.works__add-label
-      .works__add-visible +
-      input.works__add-input(type="file")
-      span.works__add-exp Добавить фото
-  li.works__item
+  .works-wrap
     .works__img
       img.works__img-icon(src="")
-    .works__tags
-    h2.works__title Сайт школы образования
-    p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
-    a.works__link http://loftschool.ru
+    .works__tags {{work.techs}}
+    h2.works__title  {{work.title}}
+    p.works__desc {{work.description}}
+    a.works__link  {{work.link}}
     .edit-trash__btns
       label.btn-label
         span.btn-text Править
         button(type="button").edit.edit--blue
       label.btn-label
         span.btn-text Удалить
-        button(type="button").cross
-  li.works__item
-    .works__img
-        img.works__img-icon(src="")
-    .works__tags
-    h2.works__title Сайт школы образования
-    p.works__desc Lorem ipsum dolor sit amet consectetur adipisicing elit. Error laboriosam neque tenetur est excepturi quidem praese
-    a.works__link http://loftschool.ru
-    .edit-trash__btns
-      label.btn-label
-        span.btn-text Править
-        button(type="button").edit.edit--blue
-      label.btn-label
-        span.btn-text Удалить
-        button(type="button").cross
+        button(type="button" @click="removeCurrentWork").cross
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   components: {},
+  props: {
+    work: Object
+  },
+  methods: {
+    ...mapActions("works", ["removeWork"]),
+    async removeCurrentWork() {
+      try {
+        await this.removeWork(this.work);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 };
 </script>
 <style lang="pcss">
+.works-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 .works__list {
   display: flex;
   flex-wrap: wrap;
@@ -75,7 +76,11 @@ export default {
 .works__add-label {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 .works__add-input {
   display: none;

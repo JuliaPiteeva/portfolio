@@ -1,41 +1,70 @@
 <template lang="pug">
-.works-wrapper
-  .block-title
-    .title
-      h1 Блок "Работы" 
   .works-add
-    form.works-add__form(id="addWorksForm")
+    form(@submit.prevent="createNewWork").works-add__form
       .works-add__title Добавление работы
       .works-add__container
         .works-add__coll
-          .works__drop-zone(id="dropZone")
+          .works__drop-zone
             .works__drop-exp  Перетащите или загрузите изображение
             label.works__upload-block
               .works__upload-btn Загрузить
-              input(type="file" name="uploadFile" required).works__upload
+              input(type="file" @change="workFileChange").works__upload
         .works-add__coll.works-add__coll--column
           label.works-add__block
             span.work__input-title Название
-            input(type="text" name="workName" required).work__name.work__input
+            input(type="text" v-model="newWorkData.title").work__name.work__input
           label.works-add__block
             span.work__input-title Ссылка
-            input(type="text" name="workLink" required).work__link.work__input
+            input(type="text" v-model="newWorkData.link").work__link.work__input
           label.works-add__block
             span.work__input-title Описание
-            textarea(type="text" row="3" name="workDesc" required).work__textarea.work__input
+            textarea(type="text" row="3" v-model="newWorkData.desc" ).work__textarea.work__input
           label.works-add__block
             span.work__input-title Добавление тега
-            input(type="text" name="workTags" required).work__tags.work__input
+            input(type="text" v-model="newWorkData.tags").work__tags.work__input
           ul.tags__list 
             li.tags__item Test
               span.close-cross +
           .save-cancel__btns
             button(type="button").btn-cancel.btn Отмена
-            button(type="button").btn Сохранить
+            button(type="submit").btn Сохранить
 </template>
 <script>
+import { renderer } from "../helpers/pictures";
+import { mapActions, mapState } from "Vuex";
+
 export default {
-  components: {}
+  data() {
+    return {
+      newWorkData: {
+        title: "",
+        link: "",
+        desc: "",
+        tags: [],
+        photo: {}
+      },
+      rendererWorkPhoto: ""
+    };
+  },
+  methods: {
+    ...mapActions("works", ["addWork"]),
+    workFileChange(event) {
+      this.newWorkData.photo = event.target.files[0];
+    },
+    async createNewWork() {
+      try {
+        this.addWork(this.newWorkData);
+
+        this.newWorkData.title = "";
+        this.newWorkData.link = "";
+        this.newWorkData.desc = "";
+        this.newWorkData.tags = "";
+        // this.newWorkData.photo = "";
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 };
 </script>
 <style lang="pcss" scoped>

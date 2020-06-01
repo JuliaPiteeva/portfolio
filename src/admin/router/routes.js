@@ -2,10 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-import skillsComp from "./components/skills.vue";
-import worksComp from "./components/works.vue";
-import reviewsComp from "./components/reviews.vue";
-import loginComp from "./components/login/login.vue";
+import skillsComp from "../components/skills.vue";
+import worksComp from "../components/works.vue";
+import reviewsComp from "../components/reviews.vue";
+import loginComp from "../components/login/login.vue";
 
 const routes = [
   {
@@ -23,6 +23,9 @@ const routes = [
   {
     path: "/",
     component: loginComp,
+    meta: {
+      public: true,
+    },
   },
 ];
 

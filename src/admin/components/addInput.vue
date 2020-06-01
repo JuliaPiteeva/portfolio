@@ -28,6 +28,8 @@ export default {
       };
       try {
         await this.addSkill(skillData);
+        this.category.title = "";
+        this.category.percent = "";
       } catch (error) {
         console.log(error);
       }

@@ -56,8 +56,10 @@ export default {
         try {
           const response = await this.toLogin(this.user);
           const token = response.data.token;
+
           localStorage.setItem("token", token);
           $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+
           this.$router.replace("/about");
         } catch (error) {
           console.log(error);

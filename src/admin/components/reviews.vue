@@ -19,7 +19,9 @@
 <script>
 import addRev from "./addRev";
 import revsList from "./revsList";
+
 import { mapActions, mapState } from "Vuex";
+
 export default {
   components: {
     revsList,
@@ -74,6 +76,21 @@ export default {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
   padding: 20px 20px;
+}
+.rev__add-visible {
+  font-size: 72px;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-weight: 300;
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .rev__item--add {
   background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);

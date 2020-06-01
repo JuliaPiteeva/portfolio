@@ -29,11 +29,10 @@
             span.rev__input-title Отзыв
             textarea(type="text" row="3" required v-model="newRevData.text").rev__textarea.rev__input
           .save-cancel__btns
-            button(type="button").btn-cancel.btn Отмена
+            button(type="button" ).btn-cancel.btn Отмена
             button(type="submit").btn Сохранить
 </template>
 <script>
- 
 import { renderer } from "../helpers/pictures";
 import { mapActions, mapState } from "Vuex";
 export default {

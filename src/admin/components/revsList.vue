@@ -45,22 +45,12 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-.rev__add-visible {
-  font-size: 72px;
-  color: #ffffff;
-  font-family: "Open Sans";
-  font-weight: 300;
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
+
 .rev__add-input {
   display: none;
 }
