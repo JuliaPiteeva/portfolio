@@ -4,17 +4,24 @@
       .title
         h1 Блок "Работы" 
     .work-add-wrapper()
-      addWork(v-if="blockAddWorksIsActive" @showBlockAddWorks="showBlockAddWorks")
-      editWork(v-if="editModeOn")
+      addWork(v-if="addModeOn" @showBlockAddWork="showBlockAddWork" ref="addWorkCompLink")
+      editWork(
+        v-if="getEditModeState" 
+        :workToEdit="workToEdit" 
+        ref="editWorkCompLink"
+        )
     ul.works__list
-      li(v-if="!blockAddWorksIsActive").works__item.works__item--add
+      li(v-if="!addModeOn").works__item.works__item--add
         label.works__add-label
           .works__add-visible +
-          input.works__add-input(type="button" @click="showBlockAddWorks")
+          input.works__add-input(type="button" @click="showBlockAddWork" :disabled="getEditModeState")
           span.works__add-exp Добавить работу
       li.works__item(v-for="work in works" :key="work.id")
         worksList(
           :work="work"
+          @getCurrentWork="getCurrentWork"
+          :addModeOn="addModeOn"
+          @scrollToEdit="scrollToEdit"
         )
 </template>
 <script>
@@ -32,8 +39,8 @@ export default {
   },
   data() {
     return {
-      blockAddWorksIsActive: false,
-      editModeOn: false
+      addModeOn: false,
+      workToEdit: {}
     };
   },
   computed: {
@@ -47,12 +54,20 @@ export default {
   },
   methods: {
     ...mapActions("works", ["fetchWorks"]),
-    showBlockAddWorks() {
-      //toggleAddMode
-      this.blockAddWorksIsActive = !this.blockAddWorksIsActive;
+    showBlockAddWork() {
+      this.addModeOn = !this.addModeOn;
+      if (this.addModeOn) {
+        scroll();
+      }
     },
     getCurrentWork(work) {
       this.workToEdit = this.works.find(item => item.id === work.id);
+    },
+    scroll() {
+      this.$refs.addWorkCompLink.scrollTo();
+    },
+    scrollToEdit() {
+      this.$refs.editWorkCompLink.scrollTo();
     }
   }
 };

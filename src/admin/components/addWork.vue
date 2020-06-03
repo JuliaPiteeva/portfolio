@@ -1,5 +1,5 @@
 <template lang="pug">
-  .works-add
+  .works-add(ref="addWorkComp")
     form(@submit.prevent="createNewWork").works-add__form
       .works-add__title Добавление работы
       .works-add__container
@@ -22,7 +22,7 @@
             textarea(type="text" row="3" v-model="newWorkData.desc" ).work__textarea.work__input
           label.works-add__block
             span.work__input-title Добавление тега
-            input(type="text" v-model="newWorkData.techs" @input="watchTagsToArray" ).work__tags.work__input
+            input(type="text" v-model="newWorkData.techs" @input="watchTagsToArray" placeholder="Введите теги через запятую и пробел").work__tags.work__input
           ul.tags__list 
             li.tags__item(v-for="tag in tags")
               worksTag(
@@ -30,7 +30,7 @@
                 @deleteTag="deleteTag"
                 )
           .save-cancel__btns
-            button(type="button" @click.prevent="$emit('showBlockAddWorks')" :disabled="getEditModeState").btn-cancel.btn Отмена
+            button(type="button" @click.prevent="$emit('showBlockAddWork')" :disabled="getEditModeState").btn-cancel.btn Отмена
             button(type="submit").btn Сохранить
 </template>
 <script>
@@ -60,6 +60,9 @@ export default {
   },
   methods: {
     ...mapActions("works", ["addWork"]),
+    scrollTo() {
+      this.$refs.addWorkComp.scrollIntoView();
+    },
     validForm() {
       for (let key in this.newWorkData) {
         if (!this.newWorkData[key]) return false;
@@ -90,7 +93,7 @@ export default {
           console.log(error);
         }
       } else {
-        alert("Поля формы не заполнены");
+        alert("Поля формы должны быть заполнены");
       }
     },
     watchTagsToArray() {
@@ -240,12 +243,14 @@ export default {
 .work__input:focus {
   border-bottom: 2px solid #383bcf;
 }
-.work__input-title {
+.work__input-title,
+.work__input-title::placeholder {
   font-size: 16px;
   color: rgba(65, 76, 99, 0.5);
   font-family: "Open Sans";
   font-weight: 600;
 }
+
 .work__textarea {
   resize: none;
   border: 1px solid rgba(65, 76, 99, 0.2);

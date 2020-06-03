@@ -3,47 +3,70 @@
   .block-title
     .title
       h1 Блок "Отзывы"
-  .rev-add-wrapper(v-if="blockAddRevsIsActive")
-    addRev(@showBlockAddRevs="showBlockAddRevs")
+  .rev-add-wrapper()
+    addRev(v-if="addModeOn" @showBlockAddRev="showBlockAddRev" ref="addBlockCompLink")
+    editRev(
+      v-if="getEditModeState" 
+     :revToEdit="revToEdit"
+     ref="editBlockCompLink")
   ul.rev__list
-    li(v-if="!blockAddRevsIsActive").rev-add-btn.rev__item.rev__item--add
+    li(v-if="!addModeOn").rev-add-btn.rev__item.rev__item--add
       label.rev__add-label
         .rev__add-visible +
-        input.rev__add-input(type="button" @click="showBlockAddRevs")
+        input.rev__add-input(type="button" @click="showBlockAddRev" :disabled="getEditModeState")
         span.rev__add-text Добавить отзыв
     li.rev__item(v-for="rev in reviews" :key="rev.id")
       revsList(
       :rev="rev"
+      @getCurrentRev="getCurrentRev"
+      :addModeOn="addModeOn"
+      @scrollToEdit="scrollToEdit"
       )
 </template>
 <script>
 import addRev from "./addRev";
 import revsList from "./revsList";
+import editRev from "./editRev";
 
-import { mapActions, mapState } from "Vuex";
+import { mapActions, mapState, mapGetters } from "Vuex";
 
 export default {
   components: {
     revsList,
-    addRev
+    addRev,
+    editRev
   },
   data() {
     return {
-      blockAddRevsIsActive: false
+      addModeOn: false,
+      revToEdit: {}
     };
   },
   computed: {
     ...mapState("reviews", {
       reviews: state => state.reviews
-    })
+    }),
+    ...mapGetters("reviews", ["getEditModeState"])
   },
   created() {
     this.fetchReviews();
   },
   methods: {
     ...mapActions("reviews", ["fetchReviews"]),
-    showBlockAddRevs() {
-      this.blockAddRevsIsActive = !this.blockAddRevsIsActive;
+    showBlockAddRev() {
+      this.addModeOn = !this.addModeOn;
+      if (this.addModeOn) {
+        scroll();
+      }
+    },
+    scroll() {
+      this.$refs.addBlockCompLink.scrollTo();
+    },
+    scrollToEdit() {
+      this.$refs.editBlockCompLink.scrollTo();
+    },
+    getCurrentRev(rev) {
+      this.revToEdit = this.reviews.find(item => item.id === rev.id);
     }
   }
 };

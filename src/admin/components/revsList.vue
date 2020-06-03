@@ -2,7 +2,7 @@
   .revs-wrap
     .rev__row
       .rev__img
-        img.rev__icon
+        img.rev__icon(:src="baseURL+rev.photo")
       .rev__info
         h3 {{rev.author}}
         p {{rev.occ}}
@@ -11,24 +11,39 @@
     .rev__btns
       label.btn-label
         span.btn-text Править
-        button.edit.edit--blue
+        button(type="button" @click.prevent="toggleEdit" :disabled="addModeOn || getEditModeState").edit.edit--blue
       label.btn-label
         span.btn-text Удалить
         button.cross(type="button" @click="removeCurrentRev") 
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {},
   props: {
-    rev: Object
+    rev: Object,
+    addModeOn: Boolean
+  },
+  data() {
+    return {
+      baseURL: "https://webdev-api.loftschool.com/"
+    };
+  },
+
+  computed: {
+    ...mapGetters("works", ["getEditModeState"])
   },
   methods: {
-    ...mapActions("reviews", ["removeRev"]),
+    ...mapActions("reviews", ["removeRev", "toggleEditMode"]),
     async removeCurrentRev() {
       try {
         await this.removeRev(this.rev);
       } catch (error) {}
+    },
+    toggleEdit() {
+      this.toggleEditMode(this.getEditModeState);
+      this.$emit("getCurrentRev", this.rev);
+      this.$emit("scrollToEdit");
     }
   }
 };

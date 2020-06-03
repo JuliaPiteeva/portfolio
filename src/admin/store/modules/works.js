@@ -6,7 +6,6 @@ export default {
   state: {
     works: [],
     editMode: false,
-    
   },
   mutations: {
     SET_WORKS(state, works) {
@@ -21,7 +20,11 @@ export default {
     EDIT_WORK(state, workToEdit) {
       state.works = state.works.map((work) => {
         work.id === workToEdit.id ? workToEdit : work;
+        return work;
       });
+    },
+    EDIT_MODE(state, mode) {
+      state.editMode = mode;
     },
   },
   actions: {
@@ -56,12 +59,18 @@ export default {
         console.log(error);
       }
     },
-    async editWork({ commit }, workToEdit) {
+    toggleEditMode({ commit }, mode) {
+      mode = !mode;
+      commit("EDIT_MODE", mode);
+    },
+    async editWork({ commit }, editedWork) {
+      console.log(editedWork);
       try {
         const { data } = await this.$axios.post(
-          `/works/${workToEdit.id}`,
-          workToEdit
+          `/works/${editedWork.id}`,
+          editedWork.data
         );
+        console.log(data);
         commit("EDIT_WORK", data.work);
       } catch (error) {
         console.log(error);

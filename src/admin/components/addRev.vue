@@ -1,5 +1,5 @@
 <template lang="pug">
-  .rev-add
+  .rev-add(ref="addBlockComp")
     form(@submit.prevent="createNewRev").rev-add__form
       .rev-add__title Новый отзыв
       .rev-add__container
@@ -29,12 +29,12 @@
             span.rev__input-title Отзыв
             textarea(type="text" row="3" required v-model="newRevData.text").rev__textarea.rev__input
           .save-cancel__btns
-            button(type="button" @click.prevent="$emit('showBlockAddRevs')").btn-cancel.btn Отмена
+            button(type="button" @click.prevent="$emit('showBlockAddRev')").btn-cancel.btn Отмена
             button(type="submit").btn Сохранить
 </template>
 <script>
 import { renderer } from "../helpers/pictures";
-import { mapActions, mapState } from "Vuex";
+import { mapActions, mapState, mapGetters } from "Vuex";
 export default {
   components: {},
   data() {
@@ -48,8 +48,12 @@ export default {
       renderedPhoto: ""
     };
   },
+
   methods: {
     ...mapActions("reviews", ["addReview"]),
+    scrollTo() {
+      this.$refs.addBlockComp.scrollIntoView();
+    },
     handleFileChange(event) {
       this.newRevData.photo = event.target.files[0]; //кладем то что получили с инпута
       const photo = this.newRevData.photo;
@@ -57,15 +61,30 @@ export default {
         this.renderedPhoto = pic;
       });
     },
+    validForm() {
+      for (let key in this.newRevData) {
+        if (!this.newRevData[key]) return false;
+      }
+      if (!this.newRevData.photo.name) {
+        return false;
+      }
+      return true;
+    },
     async createNewRev() {
-      try {
-        this.addReview(this.newRevData);
+      if (this.validForm()) {
+        try {
+          this.addReview(this.newRevData);
 
-        this.newRevData.name = "";
-        this.newRevData.position = "";
-        this.newRevData.text = "";
-        this.newRevData.photo = "";
-      } catch (error) {}
+          this.newRevData.name = "";
+          this.newRevData.position = "";
+          this.newRevData.text = "";
+          this.newRevData.photo = "";
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Все поля формы должны быть заполнены");
+      }
     }
   }
 };

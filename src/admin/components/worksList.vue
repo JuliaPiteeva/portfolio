@@ -3,14 +3,14 @@
     .works__img
       img.works__img-icon(:src="baseURL+work.photo")
     ul.works__tags
-      li.tags__item {{work.techs}}
+      li.tags__item(v-for="tag in tags") {{tag}}
     h2.works__title  {{work.title}}
     p.works__desc {{work.description}}
     a.works__link  {{work.link}}
     .edit-trash__btns
       label.btn-label
         span.btn-text Править
-        button(type="button" @click.prevent='editModeOn=true').edit.edit--blue
+        button(type="button" @click.prevent="toggleEdit" :disabled="addModeOn || getEditModeState").edit.edit--blue
       label.btn-label
         span.btn-text Удалить
         button(type="button" @click="removeCurrentWork").cross
@@ -18,26 +18,35 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 export default {
-  components: {},
+  props: {
+    work: Object,
+    addModeOn: Boolean
+  },
   data() {
     return {
-      baseURL: "https://webdev-api.loftschool.com/"
+      baseURL: "https://webdev-api.loftschool.com/",
+      tags: []
     };
   },
-  props: {
-    work: Object
+  created() {
+    this.tags = this.work.techs.split(" ");
   },
   computed: {
-    ...mapGetters("works", ["editModeOn"])
+    ...mapGetters("works", ["getEditModeState"])
   },
   methods: {
-    ...mapActions("works", ["removeWork"]),
+    ...mapActions("works", ["removeWork", "toggleEditMode"]),
     async removeCurrentWork() {
       try {
         await this.removeWork(this.work);
       } catch (error) {
         console.log(error);
       }
+    },
+    toggleEdit() {
+      this.toggleEditMode(this.getEditModeState);
+      this.$emit("getCurrentWork", this.work);
+      this.$emit("scrollToEdit");
     }
   }
 };
@@ -45,9 +54,10 @@ export default {
 <style lang="pcss">
 .works-wrap {
   flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 .works__list {
@@ -119,8 +129,15 @@ export default {
 }
 .works__img {
   max-width: 340px;
-  max-height: 190px;
+  height: 190px;
   margin-bottom: 35px;
+  position: relative;
+}
+.works__tags {
+  position: absolute;
+  display: flex;
+  left: 10%;
+  top: 28%;
 }
 .works__img-icon {
   width: 100%;
