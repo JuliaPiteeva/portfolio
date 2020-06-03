@@ -5,10 +5,11 @@
       .works-add__container
         .works-add__coll
           .works__drop-zone
-            .works__drop-exp  Перетащите или загрузите изображение
-            label.works__upload-block
+            label.works__upload-img
+              span.works__drop-exp  Перетащите или загрузите изображение
               .works__upload-btn Загрузить
               input(type="file" @change="workFileChange").works__upload
+          .works__img(:style="{backgroundImage: `url(${rendererWorkPhoto})`}")
         .works-add__coll.works-add__coll--column
           label.works-add__block
             span.work__input-title Название
@@ -21,48 +22,85 @@
             textarea(type="text" row="3" v-model="newWorkData.desc" ).work__textarea.work__input
           label.works-add__block
             span.work__input-title Добавление тега
-            input(type="text" v-model="newWorkData.tags").work__tags.work__input
+            input(type="text" v-model="newWorkData.techs" @input="watchTagsToArray" ).work__tags.work__input
           ul.tags__list 
-            li.tags__item Test
-              span.close-cross +
+            li.tags__item(v-for="tag in tags")
+              worksTag(
+                :tag="tag"
+                @deleteTag="deleteTag"
+                )
           .save-cancel__btns
-            button(type="button").btn-cancel.btn Отмена
+            button(type="button" @click.prevent="$emit('showBlockAddWorks')" :disabled="getEditModeState").btn-cancel.btn Отмена
             button(type="submit").btn Сохранить
 </template>
 <script>
+import worksTag from "./worksTag";
 import { renderer } from "../helpers/pictures";
-import { mapActions, mapState } from "Vuex";
+import { mapActions, mapState, mapGetters } from "Vuex";
 
 export default {
+  components: {
+    worksTag
+  },
   data() {
     return {
       newWorkData: {
         title: "",
         link: "",
         desc: "",
-        tags: [],
+        techs: [],
         photo: {}
       },
-      rendererWorkPhoto: ""
+      rendererWorkPhoto: "",
+      tags: []
     };
+  },
+  computed: {
+    ...mapGetters("works", ["getEditModeState"])
   },
   methods: {
     ...mapActions("works", ["addWork"]),
+    validForm() {
+      for (let key in this.newWorkData) {
+        if (!this.newWorkData[key]) return false;
+      }
+      if (!this.newWorkData.photo.name) {
+        return false;
+      }
+      return true;
+    },
     workFileChange(event) {
       this.newWorkData.photo = event.target.files[0];
+      const photo = this.newWorkData.photo;
+      renderer(photo).then(pic => {
+        this.rendererWorkPhoto = pic;
+      });
     },
     async createNewWork() {
-      try {
-        this.addWork(this.newWorkData);
+      if (this.validForm()) {
+        try {
+          this.addWork(this.newWorkData);
 
-        this.newWorkData.title = "";
-        this.newWorkData.link = "";
-        this.newWorkData.desc = "";
-        this.newWorkData.tags = "";
-        // this.newWorkData.photo = "";
-      } catch (error) {
-        console.log(error);
+          this.newWorkData.title = "";
+          this.newWorkData.link = "";
+          this.newWorkData.desc = "";
+          this.newWorkData.techs = "";
+          this.newWorkData.photo = "";
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Поля формы не заполнены");
       }
+    },
+    watchTagsToArray() {
+      this.tags = this.newWorkData.techs.split(", ");
+    },
+    deleteTag(tag) {
+      let index = parseInt(this.tags.indexOf(tag));
+
+      this.tags.splice(index, 1);
+      this.newWorkData.techs = this.tags.join(", ");
     }
   }
 };
@@ -73,8 +111,8 @@ export default {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   min-height: 350px;
   margin-bottom: 30px;
 }
@@ -100,6 +138,10 @@ export default {
   min-height: 70px;
   margin-bottom: 50px;
 }
+.works__img {
+  width: 100%;
+  height: 100%;
+}
 .works-add__container {
   width: 100%;
   display: flex;
@@ -110,6 +152,7 @@ export default {
   width: 50%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   margin-right: 30px;
@@ -122,14 +165,23 @@ export default {
 }
 
 .works__drop-zone {
-  width: 494px;
-  height: 276px;
+  min-width: 450px;
+  min-height: 250px;
   background-color: #dee4ed;
   border: 1px dashed #a1a1a1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
+}
+.works__upload-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
 }
 .works__drop-exp {
   font-size: 16px;
@@ -155,6 +207,12 @@ export default {
   text-align: center;
   text-transform: uppercase;
 }
+.works__img {
+  min-width: 450px;
+  min-height: 250px;
+  background-size: cover;
+  background-position: center;
+}
 .works-add__block {
   display: flex;
   flex-direction: column;
@@ -167,7 +225,12 @@ export default {
   font-family: "Open Sans";
   font-weight: 600;
 }
-
+.work__tags {
+  font-size: 16px;
+  color: #414c63;
+  font-family: "Open Sans";
+  font-weight: 600;
+}
 .work__input {
   outline: none;
   width: 100%;
@@ -213,15 +276,6 @@ export default {
   margin-right: 0;
 }
 
-.close-cross {
-  margin-left: 15px;
-  cursor: pointer;
-  font-size: 30px;
-  color: #414c63;
-  font-family: "Open Sans";
-  font-weight: 800;
-  transform: rotate(45deg);
-}
 .save-cancel__btns {
   width: 100%;
   display: flex;

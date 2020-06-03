@@ -2,7 +2,7 @@
   .revs-wrap
     .rev__row
       .rev__img
-        img(src="").rev__icon
+        img.rev__icon
       .rev__info
         h3 {{rev.author}}
         p {{rev.occ}}

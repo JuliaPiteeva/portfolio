@@ -3,13 +3,14 @@
     .block-title
       .title
         h1 Блок "Работы" 
-    .work-add-wrapper(v-if="blockAddWorksIsActive")
-      addWork
+    .work-add-wrapper()
+      addWork(v-if="blockAddWorksIsActive" @showBlockAddWorks="showBlockAddWorks")
+      editWork(v-if="editModeOn")
     ul.works__list
-      li.works__item.works__item--add
+      li(v-if="!blockAddWorksIsActive").works__item.works__item--add
         label.works__add-label
           .works__add-visible +
-          input.works__add-input(type="button" @click="blockAddWorks")
+          input.works__add-input(type="button" @click="showBlockAddWorks")
           span.works__add-exp Добавить работу
       li.works__item(v-for="work in works" :key="work.id")
         worksList(
@@ -19,20 +20,24 @@
 <script>
 import addWork from "./addWork";
 import worksList from "./worksList";
+import editWork from "./editWork";
 
-import { mapActions, mapState } from "Vuex";
+import { mapActions, mapState, mapGetters } from "Vuex";
 
 export default {
   components: {
     addWork,
-    worksList
+    worksList,
+    editWork
   },
   data() {
     return {
-      blockAddWorksIsActive: false
+      blockAddWorksIsActive: false,
+      editModeOn: false
     };
   },
   computed: {
+    ...mapGetters("works", ["getEditModeState"]),
     ...mapState("works", {
       works: state => state.works
     })
@@ -42,8 +47,12 @@ export default {
   },
   methods: {
     ...mapActions("works", ["fetchWorks"]),
-    blockAddWorks() {
+    showBlockAddWorks() {
+      //toggleAddMode
       this.blockAddWorksIsActive = !this.blockAddWorksIsActive;
+    },
+    getCurrentWork(work) {
+      this.workToEdit = this.works.find(item => item.id === work.id);
     }
   }
 };

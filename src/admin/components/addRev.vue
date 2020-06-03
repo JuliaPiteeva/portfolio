@@ -29,7 +29,7 @@
             span.rev__input-title Отзыв
             textarea(type="text" row="3" required v-model="newRevData.text").rev__textarea.rev__input
           .save-cancel__btns
-            button(type="button" ).btn-cancel.btn Отмена
+            button(type="button" @click.prevent="$emit('showBlockAddRevs')").btn-cancel.btn Отмена
             button(type="submit").btn Сохранить
 </template>
 <script>
@@ -52,10 +52,15 @@ export default {
     ...mapActions("reviews", ["addReview"]),
     handleFileChange(event) {
       this.newRevData.photo = event.target.files[0]; //кладем то что получили с инпута
+      const photo = this.newRevData.photo;
+      renderer(photo).then(pic => {
+        this.renderedPhoto = pic;
+      });
     },
     async createNewRev() {
       try {
         this.addReview(this.newRevData);
+
         this.newRevData.name = "";
         this.newRevData.position = "";
         this.newRevData.text = "";

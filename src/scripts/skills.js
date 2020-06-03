@@ -1,15 +1,20 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+  baseURL: "https://webdev-api.loftschool.com/",
+});
 
 const skill = {
   template: "#skill",
-  props: ["skill"],
+  props: ["skillName", "skillPercent"],
   methods: {
     paintedCircle() {
       const circle = this.$refs["circle"];
       const dashArray = parseInt(
         getComputedStyle(circle).getPropertyValue("stroke-dasharray")
       );
-      const percent = (dashArray / 100) * (100 - this.skill.percent);
+      const percent = (dashArray / 100) * (100 - this.skillPercent);
       circle.style.strokeDashoffset = percent;
     },
   },
@@ -25,6 +30,7 @@ const skillsRow = {
   },
   props: ["category"],
 };
+
 new Vue({
   el: "#skills-component",
   template: "#skills-list",
@@ -34,10 +40,16 @@ new Vue({
   data() {
     return {
       skills: [],
+      isLoading: false,
     };
   },
-  created() {
-    const data = require("../data/skills.json");
-    this.skills = data;
+  async created() {
+    this.isLoading = false;
+    try {
+      const { data } = await $axios.get("/categories/319");
+
+      this.isLoading = true;
+      this.skills = data;
+    } catch (error) {}
   },
 });

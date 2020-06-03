@@ -1,23 +1,25 @@
 
 script(type="text-/x-template")#skills-list
-    ul.skills-list
-        li.skills-list__item(v-for="category in skills" :key="category.title")
+    ul.skills-list(v-if="isLoading")
+        li.skills-list__item(v-for="category in skills" :key="category.category")
             skills-row(
                 :category="category"
             )
+    .preloader(v-else) Loading..
 
 script(type="text-/x-template")#skills-row
-    .skills-row
-        h3.skills-row__title {{category.title}}
+    .skills-row(v-if="category.skills.length")
+        h3.skills-row__title {{category.category}}
         ul.skills-row__list
-            li.skills-row__item(v-for="skill in category.skills" :key="skill.id")
+            li.skills-row__item(v-for="singleSkill in category.skills" :key="singleSkill.id")
                 skill(
-                    :skill="skill"
+                    :skillName="singleSkill.title"
+                    :skillPercent="singleSkill.percent"        
                 )
 
 script(type="text-/x-template")#skill
     .skill
-        h4.skill__title {{skill.title}}
+        h4.skill__title {{skillName}}
         svg.skill__circle.circle(width="160px" height="160px" xmlns="http://www.w3.org/2000/svg")
             circle(cx="50%" cy="50%" r="66" ).circle__icon.circle__icon--under
             circle(cx="50%" cy="50%" ref="circle" r="66" stroke="url(#gradient)").circle__icon.circle__icon--above

@@ -3,12 +3,12 @@
   .block-title
     .title
       h1 Блок "Обо мне"
-    label.add-group__btns
-      button(type="button" @click="blockAddGroup").add-group__btn  +
+    label.add-group__btns(v-if="!blockAddGroupIsActive")
+      button(type="button" @click.prevent="blockAddGroup" ).add-group__btn  +
       span.add-group__exp Добавить группу
   ul.skills
     li.skill__item(v-if="blockAddGroupIsActive")
-      addSkill
+      addSkill(@blockAddGroup="blockAddGroup")
     li.skill__item(v-for="cat in categories" :key="cat.id")
       skillsList(
        :category="cat" 

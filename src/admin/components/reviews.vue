@@ -4,12 +4,12 @@
     .title
       h1 Блок "Отзывы"
   .rev-add-wrapper(v-if="blockAddRevsIsActive")
-    addRev
+    addRev(@showBlockAddRevs="showBlockAddRevs")
   ul.rev__list
-    li.rev-add-btn.rev__item.rev__item--add
+    li(v-if="!blockAddRevsIsActive").rev-add-btn.rev__item.rev__item--add
       label.rev__add-label
         .rev__add-visible +
-        input.rev__add-input(type="button" @click="blockAddRevs")
+        input.rev__add-input(type="button" @click="showBlockAddRevs")
         span.rev__add-text Добавить отзыв
     li.rev__item(v-for="rev in reviews" :key="rev.id")
       revsList(
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     ...mapActions("reviews", ["fetchReviews"]),
-    blockAddRevs() {
+    showBlockAddRevs() {
       this.blockAddRevsIsActive = !this.blockAddRevsIsActive;
     }
   }

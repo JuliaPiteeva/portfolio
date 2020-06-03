@@ -4,7 +4,7 @@
     input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="category.title").skills-add__title
     .tick-cross__btns
       button(type="submit").tick
-      button(type="submit").cross
+      button(type="button" @click.prevent="$emit('blockAddGroup')").cross
   addInput(
     :category="category"
   )
@@ -15,15 +15,18 @@ import addInput from "./addInput";
 import { mapActions, mapState } from "Vuex";
 export default {
   inheritAttrs: false,
+  components: {
+    addInput
+  },
+  props: {
+    blockAddGroupIsActive: Boolean
+  },
   data() {
     return {
       category: {
         title: ""
       }
     };
-  },
-  components: {
-    addInput
   },
 
   methods: {
@@ -32,6 +35,7 @@ export default {
       try {
         await this.addCategory(this.category.title);
         this.category.title = "";
+        this.$emit("blockAddGroup");
       } catch (error) {
         console.log(error.message);
       }

@@ -7,13 +7,22 @@ export default {
     SET_USER: (state, user) => {
       state.user = user;
     },
+    CLEAR_USER: (state) => {
+      state.user = {};
+    },
   },
   getters: {
     userIsLogged: (state) => {
       const userObj = state.user;
-      const userObjectEmpty =
+      const userObjectIsEmpty =
         Object.keys(userObj).length === 0 && userObj.constructor === Object;
-      return userObjectEmpty === false;
+      return userObjectIsEmpty === false;
+    },
+  },
+  actions: {
+    logout({ commit }) {
+      localStorage.clear();
+      commit("CLEAR_USER");
     },
   },
 };

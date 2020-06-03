@@ -6,9 +6,21 @@ header.header
     p.user__name Юлия Бубнова
   .header__title
     p Панель администрирования
-  button.exit Выйти
+  a(@click="logout").exit Выйти
 </template>
 <script>
+import { mapActions } from "Vuex";
+export default {
+  methods: {
+    ...mapActions({
+      logoutUser: "user/logout"
+    }),
+    logout() {
+      this.logoutUser();
+      this.$router.replace("/");
+    }
+  }
+};
 </script>
 <style lang="pcss" scoped>
 .header {

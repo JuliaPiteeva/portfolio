@@ -1,25 +1,34 @@
 <template lang="pug">
   .works-wrap
     .works__img
-      img.works__img-icon(src="")
-    .works__tags {{work.techs}}
+      img.works__img-icon(:src="baseURL+work.photo")
+    ul.works__tags
+      li.tags__item {{work.techs}}
     h2.works__title  {{work.title}}
     p.works__desc {{work.description}}
     a.works__link  {{work.link}}
     .edit-trash__btns
       label.btn-label
         span.btn-text Править
-        button(type="button").edit.edit--blue
+        button(type="button" @click.prevent='editModeOn=true').edit.edit--blue
       label.btn-label
         span.btn-text Удалить
         button(type="button" @click="removeCurrentWork").cross
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   components: {},
+  data() {
+    return {
+      baseURL: "https://webdev-api.loftschool.com/"
+    };
+  },
   props: {
     work: Object
+  },
+  computed: {
+    ...mapGetters("works", ["editModeOn"])
   },
   methods: {
     ...mapActions("works", ["removeWork"]),
@@ -63,6 +72,7 @@ export default {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
   padding: 10px 20px;
+  margin-bottom: 30px;
 }
 .works__item--add {
   background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
@@ -173,5 +183,22 @@ export default {
   height: 15px;
   background: svg-load("Cross.svg", fill=#bf2929, width=15px, height=15px)
     center center no-repeat;
+}
+.tags__item {
+  font-size: 13px;
+  color: rgba(40, 51, 64, 0.7);
+  font-family: "Open Sans";
+  font-weight: 600;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tags__item:last-child {
+  margin-right: 0;
 }
 </style>
