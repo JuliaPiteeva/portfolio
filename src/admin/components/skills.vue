@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-  .block-title
+  .block-title.title-skills
     .title
       h1 Блок "Обо мне"
     label.add-group__btns(v-if="!blockAddGroupIsActive")
@@ -45,9 +45,20 @@ export default {
   }
 };
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
+.title-skills {
+  @include phones {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 .title {
   margin-right: 60px;
+  @include phones {
+    margin-right: 0px;
+    margin-bottom: 30px;
+  }
 }
 .title h1 {
   font-size: 21px;
@@ -66,9 +77,22 @@ export default {
   width: 45%;
   padding: 0 2%;
   margin-bottom: 20px;
+  @include beforePhones {
+    width: 47%;
+  }
+  @include phones {
+    width: 100%;
+  }
 }
+
 .skill__item:nth-child(2n + 1) {
   margin-right: 10%;
+  @include beforePhones {
+    margin-right: 3%;
+  }
+  @include phones {
+    margin-right: 0;
+  }
 }
 .add-group__btns {
   display: flex;
@@ -99,5 +123,12 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  @include phones {
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include beforePhones {
+    justify-content: center;
+  }
 }
 </style>

@@ -43,29 +43,19 @@ export default {
     toggleEdit() {
       this.toggleEditMode(this.getEditModeState);
       this.$emit("getCurrentRev", this.rev);
-      this.$emit("scrollToEdit");
+      // this.$emit("scrollToEdit");
     }
   }
 };
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .revs-wrap {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
 }
-
-.rev__add-label {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  flex: 1;
-}
-
 .rev__add-input {
   display: none;
 }
@@ -120,6 +110,7 @@ export default {
   color: rgba(65, 76, 99, 0.7);
   font-family: "Open Sans";
   font-weight: 600;
+  margin-bottom: 30px;
 }
 .rev__btns {
   margin-top: auto;
@@ -127,12 +118,21 @@ export default {
   justify-content: space-between;
   width: 100%;
 }
+.rev__btns:focus {
+  outline: none;
+}
 .edit-trash__btns {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin-top: auto;
   width: 100%;
+  @imclude phones {
+    margin-bottom: 30px;
+  }
+}
+.edit-trash__btns:focus {
+  outline: none;
 }
 .btn-text {
   font-size: 16px;
@@ -141,5 +141,8 @@ export default {
   font-family: "Open Sans";
   font-weight: 600;
   margin-right: 15px;
+}
+.btn-text:focus {
+  outline: none;
 }
 </style>

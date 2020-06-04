@@ -20,7 +20,8 @@
 <script>
 export default {};
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .nav {
   background-color: #ffffff;
   margin-bottom: 55px;
@@ -31,6 +32,7 @@ export default {};
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 55px;
+  background-color: #ffffff;
 }
 .router-link-exact-active {
   color: #3d36cc;
@@ -44,6 +46,10 @@ export default {};
   justify-content: center;
   margin-right: 10px;
   text-align: center;
+  @include phones {
+    width: 100%;
+    min-width: 0px;
+  }
 }
 
 .nav__link {
@@ -57,5 +63,8 @@ export default {};
   display: block;
   cursor: pointer;
   padding: 0 0 15% 0;
+  @include phones {
+    padding: 15% 10%;
+  }
 }
 </style>

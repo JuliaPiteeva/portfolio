@@ -4,6 +4,7 @@ import router from "../admin/router/routes";
 import store from "./store";
 import $axios from "./requests";
 
+
 store.$axios = $axios;
 
 new Vue({

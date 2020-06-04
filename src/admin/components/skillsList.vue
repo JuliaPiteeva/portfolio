@@ -106,4 +106,7 @@ export default {
   justify-content: flex-end;
   margin-top: auto;
 }
+.edit-trash__btns-icon:focus {
+  outline: none;
+}
 </style>

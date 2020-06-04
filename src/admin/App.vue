@@ -21,6 +21,15 @@ export default {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.btn-label:focus {
+  outline: none;
+  border-bottom: 2px solid #1c52de;
+}
+.btn-label:active {
+  outline: none;
+  border-bottom: 2px solid #1c52de;
 }
 button {
   border: 0;

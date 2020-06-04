@@ -4,16 +4,17 @@
       img.works__img-icon(:src="baseURL+work.photo")
     ul.works__tags
       li.tags__item(v-for="tag in tags") {{tag}}
-    h2.works__title  {{work.title}}
-    p.works__desc {{work.description}}
-    a.works__link  {{work.link}}
-    .edit-trash__btns
-      label.btn-label
-        span.btn-text Править
-        button(type="button" @click.prevent="toggleEdit" :disabled="addModeOn || getEditModeState").edit.edit--blue
-      label.btn-label
-        span.btn-text Удалить
-        button(type="button" @click="removeCurrentWork").cross
+    .works__content
+      h2.works__title  {{work.title}}
+      p.works__desc {{work.description}}
+      a.works__link  {{work.link}}
+      .edit-trash__btns
+        label.btn-label
+          span.btn-text Править
+          button(type="button" @click.prevent="toggleEdit" :disabled="addModeOn || getEditModeState").edit.edit--blue
+        label.btn-label
+          span.btn-text Удалить
+          button(type="button" @click="removeCurrentWork").cross
 </template>
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
@@ -51,7 +52,8 @@ export default {
   }
 };
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .works-wrap {
   flex: 1;
   height: 100%;
@@ -60,6 +62,17 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
 }
+.works__content {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  @include phones {
+    padding-left: 20px;
+  }
+}
 .works__list {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +80,9 @@ export default {
   justify-content: flex-start;
   margin: 0;
   padding: 0;
+  @include phones {
+    flex-direction: column;
+  }
 }
 .works__item {
   box-sizing: border-box;
@@ -83,65 +99,80 @@ export default {
   background-color: #ffffff;
   padding: 10px 20px;
   margin-bottom: 30px;
-}
-.works__item--add {
-  background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
-  align-items: center;
-  justify-content: center;
+  @include tablets {
+    width: calc(100% / 2 - 10px);
+  }
+  @include phones {
+    width: 100%;
+    padding: 0;
+    margin-right: 0px;
+  }
 }
 
 .works__item:nth-child(3) {
   margin-right: 0;
+  @include tablets {
+    margin-right: 10px;
+  }
 }
-.works__add-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  flex: 1;
+.works__item:nth-child(2n) {
+  @include tablets {
+    margin-right: 0px;
+  }
 }
-.works__add-input {
-  display: none;
-}
-.works__add-visible {
-  font-size: 72px;
-  color: #ffffff;
-  font-family: "Open Sans";
-  font-weight: 300;
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.works__add-exp {
-  font-size: 18px;
-  color: #ffffff;
-  font-family: "Open Sans";
-  font-weight: 700;
-  text-align: center;
-}
+
 .works__img {
   max-width: 340px;
   height: 190px;
   margin-bottom: 35px;
   position: relative;
+  @include beforePhones {
+    max-width: 300px;
+    height: 160px;
+  }
+  @include phones {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+  }
 }
 .works__tags {
   position: absolute;
   display: flex;
   left: 10%;
   top: 28%;
+  @include beforePhones {
+    top: 23%;
+  }
+  @include phones {
+    top: 36%;
+  }
+}
+.tags__item {
+  font-size: 13px;
+  color: rgba(40, 51, 64, 0.7);
+  font-family: "Open Sans";
+  font-weight: 600;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include beforePhones {
+    margin-right: 10px;
+    padding: 8px 10px;
+  }
+}
+.tags__item:last-child {
+  margin-right: 0;
 }
 .works__img-icon {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .works__title {
@@ -167,6 +198,12 @@ export default {
   justify-content: space-evenly;
   margin-top: auto;
   width: 100%;
+  @include phones {
+    margin-bottom: 20px;
+  }
+}
+.edit-trash__btns:focus {
+  outline: none;
 }
 .btn-text {
   font-size: 16px;
@@ -175,6 +212,9 @@ export default {
   font-family: "Open Sans";
   font-weight: 600;
   margin-right: 15px;
+}
+.btn-text:focus {
+  outline: none;
 }
 .edit {
   display: block;
@@ -193,6 +233,10 @@ export default {
   background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
     center center no-repeat;
 }
+.edit:focus {
+  border: none;
+  outline: none;
+}
 
 .cross {
   display: block;
@@ -201,21 +245,7 @@ export default {
   background: svg-load("Cross.svg", fill=#bf2929, width=15px, height=15px)
     center center no-repeat;
 }
-.tags__item {
-  font-size: 13px;
-  color: rgba(40, 51, 64, 0.7);
-  font-family: "Open Sans";
-  font-weight: 600;
-  background-color: #f4f4f4;
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 25px;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.tags__item:last-child {
-  margin-right: 0;
+.cross:focus {
+  outline: none;
 }
 </style>

@@ -54,7 +54,8 @@ export default {
   }
 };
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .skills__row {
   font-size: 16px;
   color: #414c63;
@@ -74,9 +75,15 @@ export default {
 }
 .skills__coll--percent {
   text-align: right;
+  @include beforePhones {
+    text-align: left;
+  }
 }
 .skills__coll--percent:after {
   content: "%";
   margin-left: 30px;
+  @include beforePhones {
+    margin-left: 10px;
+  }
 }
 </style>

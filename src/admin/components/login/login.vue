@@ -77,10 +77,9 @@ export default {
 };
 </script>
 
-<style lang="pcss">
+<style lang="postcss">
+@import "../../../styles/mixins.pcss";
 .login {
-  /* width: 100%;
-  height: 100%; */
   position: fixed;
   top: 0;
   right: 0;
@@ -110,7 +109,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include phones {
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+  }
 }
+
 .login__content {
   width: 100%;
   display: flex;
@@ -349,5 +354,8 @@ export default {
   color: #ffffff;
   font-family: "Open Sans";
   font-weight: 700;
+  @include phones {
+    display: none;
+  }
 }
 </style>

@@ -71,7 +71,8 @@ export default {
   }
 };
 </script>
-<style style="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .revs {
   margin-bottom: 100px;
 }
@@ -86,6 +87,9 @@ export default {
   margin: 0;
   padding: 0;
   margin-left: -20px;
+  @include phones {
+    flex-direction: column;
+  }
 }
 .rev__item {
   display: flex;
@@ -99,7 +103,32 @@ export default {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
   padding: 20px 20px;
+  @include tablets {
+    width: calc(100% / 2 - 20px);
+  }
+  @include beforePhones {
+    padding: 20px 10px;
+  }
+  @include phones {
+    width: 100%;
+    padding: 5% 4%;
+    min-height: 100%;
+  }
 }
+.rev__add-label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  @include phones {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
 .rev__add-visible {
   font-size: 72px;
   color: #ffffff;
@@ -114,10 +143,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  @include phones {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
 }
 .rev__item--add {
   background: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
   align-items: center;
   justify-content: center;
+  padding: 0 0 0 20px;
+  @include phones {
+    min-height: 120px;
+    width: 100%;
+  }
 }
 </style>

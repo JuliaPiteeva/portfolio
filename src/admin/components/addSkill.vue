@@ -87,6 +87,9 @@ export default {
   background: svg-load("Cross.svg", fill=#bf2929, width=15px, height=15px)
     center center no-repeat;
 }
+.cross:focus {
+  outline: none;
+}
 .tick {
   display: block;
   width: 15px;
@@ -121,6 +124,9 @@ export default {
   align-items: center;
   justify-content: flex-start;
 }
+.editBtns:focus {
+  outline: none;
+}
 .edit {
   display: block;
   width: 15px;
@@ -133,6 +139,10 @@ export default {
     )
     center center no-repeat;
   margin-right: 20px;
+}
+.edit:focus {
+  outline: none;
+  border-bottom: 2px solid #383bcf;
 }
 .edit--blue {
   background: svg-load("pencil.svg", fill=#383bcf, width=15px, height=15px)
@@ -150,5 +160,9 @@ export default {
       height=15px
     )
     center center no-repeat;
+}
+.trash:focus {
+  outline: none;
+  border-bottom: 2px solid #383bcf;
 }
 </style>

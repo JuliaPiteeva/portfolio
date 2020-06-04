@@ -31,7 +31,7 @@
                 )
           .save-cancel__btns
             button(type="button" @click.prevent="toggleEdit").btn-cancel.btn Отмена
-            button(type="submit").btn Сохранить
+            button(type="submit").btn.btn-save  Сохранить
 </template>
 <script>
 import worksTag from "./worksTag";
@@ -46,7 +46,8 @@ export default {
     return {
       rendererWorkPhoto: "",
       tags: [],
-      currentWork: {}
+      currentWork: {},
+      baseURL: "https://webdev-api.loftschool.com/"
     };
   },
   props: {
@@ -122,7 +123,9 @@ export default {
 };
 </script>
 
-<style lang="pcss" scoped>
+<style lang="postcss" scoped>
+@import "../../styles/mixins.pcss";
+
 .works-add {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
@@ -164,6 +167,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  @include tablets {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .works-add__coll {
   width: 50%;
@@ -173,6 +180,9 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-right: 30px;
+  @include tablets {
+    width: 100%;
+  }
 }
 .works-add__coll:last-child {
   margin-right: 0;
@@ -297,6 +307,10 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  @include tablets {
+    justify-content: center;
+    
+  }
 }
 .btn {
   width: 181px;
@@ -315,5 +329,13 @@ export default {
   text-transform: capitalize;
   color: #383bcf;
   background: transparent;
+}
+.btn:focus {
+  border: 2px solid #383bcf;
+  outline: none;
+}
+.btn-save:focus {
+  border: 2px solid #e72621;
+  outline: none;
 }
 </style>

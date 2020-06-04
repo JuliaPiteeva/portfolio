@@ -3,7 +3,9 @@ header.header
   .header__user-info
     .user__avatar 
       img.user__avatar-img
-    p.user__name Юлия Бубнова
+    .user__info
+      p.user__name Юлия Бубнова
+      a(@click="logout").exit-media-phones Выйти
   .header__title
     p Панель администрирования
   a(@click="logout").exit Выйти
@@ -22,7 +24,8 @@ export default {
   }
 };
 </script>
-<style lang="pcss" scoped>
+<style lang="postcss" scoped>
+@import "../../styles/mixins.pcss";
 .header {
   display: flex;
   align-items: center;
@@ -44,6 +47,9 @@ export default {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   opacity: 0.5;
+  @include phones {
+    display: none;
+  }
 }
 .user__avatar {
   width: 50px;
@@ -65,5 +71,22 @@ export default {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   margin-left: auto;
+  @include phones {
+    display: none;
+  }
+}
+.exit-media-phones {
+  display: none;
+  font-family: inherit;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  @include phones {
+    display: block;
+  }
+}
+.user__info {
+  display: flex;
+  flex-direction: column;
 }
 </style>

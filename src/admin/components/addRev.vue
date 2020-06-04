@@ -30,7 +30,7 @@
             textarea(type="text" row="3" required v-model="newRevData.text").rev__textarea.rev__input
           .save-cancel__btns
             button(type="button" @click.prevent="$emit('showBlockAddRev')").btn-cancel.btn Отмена
-            button(type="submit").btn Сохранить
+            button(type="submit").btn.btn-save Сохранить
 </template>
 <script>
 import { renderer } from "../helpers/pictures";
@@ -89,7 +89,8 @@ export default {
   }
 };
 </script>
-<style lang="pcss">
+<style lang="postcss">
+@import "../../styles/mixins.pcss";
 .rev-add {
   filter: drop-shadow(4.096px 2.868px 10px rgba(0, 0, 0, 0.07));
   background-color: #ffffff;
@@ -122,6 +123,10 @@ export default {
   display: flex;
   align-items: flex-start;
   width: 100%;
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .rev-add__left {
   width: 30%;
@@ -135,6 +140,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @include phones {
+    margin-bottom: 45px;
+  }
 }
 .rev-add__input {
   display: none;
@@ -180,18 +188,31 @@ export default {
 
 .rev-add__right {
   width: 55%;
+  @include phones {
+    width: 100%;
+  }
 }
 .rev-add__row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .rev-add__block {
   margin-bottom: 30px;
+  @include phones {
+    width: 100%;
+  }
 }
 .rev-add__block:first-child {
   margin-right: 30px;
+  @include phones {
+    margin-right: 0px;
+  }
 }
 .rev__input {
   font-size: 16px;
@@ -227,6 +248,12 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  @include phones {
+    justify-content: center;
+  }
+  @include phones {
+    margin-bottom: 30px;
+  }
 }
 .btn {
   width: 181px;
@@ -240,6 +267,15 @@ export default {
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
+  border: 2px solid transparent;
+}
+.btn:focus {
+  border: 2px solid #383bcf;
+  outline: none;
+}
+.btn-save:focus {
+  border: 2px solid #e72621;
+  outline: none;
 }
 .btn-cancel {
   text-transform: capitalize;
