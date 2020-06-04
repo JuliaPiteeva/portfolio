@@ -37,7 +37,6 @@ script(type="text-/x-template")#slider-thumbs
                 a.points__link
                     img(:src="project.photo").slider__icon
 
-
 script(type="text-/x-template")#slider-btns
     .projects-slider__arrows.arrows
         ul.arrows__list
@@ -49,11 +48,11 @@ script(type="text-/x-template")#slider-btns
 script(type="text-/x-template")#slider-info
     .projects-section__info
         tags(
-            :tags="tagsArray"
+            :tags="currentProject.techs.split(' ')"
         )
         .projects-brief__content
             h3 {{currentProject.title}}
-            p {{currentProject.desc}}
+            p {{currentProject.description}}
         a(:href="currentProject.link").projects-brief__link Посмотреть сайт
 
 script(type="text-/x-template")#slider-tags

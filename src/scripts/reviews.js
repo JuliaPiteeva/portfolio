@@ -1,4 +1,9 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+  baseURL: "https://webdev-api.loftschool.com/",
+});
 
 const btns = {
   template: "#rev-btns",
@@ -27,6 +32,7 @@ new Vue({
     return {
       reviews: [],
       currentIndex: 0,
+      baseURL: "https://webdev-api.loftschool.com",
     };
   },
   computed: {
@@ -87,18 +93,23 @@ new Vue({
     //     this.currentIndex = revievsAmountFromZero;
     // },
 
-    makeArrayWithRequiredImages(array) {
+    makeArrayWithLinkToImages(array) {
       return array.map((item) => {
-        const requirePic = require(`../images/content/${item.avatar}`);
-        item.avatar = requirePic;
+        const linkToPic = `https://webdev-api.loftschool.com/${item.photo}`;
+        item.photo = linkToPic;
 
         return item;
       });
     },
   },
 
-  created() {
-    const data = require("../data/reviews.json");
-    this.reviews = this.makeArrayWithRequiredImages(data);
+  async created() {
+    this.isLoading = false;
+    try {
+      const { data } = await $axios.get("/reviews/319");
+
+      this.isLoading = true;
+      this.reviews = this.makeArrayWithLinkToImages(data);
+    } catch (error) {}
   },
 });

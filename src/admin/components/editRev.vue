@@ -1,5 +1,6 @@
 <template lang="pug">
   .rev-edit(ref="editBlockComp")
+    
     form(@submit.prevent="editCurrentRev").rev-add__form
       .rev-add__title Редактирование отзыва
       .rev-add__container

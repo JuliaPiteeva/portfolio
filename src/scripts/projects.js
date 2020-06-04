@@ -1,4 +1,9 @@
 import Vue from "vue";
+import axios from "axios";
+
+const $axios = axios.create({
+  baseURL: "https://webdev-api.loftschool.com/",
+});
 
 const thumbs = {
   template: "#slider-thumbs",
@@ -28,11 +33,11 @@ const info = {
   template: "#slider-info",
   components: { tags },
   props: ["currentProject"],
-  computed: {
-    tagsArray() {
-      return this.currentProject.skills.split(",");
-    },
-  },
+  // computed: {
+  //   tagsArray() {
+  //     return this.currentProject.techs.split(", ");
+  //   },
+  // },
 };
 
 new Vue({
@@ -73,17 +78,29 @@ new Vue({
           break;
       }
     },
-    makeArrWithRequireImages(array) {
+    // makeArrWithRequireImages(array) {
+    //   return array.map((item) => {
+    //     const requirePic = require(`../images/content/${item.photo}`);
+    //     item.photo = requirePic;
+    //     return item;
+    //   });
+    // },
+    makeArrWithLinkToImages(array) {
       return array.map((item) => {
-        const requirePic = require(`../images/content/${item.photo}`);
-        item.photo = requirePic;
+        const linkToPic = `https://webdev-api.loftschool.com/${item.photo}`;
+        item.photo = linkToPic;
         return item;
       });
     },
   },
-  created() {
-    const data = require("../data/projects.json");
-    this.projects = this.makeArrWithRequireImages(data);
-    // this.currentProject = this.projects[this.currentIndex];
+  async created() {
+    this.isLoading = false;
+    try {
+      const { data } = await $axios.get("/works/319");
+
+      this.isLoading = true;
+      this.projects = this.makeArrWithLinkToImages(data);
+      console.log(this.projects);
+    } catch (error) {}
   },
 });

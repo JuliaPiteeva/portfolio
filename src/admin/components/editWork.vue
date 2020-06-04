@@ -54,16 +54,16 @@ export default {
   },
   created() {
     this.currentWork = this.workToEdit;
-    this.tags = this.currentWork.techs.split(", ");
+    this.tags = this.currentWork.techs.split(" ");
   },
   computed: {
     ...mapGetters("works", ["getEditModeState"])
   },
   methods: {
     ...mapActions("works", ["editWork", "toggleEditMode"]),
-    scrollTo() {
-      this.$refs.editWorkComp.scrollIntoView();
-    },
+    // scrollTo() {
+    //   this.$refs.editWorkComp.scrollIntoView();
+    // },
     toggleEdit() {
       this.toggleEditMode(this.getEditModeState);
     },

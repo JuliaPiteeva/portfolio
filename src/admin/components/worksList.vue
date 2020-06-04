@@ -46,7 +46,7 @@ export default {
     toggleEdit() {
       this.toggleEditMode(this.getEditModeState);
       this.$emit("getCurrentWork", this.work);
-      this.$emit("scrollToEdit");
+      // this.$emit("scrollToEdit");
     }
   }
 };

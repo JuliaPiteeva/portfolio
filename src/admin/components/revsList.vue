@@ -108,11 +108,12 @@ export default {
   border: none;
   margin-bottom: 20px;
 }
+
 .rev__icon {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 .rev__content {
   font-size: 16px;
@@ -132,5 +133,13 @@ export default {
   justify-content: space-evenly;
   margin-top: auto;
   width: 100%;
+}
+.btn-text {
+  font-size: 16px;
+  line-height: 30px;
+  color: rgba(65, 76, 99, 0.5);
+  font-family: "Open Sans";
+  font-weight: 600;
+  margin-right: 15px;
 }
 </style>

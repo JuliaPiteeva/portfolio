@@ -42,6 +42,8 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 10px;
+  text-align: center;
 }
 
 .nav__link {
@@ -54,5 +56,6 @@ export default {};
   font-weight: 400;
   display: block;
   cursor: pointer;
+  padding: 0 0 15% 0;
 }
 </style>

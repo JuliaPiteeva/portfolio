@@ -48,6 +48,7 @@ export default {
 .add-input__name {
   border-bottom: 1px solid #dedee0;
   margin-right: 10px;
+  width: 50%;
 }
 .add-input__name::placeholder {
   text-align: left;
@@ -65,6 +66,7 @@ export default {
 .add-input__percent {
   border-bottom: 1px solid #dedee0;
   margin-right: 20px;
+  width: 30%;
 }
 .add-input__percent::placeholder {
   text-align: right;

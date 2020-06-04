@@ -40,7 +40,7 @@ script(type="text-/x-template")#rev-slide
         p.reviews__text {{slideInfo.text}}
         .reviews__author.author
             .author__col.author__col-avatar.avatar
-                img(:src="currentRev.avatar").avatar__img           
+                img(:src="slideInfo.photo").avatar__img           
             .author__col
-                h3.author__col-name  {{slideInfo.name}}
-                p.author__col-position  {{slideInfo.position}}    
+                h3.author__col-name  {{slideInfo.author}}
+                p.author__col-position  {{slideInfo.occ}}    

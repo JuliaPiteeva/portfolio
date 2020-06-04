@@ -56,16 +56,16 @@ export default {
     ...mapActions("works", ["fetchWorks"]),
     showBlockAddWork() {
       this.addModeOn = !this.addModeOn;
-      if (this.addModeOn) {
-        scroll();
-      }
+      // if (this.addModeOn) {
+      //   scroll();
+      // }
     },
     getCurrentWork(work) {
       this.workToEdit = this.works.find(item => item.id === work.id);
     },
-    scroll() {
-      this.$refs.addWorkCompLink.scrollTo();
-    },
+    // scroll() {
+    //   this.$refs.addWorkCompLink.scrollTo();
+    // },
     scrollToEdit() {
       this.$refs.editWorkCompLink.scrollTo();
     }

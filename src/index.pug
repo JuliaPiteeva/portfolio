@@ -13,16 +13,16 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section.parallax
-          -
-            var parts=[
-              {speed:"0.1", name:"sky", src: require(`images/bg/768-bg-Mountain.png`)},{speed:"0.13",name:"mountain", src:""}, 
-              {speed: "0.15", name:"baloon", src:""},{speed:"0.17", name: "middle-cloud", src:""}, 
-              {speed:"0.20", name: "man", src:""}, {speed:"0.22", name:"slope" , src:""}, {speed:"0.24", name: "lower-cloud", src:""}]
-          each part in parts
-            .parallax__layer(data-speed=`${part.speed}`)
-              picture.parallax__picture
-                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 800px)" )
-                img(src=`${part.src}`)
+          //- -
+          //-   var parts=[
+          //-     {speed:"0.1", name:"sky", src: require(`images/bg/768-bg-Mountain.png`)},{speed:"0.13",name:"mountain", src:""}, 
+          //-     {speed: "0.15", name:"baloon", src:""},{speed:"0.17", name: "middle-cloud", src:""}, 
+          //-     {speed:"0.20", name: "man", src:""}, {speed:"0.22", name:"slope" , src:""}, {speed:"0.24", name: "lower-cloud", src:""}]
+          //- each part in parts
+          //-   .parallax__layer(data-speed=`${part.speed}`)
+              //- picture.parallax__picture
+              //-   source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 800px)" )
+              //-   img(src=`${part.src}`)
           //-   var parts=[
           //-     {speed:"0.1", name:"sky"} ,{speed:"0.13",name:"mountain"}, 
           //-     {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 

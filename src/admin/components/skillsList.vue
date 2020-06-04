@@ -63,11 +63,17 @@ export default {
 </script>
 <style lang="pcss">
 .skills-wrap {
+  height: 100%;
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+.add-skill-wrapper {
+  height: 100%;
+  width: 100%;
 }
 .skills-row {
   width: 100%;
