@@ -18,12 +18,13 @@
   height: 100%;
   @include tablets {
     justify-content: flex-start;
-    .hero__content {
-      justify-self: center;
-    }
   }
 }
 .hero__content {
+  @include tablets {
+    position: absolute;
+    top: 50%;
+  }
 }
 .hero__bottom-btn {
   @include tablets {
