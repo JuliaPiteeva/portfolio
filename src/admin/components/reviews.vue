@@ -1,14 +1,16 @@
 <template lang="pug">
 .revs.container
   .block-title
-    .title
+    .title(ref="blockToScroll")
       h1 Блок "Отзывы"
-  .rev-add-wrapper()
-    addRev(v-if="addModeOn" @showBlockAddRev="showBlockAddRev" ref="addBlockCompLink")
+  .rev-add-wrapper
+    addRev(
+      v-if="addModeOn" 
+      @showBlockAddRev="showBlockAddRev" )
     editRev(
       v-if="getEditModeState" 
      :revToEdit="revToEdit"
-     ref="editBlockCompLink")
+     )
   ul.rev__list
     li(v-if="!addModeOn").rev-add-btn.rev__item.rev__item--add
       label.rev__add-label
@@ -56,14 +58,17 @@ export default {
     showBlockAddRev() {
       this.addModeOn = !this.addModeOn;
       if (this.addModeOn) {
-        scroll();
+        this.scroll();
       }
     },
     scroll() {
-      this.$refs.addBlockCompLink.scrollTo();
+      this.$refs.blockToScroll.scrollIntoView({
+        block: "start",
+        inline: "nearest"
+      });
     },
     scrollToEdit() {
-      this.$refs.editBlockCompLink.scrollTo();
+      this.$refs.blockToScroll.scrollIntoView(true);
     },
     getCurrentRev(rev) {
       this.revToEdit = this.reviews.find(item => item.id === rev.id);

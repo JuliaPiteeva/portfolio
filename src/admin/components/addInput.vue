@@ -1,7 +1,14 @@
 <template lang="pug">
   form.add-input( @submit.prevent="addNewSkill")
-    input(type="text" required placeholder="Новый навык" v-model="skill.title").add-input__name
-    input(type="text"  required placeholder="%" v-model="skill.percent").add-input__percent
+    input(
+    type="text" 
+    required 
+    placeholder="Новый навык" 
+    v-model="skill.title").add-input__name
+    input(
+      type="text"  
+      required placeholder="0 %" 
+      v-model="skill.percent").add-input__percent
     button(type="submit").btn__add
 </template>
 <script>
@@ -14,24 +21,34 @@ export default {
     return {
       skill: {
         title: "",
-        percent: 0
+        percent: ""
       }
     };
   },
   components: {},
   methods: {
     ...mapActions("skills", ["addSkill"]),
+    validForm() {
+      for (let key in this.skill) {
+        if (!this.skill[key]) return false;
+      }
+      return true;
+    },
     async addNewSkill() {
-      const skillData = {
-        ...this.skill,
-        category: this.category.id
-      };
-      try {
-        await this.addSkill(skillData);
-        this.category.title = "";
-        this.category.percent = "";
-      } catch (error) {
-        console.log(error);
+      if (this.validForm()) {
+        const skillData = {
+          ...this.skill,
+          category: this.category.id
+        };
+        try {
+          await this.addSkill(skillData);
+          this.category.title = "";
+          this.category.percent = "";
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Все поля должны быть заполнены");
       }
     }
   }
@@ -50,19 +67,18 @@ export default {
   margin-right: 10px;
   width: 50%;
 }
+.add-input__name:focus {
+  outline: none;
+  border-bottom: 1px solid #383bcf;
+}
 .add-input__name::placeholder {
   text-align: left;
   font-size: 16px;
-  line-height: 32px;
   color: rgba(55, 62, 66, 0.5);
   font-family: "Open Sans";
   font-weight: 400;
 }
 
-.add-input__name:active:focus {
-  outline: none;
-  border-bottom: 2px solid #383bcf;
-}
 .add-input__percent {
   border-bottom: 1px solid #dedee0;
   margin-right: 20px;
@@ -71,14 +87,13 @@ export default {
 .add-input__percent::placeholder {
   text-align: right;
   font-size: 16px;
-  line-height: 32px;
   color: rgba(55, 62, 66, 0.5);
   font-family: "Open Sans";
   font-weight: 400;
 }
-.add-input__percent:focus:active {
+.add-input__percent:focus {
   outline: none;
-  border-bottom: 2px solid #383bcf;
+  border-bottom: 1px solid #383bcf;
 }
 
 .btn__add {
@@ -87,6 +102,12 @@ export default {
   height: 40px;
   border-radius: 50%;
   background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}
+.btn__add:focus {
+  outline: none;
+  border-color: #e72621;
 }
 .btn__add:after {
   content: "";

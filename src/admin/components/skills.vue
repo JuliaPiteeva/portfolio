@@ -106,9 +106,13 @@ export default {
   font-weight: 600;
   width: 20px;
   height: 20px;
-  border-radius: 10px;
+  border-radius: 50%;
   background-image: linear-gradient(90deg, #0069ec 0%, #3f34cb 100%);
   margin-right: 20px;
+  box-sizing: border-box;
+}
+.add-group__btn:focus {
+  outline: 2px solid #e72621; 
 }
 .add-group__exp {
   font-size: 16px;

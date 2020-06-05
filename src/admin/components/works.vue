@@ -1,14 +1,15 @@
 <template lang="pug">
   .works.container
     .block-title
-      .title
+      .title(ref="blockToScroll")
         h1 Блок "Работы" 
     .work-add-wrapper()
-      addWork(v-if="addModeOn" @showBlockAddWork="showBlockAddWork" ref="addWorkCompLink")
+      addWork(
+        v-if="addModeOn" 
+        @showBlockAddWork="showBlockAddWork" )
       editWork(
         v-if="getEditModeState" 
         :workToEdit="workToEdit" 
-        ref="editWorkCompLink"
         )
     ul.works__list
       li(v-if="!addModeOn").works__item.works__item--add
@@ -56,18 +57,21 @@ export default {
     ...mapActions("works", ["fetchWorks"]),
     showBlockAddWork() {
       this.addModeOn = !this.addModeOn;
-      // if (this.addModeOn) {
-      //   scroll();
-      // }
+      if (this.addModeOn) {
+        this.scroll();
+      }
     },
     getCurrentWork(work) {
       this.workToEdit = this.works.find(item => item.id === work.id);
     },
-    // scroll() {
-    //   this.$refs.addWorkCompLink.scrollTo();
-    // },
+    scroll() {
+      this.$refs.blockToScroll.scrollIntoView({
+        block: "start",
+        inline: "nearest"
+      });
+    },
     scrollToEdit() {
-      this.$refs.editWorkCompLink.scrollTo();
+      this.$refs.blockToScroll.scrollIntoView(true);
     }
   }
 };

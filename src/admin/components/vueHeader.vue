@@ -1,14 +1,15 @@
 <template lang="pug">
 header.header
-  .header__user-info
-    .user__avatar 
-      img.user__avatar-img
-    .user__info
-      p.user__name Юлия Бубнова
-      a(@click="logout").exit-media-phones Выйти
-  .header__title
-    p Панель администрирования
-  a(@click="logout").exit Выйти
+  .container.container-header
+    .header__user-info
+      .user__avatar 
+        img.user__avatar-img(src="../../images/content/user.jpg")
+      .user__info
+        p.user__name Юлия Бубнова
+        a(@click="logout").exit-media-phones Выйти
+    .header__title
+      p Панель администрирования
+    a(@click="logout").exit Выйти
 </template>
 <script>
 import { mapActions } from "Vuex";
@@ -24,8 +25,15 @@ export default {
   }
 };
 </script>
-<style lang="postcss" scoped>
+<style lang="postcss">
 @import "../../styles/mixins.pcss";
+
+.container-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 1000px;
+}
 .header {
   display: flex;
   align-items: center;
@@ -58,6 +66,11 @@ export default {
   overflow: hidden;
   margin-right: 20px;
   border: none;
+}
+.user__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .user__name {
   font-family: inherit;

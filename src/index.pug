@@ -13,23 +13,24 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section.parallax
+          -
+            var parts=[
+              {speed:"0.01", name:"sky", src: require(`images/bg/768-bg-Mountain.png`)},{speed:"0.13",name:"mountain", src:""}, 
+              {speed: "0.15", name:"baloon", src:""},{speed:"0.17", name: "middle-cloud", src:""}, 
+              {speed:"0.20", name: "man", src:""}, {speed:"0.22", name:"slope" , src:""}, {speed:"0.24", name: "lower-cloud", src:""}, {speed:"0.24", name: "lower-cloud", src:""}]
+          each part in parts
+            .parallax__layer(data-speed=`${part.speed}` )
+              picture.parallax__image
+                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 768px)" ).parallax__image-icon
+                img(src=`${part.src}`).about__bg
           //- -
-          //-   var parts=[
-          //-     {speed:"0.1", name:"sky", src: require(`images/bg/768-bg-Mountain.png`)},{speed:"0.13",name:"mountain", src:""}, 
-          //-     {speed: "0.15", name:"baloon", src:""},{speed:"0.17", name: "middle-cloud", src:""}, 
-          //-     {speed:"0.20", name: "man", src:""}, {speed:"0.22", name:"slope" , src:""}, {speed:"0.24", name: "lower-cloud", src:""}]
-          //- each part in parts
-          //-   .parallax__layer(data-speed=`${part.speed}`)
-              //- picture.parallax__picture
-              //-   source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 800px)" )
-              //-   img(src=`${part.src}`)
           //-   var parts=[
           //-     {speed:"0.1", name:"sky"} ,{speed:"0.13",name:"mountain"}, 
           //-     {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 
           //-     {speed:"0.20", name: "man"}, {speed:"0.22", name:"slope" }, {speed:"0.24", name: "lower-cloud"}]
           //- each part in parts
-          //-     .parallax__layer(data-speed=`${part.speed}`)
-          //-       +image(`parallax/${part.name}.png`, "", "parallax__image")
+          //-   .parallax__layer(data-speed=`${part.speed}`)
+          //-     +image(`parallax/${part.name}.png`, "", "parallax__image")
           section.section.hero(id="home")
             .container.hero-container
               header.header
@@ -88,7 +89,7 @@ html(lang="en")
                   p Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint provident dolore possimus quas alias nesciunt dignissimos quos tempora ipsa accusantium quam repellendus velit dolores, quidem, nemo facere! Modi, corrupti minus.
             .values__img
               +image("content/bag.png", "Фото рюкзак", "values__img-icon")
-            .values__content
+            .values__content(id="skills")
               #skills-component
 
         section.section.projects-section(id="works")
@@ -115,7 +116,7 @@ html(lang="en")
             .parallax__layer-budda(data-speed=`${part.speed}`)
               +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
           section.section.reviews-section(id="reviews")
-            .container
+            .container(id="reviews")
               #reviwews-component
           section.section.section-form(id="feedback")
             .container

@@ -225,6 +225,7 @@ export default {
   border-bottom: 2px solid #dedee0;
 }
 .rev__input:focus {
+  outline: none;
   border-bottom: 2px solid #383bcf;
 }
 .rev__input-title {

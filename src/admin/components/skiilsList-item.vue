@@ -1,9 +1,9 @@
 <template lang="pug">
     tr(v-if="editModeOn").skills__row
       td.coll 
-        input(type="text" v-model="editedSkill.title")
+        input(type="text" v-model="editedSkill.title").skills__edit-title
       td.coll
-        input(type="text" v-model="editedSkill.percent")
+        input(type="text" v-model="editedSkill.percent").skills__edit-percent
       td.coll.skills__coll--btn
         .tick-cross__btns
           button(type="button" @click="editCurrentSkill").tick
@@ -62,9 +62,38 @@ export default {
   font-family: "Open Sans";
   font-weight: 400;
 }
+.skills__edit-title {
+  font-size: 16px;
+  color: #414c63;
+  font-family: Open Sans;
+  font-weight: 400;
+  width: 50%;
+  border-bottom: 1px solid #383bcf;
+}
+
+.skills__edit-title:focus {
+  outline: none;
+}
+.skills__edit-percent {
+  font-size: 16px;
+  color: #414c63;
+  font-family: Open Sans;
+  font-weight: 400;
+  width: 30%;
+  border-bottom: 1px solid #383bcf;
+}
+.skills__edit-percent:focus {
+  font-size: 16px;
+  color: #414c63;
+  font-family: Open Sans;
+  font-weight: 400;
+  outline: none;
+}
+
 .skills__coll--title {
   font-size: 16px;
 }
+
 .coll {
   padding: 5px 0;
 }
@@ -72,6 +101,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-left: 20px;
 }
 .skills__coll--percent {
   text-align: right;

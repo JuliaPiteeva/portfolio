@@ -1,19 +1,20 @@
 <template lang="pug">
   main.main
-    .container
-      ul.nav__list
-        li.nav__item
-          router-link(to="/about",
-          tag="a",
-          class="nav__link" ) Обо мне
-        li.nav__item 
-          router-link(to="/works",
-          tag="a",
-          class="nav__link" ) Работы
-        li.nav__item 
-          router-link(to="/revs", 
-          tag="a",
-          class="nav__link" ) Отзывы
+    .container-nav
+      .container
+        ul.nav__list
+          li.nav__item
+            router-link(to="/about",
+            tag="a",
+            class="nav__link" ) Обо мне
+          li.nav__item 
+            router-link(to="/works",
+            tag="a",
+            class="nav__link" ) Работы
+          li.nav__item 
+            router-link(to="/revs", 
+            tag="a",
+            class="nav__link" ) Отзывы
     .main__block
       router-view
 </template>
@@ -23,8 +24,10 @@ export default {};
 <style lang="postcss">
 @import "../../styles/mixins.pcss";
 .nav {
-  background-color: #ffffff;
   margin-bottom: 55px;
+}
+.container-nav {
+  background-color: #ffffff;
 }
 .nav__list {
   height: 100%;

@@ -1,13 +1,17 @@
 <template lang="pug">
 .skills-add
   form.skills-add__form(@submit.prevent="createCategory")
-    input(type="text" name="skillGroup" required placeholder="Название новой группы" v-model="category.title").skills-add__title
+    input(
+      type="text"
+      placeholder="Название новой группы" 
+      required
+      v-model="category.title").skills-add__title
     .tick-cross__btns
       button(type="submit").tick
       button(type="button" @click.prevent="$emit('blockAddGroup')").cross
-  addInput(
-    :category="category"
-  )
+  //- addInput(
+  //-   :category="category"
+  //- )
 </template>
 <script>
 //id 319
@@ -31,13 +35,24 @@ export default {
 
   methods: {
     ...mapActions("categories", ["addCategory", "fetchcategories"]),
+    validForm() {
+      if (!this.category.title) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     async createCategory() {
-      try {
-        await this.addCategory(this.category.title);
-        this.category.title = "";
-        this.$emit("blockAddGroup");
-      } catch (error) {
-        console.log(error.message);
+      if (this.validForm()) {
+        try {
+          await this.addCategory(this.category.title);
+          this.category.title = "";
+          this.$emit("blockAddGroup");
+        } catch (error) {
+          console.log(error.message);
+        }
+      } else {
+        alert("Поле не может быть пустым");
       }
     }
   }
@@ -74,6 +89,10 @@ export default {
   padding: 1%;
   margin-right: 100px;
 }
+.skills-add__title:focus {
+  outline: none;
+  border-bottom: 2px solid #383bcf;
+}
 .tick-cross__btns {
   height: 100%;
   display: flex;
@@ -86,9 +105,11 @@ export default {
   height: 15px;
   background: svg-load("Cross.svg", fill=#bf2929, width=15px, height=15px)
     center center no-repeat;
+  border-bottom: 2px solid transparent;
 }
 .cross:focus {
   outline: none;
+  border-bottom: 2px solid #383bcf;
 }
 .tick {
   display: block;
@@ -97,6 +118,11 @@ export default {
   background: svg-load("tick.svg", fill=#00d70a, width=15px, height=15px) center
     center no-repeat;
   margin-right: 20px;
+  border-bottom: 2px solid transparent;
+}
+.tick:focus {
+  outline: none;
+  border-bottom: 2px solid #383bcf;
 }
 .skills-add__title {
   font-size: 18px;

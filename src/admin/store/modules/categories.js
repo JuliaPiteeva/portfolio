@@ -55,8 +55,7 @@ export default {
     },
     EDIT_CATEGORY(state, categoryToEdit) {
       state.categories = state.categories.map((category) => {
-        category.id === categoryToEdit.id ? categoryToEdit : category;
-        return category;
+        return category.id === categoryToEdit.id ? categoryToEdit : category;
       });
     },
     REMOVE_CATEGORY(state, categoryToRemove) {

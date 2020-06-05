@@ -91,6 +91,10 @@ export default {
   font-family: "Open Sans";
   font-weight: 600;
 }
+.title-group:focus {
+  outline: none;
+  border-bottom: 2px solid #383bcf;
+}
 .title-group--edit {
   border-bottom: 2px solid #dedee0;
 }

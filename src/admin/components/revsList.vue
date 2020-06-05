@@ -11,7 +11,11 @@
     .rev__btns
       label.btn-label
         span.btn-text Править
-        button(type="button" @click.prevent="toggleEdit" :disabled="addModeOn || getEditModeState").edit.edit--blue
+        button(
+          type="button" 
+          @click.prevent="toggleEdit" 
+          :disabled="addModeOn || getEditModeState"
+          ).edit.edit--blue
       label.btn-label
         span.btn-text Удалить
         button.cross(type="button" @click="removeCurrentRev") 
@@ -43,7 +47,7 @@ export default {
     toggleEdit() {
       this.toggleEditMode(this.getEditModeState);
       this.$emit("getCurrentRev", this.rev);
-      // this.$emit("scrollToEdit");
+      this.$emit("scrollToEdit");
     }
   }
 };
