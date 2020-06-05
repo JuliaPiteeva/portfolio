@@ -1,10 +1,10 @@
 .parallax-budda {
   overflow: hidden;
   min-height: 1320px;
-
+  background: linear-gradient(to bottom, #e1e9f3, #feffff);
   z-index: -20;
   @include tablets {
-    /* background-image: url(require("../../images/bg/768-bg-Budda.png")); */
+    min-height: 1220px;
   }
 }
 .parallax__layer-budda {
@@ -19,53 +19,52 @@
 
   &:nth-child(2) {
     .parallax__image-budda {
-      height: 100%;
       width: 100%;
-      object-fit: cover;
+      height: 100%;
     }
   }
   &:nth-child(3) {
     .parallax__image-budda {
-      right: 0;
-      bottom: 0;
+      right: -12%;
+      top: 49%;
     }
   }
 
   &:nth-child(4) {
     .parallax__image-budda {
-      top: 40%;
-      right: -7%;
+      top: 27%;
+      right: -18%;
     }
   }
   &:nth-child(5) {
     .parallax__image-budda {
-      bottom: 0;
+      bottom: 13%;
       right: 0;
     }
   }
   &:nth-child(6) {
     .parallax__image-budda {
-      bottom: -8%;
+      bottom: 1%;
       right: -6%;
     }
   }
   &:nth-child(7) {
     .parallax__image-budda {
       left: -10%;
-      bottom: -12%;
+      bottom: 12%;
     }
   }
   &:nth-child(8) {
     .parallax__image-budda {
-      bottom: -13%;
+      bottom: 8%;
       right: 0;
     }
   }
-  @include beforeTablets {
-    display: none;
-  }
 }
+
 .parallax__image-budda {
   position: absolute;
-  z-index: -10;
+}
+.about__bg {
+  display: block;
 }

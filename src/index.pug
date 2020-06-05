@@ -23,14 +23,6 @@ html(lang="en")
               picture.parallax__image
                 source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 768px)" ).parallax__image-icon
                 img(src=`${part.src}`).about__bg
-          //- -
-          //-   var parts=[
-          //-     {speed:"0.1", name:"sky"} ,{speed:"0.13",name:"mountain"}, 
-          //-     {speed: "0.15", name:"baloon"},{speed:"0.17", name: "middle-cloud"}, 
-          //-     {speed:"0.20", name: "man"}, {speed:"0.22", name:"slope" }, {speed:"0.24", name: "lower-cloud"}]
-          //- each part in parts
-          //-   .parallax__layer(data-speed=`${part.speed}`)
-          //-     +image(`parallax/${part.name}.png`, "", "parallax__image")
           section.section.hero(id="home")
             .container.hero-container
               header.header
@@ -109,12 +101,27 @@ html(lang="en")
                 polygon(points="1000,0 1000,100 0,100")
           -
             var parts=[
-              {speed:"0.1", name:"1-sky"} ,{speed:"0.12",name:"2-mountain"}, 
-              {speed: "0.14", name:"3-budda"},{speed:"0.16", name: "5-cloud"}, 
-              {speed:"0.18", name: "6-cloud"}, {speed:"0.20", name:"4-cloud" },{speed:"0.20", name:"4-cloud" }]
+              {speed:"0.01", name:"1-sky", src: require(`images/bg/768-bg-budda.png`)},
+              {speed:"0.12",name:"2-mountain", src:""}, 
+              {speed:"0.14", name:"3-budda", src:""},
+              {speed:"0.16", name: "4-cloud", src:""}, 
+              {speed:"0.18", name: "5-cloud", src:""}, 
+              {speed:"0.20", name:"6-cloud" , src:""}, 
+              {speed:"0.22", name: "4-cloud", src:""}
+              ]
           each part in parts
-            .parallax__layer-budda(data-speed=`${part.speed}`)
-              +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
+            .parallax__layer-budda(data-speed=`${part.speed}` )
+              picture.parallax__image-budda
+                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 768px)" ).parallax__image-icon
+                img(src=`${part.src}`).about__bg
+          //- -
+          //-   var parts=[
+          //-     {speed:"0.1", name:"1-sky"} ,{speed:"0.12",name:"2-mountain"}, 
+          //-     {speed: "0.14", name:"3-budda"},{speed:"0.16", name: "5-cloud"}, 
+          //-     {speed:"0.18", name: "6-cloud"}, {speed:"0.20", name:"4-cloud" },{speed:"0.20", name:"4-cloud" }]
+          //- each part in parts
+          //-   .parallax__layer-budda(data-speed=`${part.speed}`)
+          //-     +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
           section.section.reviews-section(id="reviews")
             .container(id="reviews")
               #reviwews-component
