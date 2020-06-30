@@ -21,7 +21,7 @@ html(lang="en")
           each part in parts
             .parallax__layer(data-speed=`${part.speed}` )
               picture.parallax__image
-                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 768px)" ).parallax__image-icon
+                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 1100px)" ).parallax__image-icon
                 img(src=`${part.src}`).about__bg
           section.section.hero(id="home")
             .container.hero-container
@@ -107,21 +107,15 @@ html(lang="en")
               {speed:"0.16", name: "4-cloud", src:""}, 
               {speed:"0.18", name: "5-cloud", src:""}, 
               {speed:"0.20", name:"4-cloud" , src:""}, 
-              {speed:"0.22", name: "4-cloud", src:""}
+              {speed:"0.22", name: "4-cloud", src:""},
+              {speed:"0", name:"4-cloud" , src:""}, 
+              {speed:"0", name: "4-cloud", src:""}
               ]
           each part in parts
             .parallax__layer-budda(data-speed=`${part.speed}` )
               picture.parallax__image-budda
-                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 768px)" ).parallax__image-icon
+                source(srcset=require(`images/parallax/${part.name}.png`) media="(min-width: 960px)" ).parallax__image-icon
                 img(src=`${part.src}`).about__bg
-          //- -
-          //-   var parts=[
-          //-     {speed:"0.1", name:"1-sky"} ,{speed:"0.12",name:"2-mountain"}, 
-          //-     {speed: "0.14", name:"3-budda"},{speed:"0.16", name: "5-cloud"}, 
-          //-     {speed:"0.18", name: "6-cloud"}, {speed:"0.20", name:"4-cloud" },{speed:"0.20", name:"4-cloud" }]
-          //- each part in parts
-          //-   .parallax__layer-budda(data-speed=`${part.speed}`)
-          //-     +image(`parallax/${part.name}.png`, "", "parallax__image-budda")
           section.section.reviews-section(id="reviews")
             .container(id="reviews")
               #reviwews-component

@@ -31,6 +31,16 @@
     @content;
   }
 }
+@mixin afterPhones {
+  @media screen and (max-width: $bp-afterPhones) {
+    @content;
+  }
+}
+@mixin oldPhones {
+  @media screen and (max-width: $bp-oldPhones) {
+    @content;
+  }
+}
 
 @mixin formIcons($iconName, $iconColor) {
   background: svg-load($iconName, fill= $iconColor, width=30px, height=30px)

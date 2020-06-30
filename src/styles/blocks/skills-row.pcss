@@ -4,6 +4,7 @@
   align-items: center; */
   @include tablets {
     flex-wrap: wrap;
+    justify-content: center;
   }
   @include phones {
     display: flex;
@@ -29,5 +30,10 @@
   @include tablets {
     margin-right: 20px;
     margin-bottom: 5%;
+  }
+  @include phones {
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
   }
 }

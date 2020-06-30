@@ -1,14 +1,28 @@
 .circle__icon {
   fill: transparent;
-
+  @include phones {
+    r: 60;
+  }
+  @include afterPhones {
+    r: 55;
+  }
+  @include oldPhones {
+    r: 40;
+  }
   /* transform: translate(25%, 25%); */
 }
 .circle__icon--above {
   stroke-width: 20px;
   stroke-dasharray: 414;
   stroke-dashoffset: 5;
+  @include oldPhones {
+    stroke-width: 15px;
+  }
 }
 .circle__icon--under {
   stroke: $circle-color;
   stroke-width: 10px;
+  @include oldPhones {
+    stroke-width: 8px;
+  }
 }

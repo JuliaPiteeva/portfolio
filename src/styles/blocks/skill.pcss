@@ -7,7 +7,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @include oldPhones {
+    font-size: 16px;
+  }
 }
 .skill__circle {
-  
+  @include afterPhones {
+    width: 150px;
+    height: 150px;
+  }
+  @include oldPhones {
+    width: 130px;
+    height: 130px;
+  }
 }

@@ -3,7 +3,7 @@ mixin nav(modif)
         button.nav__btn
             span.nav__btn-hamburger
         .nav__block
-            ul.nav__list
+            ul(class="nav__list "+`nav__list--${modif}--wrap`)
                 -
                     var items=[
                     {title:"Главная", href:"#home"}, 

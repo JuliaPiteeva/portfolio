@@ -13,7 +13,7 @@
 .projects-slider__points {
   position: absolute;
   right: 0;
-  bottom: 5px;
+  bottom: 0;
   width: 178px;
   @include phones {
     display: none;
@@ -26,6 +26,12 @@
   top: 100%;
   right: 0;
   @include phones {
-    top: 82%;
+    top: 79%;
+  }
+  @include afterPhones {
+    top: 74%;
+  }
+  @include oldPhones {
+    top: 70%;
   }
 }

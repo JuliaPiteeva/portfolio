@@ -26,6 +26,8 @@
   "bp-desktop": "1200Px",
   "bp-tablets": "768Px",
   "bp-phones": "480Px",
-  "bp-beforeTablets": "940Px",
-  "bp-beforePhones": "600Px"
+  "bp-beforeTablets": "960Px",
+  "bp-beforePhones": "600Px",
+  "bp-afterPhones": "440Px",
+  "bp-oldPhones": "350Px"
 }
